@@ -9,9 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "dotenv": "^16.0.1",
     "next": "12.1.6",
+    "pino-multi-stream": "^6.0.0",
+    "pino-pretty": "^7.6.1",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "sonic-boom": "^2.8.0"
   },
   "devDependencies": {
     "eslint": "8.15.0",
