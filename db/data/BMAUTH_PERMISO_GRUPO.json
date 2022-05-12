@@ -1,0 +1,42 @@
+[
+    {
+      "F_CREACION": "2021-10-01 00:00:00",
+      "USR_CREACION": "NINGUNO",
+      "PROG_CREACION": "NINGUNO",
+      "F_ACTUAL": "2021-10-01 00:00:00",
+      "USR_ACTUAL": "NINGUNO",
+      "PROG_ACTUAL": "NINGUNO",
+      "ID_PERMISO_GRUPO": "CUEUS",
+      "DE_PERMISO_GRUPO": "Cuentas de usuarios"
+    },
+    {
+      "F_CREACION": "2021-10-01 00:00:00",
+      "USR_CREACION": "NINGUNO",
+      "PROG_CREACION": "NINGUNO",
+      "F_ACTUAL": "2021-10-01 00:00:00",
+      "USR_ACTUAL": "NINGUNO",
+      "PROG_ACTUAL": "NINGUNO",
+      "ID_PERMISO_GRUPO": "PARAM",
+      "DE_PERMISO_GRUPO": "Parametros"
+    },
+    {
+      "F_CREACION": "2021-10-01 00:00:00",
+      "USR_CREACION": "NINGUNO",
+      "PROG_CREACION": "NINGUNO",
+      "F_ACTUAL": "2021-10-01 00:00:00",
+      "USR_ACTUAL": "NINGUNO",
+      "PROG_ACTUAL": "NINGUNO",
+      "ID_PERMISO_GRUPO": "PERFI",
+      "DE_PERMISO_GRUPO": "Perfiles"
+    },
+    {
+      "F_CREACION": "2021-10-01 00:00:00",
+      "USR_CREACION": "NINGUNO",
+      "PROG_CREACION": "NINGUNO",
+      "F_ACTUAL": "2021-10-01 00:00:00",
+      "USR_ACTUAL": "NINGUNO",
+      "PROG_ACTUAL": "NINGUNO",
+      "ID_PERMISO_GRUPO": "PERMI",
+      "DE_PERMISO_GRUPO": "Permisos"
+    }
+  ]

@@ -1,0 +1,80 @@
+[
+    {
+      "F_CREACION": "2021-10-01 00:00:00",
+      "USR_CREACION": "NINGUNO",
+      "PROG_CREACION": "NINGUNO",
+      "F_ACTUAL": "2021-10-01 00:00:00",
+      "USR_ACTUAL": "NINGUNO",
+      "PROG_ACTUAL": "NINGUNO",
+      "ID_DEFINICION_D": "ESCUS-ACTIV",
+      "ID_DEFINICION_M": "ESCUS",
+      "DE_DEFINICION_D": "Activo",
+      "CM_DEFINICION_D": "Usuario activo",
+      "TI_DEFINICION": "D"
+    },
+    {
+      "F_CREACION": "2021-10-01 00:00:00",
+      "USR_CREACION": "NINGUNO",
+      "PROG_CREACION": "NINGUNO",
+      "F_ACTUAL": "2021-10-01 00:00:00",
+      "USR_ACTUAL": "NINGUNO",
+      "PROG_ACTUAL": "NINGUNO",
+      "ID_DEFINICION_D": "ESCUS-INACT",
+      "ID_DEFINICION_M": "ESCUS",
+      "DE_DEFINICION_D": "Inactivo",
+      "CM_DEFINICION_D": "Usuario inactivo",
+      "TI_DEFINICION": "D"
+    },
+    {
+      "F_CREACION": "2021-10-01 00:00:00",
+      "USR_CREACION": "NINGUNO",
+      "PROG_CREACION": "NINGUNO",
+      "F_ACTUAL": "2021-10-01 00:00:00",
+      "USR_ACTUAL": "NINGUNO",
+      "PROG_ACTUAL": "NINGUNO",
+      "ID_DEFINICION_D": "ESPER-ACTIV",
+      "ID_DEFINICION_M": "ESPER",
+      "DE_DEFINICION_D": "Activo",
+      "CM_DEFINICION_D": "Perfil activo",
+      "TI_DEFINICION": "D"
+    },
+    {
+      "F_CREACION": "2021-10-01 00:00:00",
+      "USR_CREACION": "NINGUNO",
+      "PROG_CREACION": "NINGUNO",
+      "F_ACTUAL": "2021-10-01 00:00:00",
+      "USR_ACTUAL": "NINGUNO",
+      "PROG_ACTUAL": "NINGUNO",
+      "ID_DEFINICION_D": "ESPER-INACT",
+      "ID_DEFINICION_M": "ESPER",
+      "DE_DEFINICION_D": "Inactivo",
+      "CM_DEFINICION_D": "Perfil inactivo",
+      "TI_DEFINICION": "D"
+    },
+    {
+      "F_CREACION": "2021-10-01 00:00:00",
+      "USR_CREACION": "NINGUNO",
+      "PROG_CREACION": "NINGUNO",
+      "F_ACTUAL": "2021-10-01 00:00:00",
+      "USR_ACTUAL": "NINGUNO",
+      "PROG_ACTUAL": "NINGUNO",
+      "ID_DEFINICION_D": "SEX-M",
+      "ID_DEFINICION_M": "SEX",
+      "DE_DEFINICION_D": "Masculino",
+      "CM_DEFINICION_D": "Sexo masculino",
+      "TI_DEFINICION": "D"
+    },
+    {
+      "F_CREACION": "2021-10-01 00:00:00",
+      "USR_CREACION": "NINGUNO",
+      "PROG_CREACION": "NINGUNO",
+      "F_ACTUAL": "2021-10-01 00:00:00",
+      "USR_ACTUAL": "NINGUNO",
+      "PROG_ACTUAL": "NINGUNO",
+      "ID_DEFINICION_D": "SEX-F",
+      "ID_DEFINICION_M": "SEX",
+      "DE_DEFINICION_D": "Femenino",
+      "CM_DEFINICION_D": "Sexo femenino",
+      "TI_DEFINICION": "D"
+    }
+  ]
