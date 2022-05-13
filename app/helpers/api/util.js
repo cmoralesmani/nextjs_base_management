@@ -2,7 +2,7 @@
 
 import { Parser } from "json2csv";
 
-export { isJsonString, downloadResource };
+export { isJsonString, downloadResource, hasLetter, hasNumber };
 
 /**
  * Verifica si un string es un Json valido.
@@ -63,3 +63,26 @@ const getCsvFromJson = (
   const csv = json2csv.parse(data);
   return csv;
 };
+
+function hasNumber(texto) {
+  var numeros = "0123456789";
+
+  for (let i = 0; i < texto.length; i++) {
+    if (numeros.indexOf(texto.charAt(i), 0) != -1) {
+      return 1;
+    }
+  }
+  return 0;
+}
+
+function hasLetter(texto) {
+  var letras = "abcdefghyjklmnñopqrstuvwxyz";
+
+  texto = texto.toLowerCase();
+  for (let i = 0; i < texto.length; i++) {
+    if (letras.indexOf(texto.charAt(i), 0) != -1) {
+      return 1;
+    }
+  }
+  return 0;
+}
