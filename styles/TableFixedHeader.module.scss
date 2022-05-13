@@ -1,0 +1,68 @@
+// styles/TableFixedHeader.module.scss
+
+/* Para mantener los headers de las tablas visibles */
+.tableFixedHead {
+  > div {
+    max-height: 80vh;
+    overflow-y: auto;
+
+    thead {
+      position: sticky;
+      top: 0px;
+      left: 0px;
+      z-index: 1;
+
+      tr {
+        border-style: none;
+
+        th {
+          position: -webkit-sticky;
+          position: sticky;
+          z-index: 0;
+          border-style: none;
+
+          &:after,
+          &:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+          }
+
+          &:before {
+            top: 0px;
+            border-top: 1px solid #ced4da;
+            left: 0px;
+            border-left: 1px solid #ced4da;
+          }
+
+          &:after {
+            border-bottom: 1px solid #ced4da;
+            border-right: 1px solid #ced4da;
+          }
+        }
+      }
+
+      &:after,
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+
+      &:after {
+        bottom: 0px;
+        border-bottom: 1px solid #ced4da;
+        top: 0px;
+        border-top: 1px solid #ced4da;
+        left: 0px;
+        border-left: 1px solid #ced4da;
+        right: 0px;
+        border-right: 1px solid #ced4da;
+      }
+    }
+  }
+}
