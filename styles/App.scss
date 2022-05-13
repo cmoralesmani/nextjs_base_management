@@ -1,0 +1,187 @@
+// styles/App.scss
+
+@font-face {
+  font-family: "Arial Bold";
+  src: url("../assets/fonts/Arial_Bold.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Arial";
+  src: url("../assets/fonts/Arial.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("../assets/fonts/HelveticaNeue.ttc");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+$sidebar-bg-color: #e5e5e5;
+$submenu-bg-color: rgba(245, 245, 245);
+$submenu-bg-color-collapsed: rgba(245, 245, 245);
+$sidebar-color: #000000;
+$highlight-color: #8c5cf2;
+$icon-bg-color: rgba(191, 191, 191);
+$icon-size: 35px;
+
+@import "~react-pro-sidebar/dist/scss/styles.scss";
+
+// $body-bg: #f5f5f5;
+$blue: #122363;
+$green: #146b28;
+$white: #fff;
+$black: #000;
+$purple: #422580;
+$cyan: #0b738a;
+$link-color: $purple;
+// $min-contrast-ratio:   3.1;
+
+$font-family-sans-serif: "Arial", "Helvetica Neue";
+$headings-font-family: "Arial Bold";
+
+$font-size-base: 0.875rem;
+
+@import "~bootstrap/scss/bootstrap.scss";
+
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+#__next {
+  height: 100%;
+}
+
+.app {
+  height: 100%;
+  display: flex;
+  position: relative;
+
+  .btn-toggle {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    background: $gray-900;
+    color: $white;
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    display: none;
+  }
+
+  .sidebar-btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .sidebar-btn {
+      padding: 1px 15px;
+      border-radius: 40px;
+      background: $gray-400;
+      color: $black;
+      text-decoration: none;
+      margin: 0 auto;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      span {
+        margin-left: 5px;
+        font-size: 1rem;
+      }
+      &:hover {
+        color: $highlight-color;
+      }
+    }
+  }
+
+  .collapsed {
+    .sidebar-btn {
+      display: inline-block;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      line-height: 40px;
+      padding: 0;
+    }
+  }
+
+  main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
+    footer {
+      margin-top: auto;
+      color: $gray-900;
+      text-align: center;
+      a {
+        text-decoration: none;
+        color: $gray-900;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .block {
+    display: flex;
+    margin-bottom: 24px;
+    font-size: 1rem;
+    color: #545454;
+    > span {
+      margin-left: 10px;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    overflow-x: hidden;
+    header {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  }
+  @media (max-width: $breakpoint-md) {
+    .btn-toggle {
+      display: flex;
+    }
+
+    &.rtl {
+      .btn-toggle {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+/* En los formularios no estaba apreciandose el mensaje que se pone
+    en este control de bootstrap*/
+.invalid-feedback {
+  display: block;
+}
+
+// Para el CustomEditor que tiene un rich-text
+// https://github.com/jpuri/react-draft-wysiwyg/issues/1096#issuecomment-832308232
+.wrapper-class {
+  resize: both;
+  overflow: auto;
+  height: 50vh; // whatever height you want
+  width: 100%;
+  .editor-class {
+    height: 90%;
+    width: 100%;
+  }
+}
