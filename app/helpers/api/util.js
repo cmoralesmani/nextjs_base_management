@@ -1,6 +1,8 @@
 // app/helpers/api/util.js
 
-export { isJsonString };
+import { Parser } from "json2csv";
+
+export { isJsonString, downloadResource };
 
 /**
  * Verifica si un string es un Json valido.
@@ -20,3 +22,44 @@ function isJsonString(str) {
   }
   return { isJson: true, jsonValue: JSON.parse(str) };
 }
+
+const downloadResource = (
+  res,
+  fileName,
+  fields,
+  data,
+  options = {
+    delimiter: ";",
+    quote: '"',
+    contentType: "text/csv",
+    header: true,
+    withBOM: true,
+  }
+) => {
+  const csv = getCsvFromJson(fields, data, options);
+  res.setHeader("Content-Type", options.contentType);
+  res.setHeader("Content-disposition", `attachment; filename=${fileName}`);
+  return res.send(csv);
+};
+
+const getCsvFromJson = (
+  fields,
+  data,
+  options = {
+    delimiter: ";",
+    quote: '"',
+    contentType: "text/csv",
+    header: true,
+    withBOM: true,
+  }
+) => {
+  const json2csv = new Parser({
+    fields,
+    delimiter: options.delimiter,
+    quote: options.quote,
+    header: options.header,
+    withBOM: options.withBOM,
+  });
+  const csv = json2csv.parse(data);
+  return csv;
+};
