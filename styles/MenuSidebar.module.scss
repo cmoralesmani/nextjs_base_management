@@ -1,0 +1,24 @@
+// styles/MenuSidebar.module.scss
+
+.header {
+    text-align: center;
+    h2 {
+      padding: 24px;
+      letter-spacing: 1px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  
+  .footer {
+    text-align: center;
+  }
+  
+  .wrapButton {
+    padding: 20px 24px;
+  
+    .fontProfile {
+      font-size: 2rem;
+    }
+  }
