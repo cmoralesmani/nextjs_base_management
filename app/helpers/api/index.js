@@ -6,3 +6,4 @@ export * from "./init-middleware";
 export * from "./jwt-middleware";
 export * from "./validate-middleware";
 export * from "./has-permissions-to";
+export * from "./there-is-any-admin";
