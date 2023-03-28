@@ -10,8 +10,8 @@ import {
   thereIsAnyAdmin,
   initMiddleware,
   validateMiddleware,
-} from "@app/helpers/api";
-import { hasPermission } from "@app/helpers/utils";
+} from "src/helpers/api";
+import { hasPermission } from "src/helpers/utils";
 const db = require("@db/models/index");
 
 const validateBody = initMiddleware(

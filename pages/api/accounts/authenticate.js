@@ -2,18 +2,18 @@
 
 import bcrypt from "bcryptjs";
 import { check, validationResult } from "express-validator";
-const jwt = require("jsonwebtoken");
-import getConfig from "next/config";
 
+import {
+  generateAccessToken,
+  generateRefreshToken,
+} from "src/api/helpers/auth";
 import {
   apiHandler,
   initMiddleware,
   validateMiddleware,
-} from "@app/helpers/api";
-const db = require("@db/models/index");
+} from "src/helpers/api";
 
-const { serverRuntimeConfig } = getConfig();
-const KEY = serverRuntimeConfig.JWT_KEY;
+const db = require("@db/models/index");
 
 const validateBody = initMiddleware(
   validateMiddleware(
@@ -90,9 +90,8 @@ function handler(req, res) {
         username: userUsername,
       };
       /* Sign token */
-      const token = jwt.sign(payload, KEY, {
-        expiresIn: 31556926, // 1 year in seconds
-      });
+      const token = generateAccessToken(payload);
+      const refreshToken = generateRefreshToken(payload);
 
       req.log.info(`-authenticate- Autenticado correctamente: ${userUsername}`);
 
@@ -101,7 +100,8 @@ function handler(req, res) {
         username: userUsername,
         first_name: userFirstName,
         last_name: userLastName,
-        token,
+        JWT: token,
+        refresh: refreshToken,
       });
     } catch (err) {
       req.log.error(`-authenticate- Error: ${err}`);

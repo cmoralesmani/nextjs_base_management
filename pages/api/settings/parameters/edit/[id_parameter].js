@@ -1,6 +1,7 @@
 // pages/api/settings/parameters/edit/[id_parameter].js
 
 import { check, validationResult } from "express-validator";
+
 const moment = require("moment");
 
 import {
@@ -8,8 +9,9 @@ import {
   hasPermissionsTo,
   initMiddleware,
   validateMiddleware,
-} from "@app/helpers/api";
-import { hasPermission } from "@app/helpers/utils";
+} from "src/helpers/api";
+import { hasPermission } from "src/helpers/utils";
+
 const db = require("@db/models/index");
 
 const validateBody = initMiddleware(

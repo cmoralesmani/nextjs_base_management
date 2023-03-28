@@ -1,7 +1,7 @@
 // pages/api/accounts/has-permissions-to/index.js
 
-import { apiHandler, hasPermissionsTo } from "@app/helpers/api";
-import { isJsonString } from "@app/helpers/api/util";
+import { apiHandler, hasPermissionsTo } from "src/helpers/api";
+import { isJsonString } from "src/helpers/api/util";
 
 export default apiHandler(handler);
 

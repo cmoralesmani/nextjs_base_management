@@ -1,7 +1,7 @@
 // pages/api/profiles/index.js
 
-import listProfilesCore from "@app/api/profiles";
-import { apiHandler } from "@app/helpers/api";
+import listProfilesCore from "src/api/profiles";
+import { apiHandler } from "src/helpers/api";
 
 export default apiHandler(handler);
 

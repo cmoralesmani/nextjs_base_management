@@ -1,7 +1,8 @@
 // pages/api/settings/parameters/details/[id_parameter].js
 
-import { apiHandler, hasPermissionsTo } from "@app/helpers/api";
-import { hasPermission } from "@app/helpers/utils";
+import { apiHandler, hasPermissionsTo } from "src/helpers/api";
+import { hasPermission } from "src/helpers/utils";
+
 const db = require("@db/models/index");
 
 export default apiHandler(handler);

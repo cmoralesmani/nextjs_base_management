@@ -1,9 +1,9 @@
 // pages/api/profiles/export/index.js
 
-import listProfilesCore from "@app/api/profiles";
-import { apiHandler, hasPermissionsTo } from "@app/helpers/api";
-import { downloadResource } from "@app/helpers/api/util";
-import { hasPermission } from "@app/helpers/utils";
+import listProfilesCore from "src/api/profiles";
+import { apiHandler, hasPermissionsTo } from "src/helpers/api";
+import { downloadResource } from "src/helpers/api/util";
+import { hasPermission } from "src/helpers/utils";
 
 export default apiHandler(handler);
 

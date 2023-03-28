@@ -9,9 +9,9 @@ import {
   hasPermissionsTo,
   initMiddleware,
   validateMiddleware,
-} from "@app/helpers/api";
-import { hasNumber, hasLetter } from "@app/helpers/api/util";
-import { hasPermission } from "@app/helpers/utils";
+} from "src/helpers/api";
+import { hasNumber, hasLetter } from "src/helpers/api/util";
+import { hasPermission } from "src/helpers/utils";
 const db = require("@db/models/index");
 
 const validateBody = initMiddleware(

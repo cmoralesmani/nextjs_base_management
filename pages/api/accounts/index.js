@@ -1,7 +1,7 @@
 // pages/api/accounts/index.js
 
-import listUsersCore from "@app/api/accounts";
-import { apiHandler } from "@app/helpers/api";
+import listUsersCore from "src/api/accounts";
+import { apiHandler } from "src/helpers/api";
 
 export default apiHandler(handler);
 

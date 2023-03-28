@@ -4,7 +4,7 @@ require("dotenv").config();
 import getConfig from "next/config";
 const { Sequelize, DataTypes } = require("sequelize");
 
-const logger = require("@app/services/logger.service");
+const logger = require("src/services/logger.service");
 const envConfigs = require("../config/config");
 
 const { serverRuntimeConfig } = getConfig();
@@ -31,7 +31,7 @@ const modules = [
   require("./bmauth_usuario.js"),
   require("./bmauth_perfil.js"),
   require("./bmauth_usuario_perfil.js"),
-  require("./BMAUTH_PERMISO_GRUPO.js"),
+  require("./bmauth_permiso_grupo.js"),
   require("./bmauth_permiso_accion.js"),
   require("./bmauth_permiso.js"),
   require("./bmauth_perfil_permiso.js"),

@@ -1,9 +1,9 @@
 // pages/api/settings/parameters/export/index.js
 
-import listParametersCore from "@app/api/settings/parameters";
-import { apiHandler, hasPermissionsTo } from "@app/helpers/api";
-import { downloadResource } from "@app/helpers/api/util";
-import { hasPermission } from "@app/helpers/utils";
+import listParametersCore from "src/api/settings/parameters";
+import { apiHandler, hasPermissionsTo } from "src/helpers/api";
+import { downloadResource } from "src/helpers/api/util";
+import { hasPermission } from "src/helpers/utils";
 
 export default apiHandler(handler);
 

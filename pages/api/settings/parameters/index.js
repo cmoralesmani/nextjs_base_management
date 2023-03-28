@@ -1,7 +1,7 @@
 // pages/api/settings/parameters/index.js
 
-import listParametersCore from "@app/api/settings/parameters";
-import { apiHandler } from "@app/helpers/api";
+import listParametersCore from "src/api/settings/parameters";
+import { apiHandler } from "src/helpers/api";
 
 export default apiHandler(handler);
 

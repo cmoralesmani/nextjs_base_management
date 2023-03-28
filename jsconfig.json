@@ -3,7 +3,7 @@
     // make all imports without a dot '.' prefix relative to the base url
     "baseUrl": ".",
     "paths": {
-      "@app/*": ["app/*"],
+      "@src/*": ["src/*"],
       "@pages/*": ["pages/*"],
       "@db/*": ["db/*"]
     }
