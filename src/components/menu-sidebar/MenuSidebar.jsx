@@ -192,17 +192,9 @@ export default function MenuSidebar() {
     //     </Container>
     //   </SidebarHeader>
 
-    //   <SidebarFooter className={styles.footer}>
-    //     <div className={`sidebar-btn-wrapper ${styles.wrapButton}`}>
-    //       <a className="sidebar-btn" href="#" onClick={logout}>
-    //         <FaSignOutAlt />
-    //         <span>Cerrar sesión</span>
-    //       </a>
-    //     </div>
-    //   </SidebarFooter>
     // </ProSidebar>
     <div className={styles.sidebar}>
-      <button className={styles.toogleSidebar} onClick={handleClick}>
+      <button className={styles.sidebarToogleButton} onClick={handleClick}>
         {collapsed ? <FaChevronRight /> : <FaChevronLeft />}
       </button>
       <Sidebar
@@ -215,7 +207,7 @@ export default function MenuSidebar() {
         <div
           style={{ display: "flex", flexDirection: "column", height: "100%" }}
         >
-          <SidebarHeader style={{ marginBottom: "24px", marginTop: "16px" }} />
+          {/* <SidebarHeader style={{ marginBottom: "24px", marginTop: "16px" }} /> */}
           <div style={{ flex: 1, marginBottom: "32px" }}>
             <Menu menuItemStyles={menuItemStyles}>
               {!!itemsMenu.length && <RenderItemsMenu itemsMenu={itemsMenu} />}
