@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-import { SpinnerCustom } from "@app/components/elements";
-import { SiteLayout } from "@app/components/layouts";
-import { AddEditProfile } from "@app/components/templates";
-import { profileService, toastService } from "@app/services";
+import { SpinnerCustom } from "src/components/elements";
+import { PageLayout } from "src/layouts";
+import { AddEditProfile } from "src/components/templates";
+import { profileService, toastService } from "src/services";
 
 export default EditProfile;
 
@@ -32,13 +32,17 @@ function EditProfile({ id_profile }) {
   }
 
   return (
-    <SiteLayout
-      titleSite="Edición de perfil"
-      idPermission="PERFI-MODIF"
-      handleLoadInit={handleLoadInit}
+    // <PageLayout
+    //   titleSite="Edición de perfil"
+    //   idPermission="alter_profile"
+    //   handleLoadInit={handleLoadInit}
+    // >
+    <PageLayout
+      titlePage="Edición de perfil"
+      codenamePermission="alter_profile"
     >
       {profile ? <AddEditProfile profile={profile} /> : <SpinnerCustom />}
-    </SiteLayout>
+    </PageLayout>
   );
 }
 

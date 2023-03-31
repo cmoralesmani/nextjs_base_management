@@ -37,7 +37,7 @@ function ResetPassword({ user }) {
   // Reglas de validacion para el formulario
   const validationSchema = Yup.object().shape({
     oldPassword: Yup.string().concat(
-      user.id_usuario == userService.userValue.id_user
+      user.id_user == userService.userValue.id_user
         ? Yup.string().required("La contraseña anterior es requerida")
         : null
     ),
@@ -79,7 +79,7 @@ function ResetPassword({ user }) {
 
   const onSubmit = (data) => {
     const newData = {
-      id_usuario: user.id_usuario,
+      id_user: user.id_user,
       oldPassword: data.oldPassword,
       newPassword: data.newPassword,
     };
@@ -114,7 +114,7 @@ function ResetPassword({ user }) {
   if (!user) return null;
 
   const username =
-    user.id_usuario == userService.userValue.id_user
+    user.id_user == userService.userValue.id_user
       ? `${user.username} (Mi usuario)`
       : `${user.username}`;
 
@@ -141,7 +141,7 @@ function ResetPassword({ user }) {
           <Modal.Title>
             <FaLock className="me-1" />
             Cambio de Contraseña
-            {user.id_usuario == userService.userValue.id_user && (
+            {user.id_user == userService.userValue.id_user && (
               <Badge className="ms-2" bg="info" size="lg">
                 Mi usuario
               </Badge>
@@ -166,7 +166,7 @@ function ResetPassword({ user }) {
                   />
                   <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                 </Form.Group>
-                {user.id_usuario == userService.userValue.id_user && (
+                {user.id_user == userService.userValue.id_user && (
                   <Form.Group className="mb-3" controlId="oldPassword">
                     <Form.Label>Contraseña anterior</Form.Label>
                     <InputGroup>

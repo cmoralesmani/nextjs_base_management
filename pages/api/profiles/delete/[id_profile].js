@@ -19,8 +19,8 @@ function handler(req, res) {
 
     // Tiene permiso para eliminar perfiles?
     const hasPermissionToDeleteProfile = hasPermission(
-      await hasPermissionsTo(req.user.username, ["PERFI-ELIMI"]),
-      "PERFI-ELIMI"
+      await hasPermissionsTo(req.user.username, ["delete_profile"]),
+      "delete_profile"
     );
     if (!hasPermissionToDeleteProfile) {
       return res
@@ -36,9 +36,9 @@ function handler(req, res) {
     let transaction;
     try {
       transaction = await db.sequelize.transaction();
-      const profile = await db.bmauth_perfil.findOne(
+      const profile = await db.bmauth_profile.findOne(
         {
-          where: { ID_PERFIL: id_profile },
+          where: { ID_PROFILE: id_profile },
         },
         { transaction }
       );

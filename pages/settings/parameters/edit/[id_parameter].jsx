@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 
-import { SpinnerCustom } from "@app/components/elements";
-import { SiteLayout } from "@app/components/layouts";
-import { ParametersAddEdit } from "@app/components/templates";
-import { parametersService } from "@app/services";
+import { SpinnerCustom } from "src/components/elements";
+import { PageLayout } from "src/layouts";
+import { ParametersAddEdit } from "src/components/templates";
+import { parametersService } from "src/services";
 
 export default EditParameter;
 
@@ -19,17 +19,21 @@ function EditParameter({ id_parameter }) {
   }
 
   return (
-    <SiteLayout
-      titleSite="Edición de parametro"
-      idPermission="PARAM-MODIF"
-      handleLoadInit={handleLoadInit}
+    // <PageLayout
+    //   titleSite="Edición de parametro"
+    //   idPermission="alter_parameter"
+    //   handleLoadInit={handleLoadInit}
+    // >
+    <PageLayout
+      titlePage="Edición de parametro"
+      codenamePermission="alter_parameter"
     >
       {parameter ? (
         <ParametersAddEdit parameter={parameter} />
       ) : (
         <SpinnerCustom />
       )}
-    </SiteLayout>
+    </PageLayout>
   );
 }
 

@@ -3,7 +3,9 @@
 import Router from "next/router";
 import { BehaviorSubject } from "rxjs";
 
-import { fetchWrapper } from "src/helpers";
+// import { fetchWrapper } from "src/helpers";
+
+import { fetchWrapper } from "src/utilities";
 
 const userSubject = new BehaviorSubject(
   process.browser &&
@@ -20,7 +22,7 @@ export const userService = {
   },
   login,
   logout,
-  getById,
+  getUserByUsername,
   getUsers,
   register,
   update,
@@ -51,8 +53,8 @@ function logout() {
   Router.push("/login");
 }
 
-function getById(id_user) {
-  return fetchWrapper.get(`${baseUrl}/details/${id_user}`);
+function getUserByUsername(username) {
+  return fetchWrapper.get(`${baseUrl}/details/${username}/`);
 }
 
 function getUsers(filters = {}) {
@@ -86,10 +88,7 @@ function _delete(id_user) {
 }
 
 function changePassword(data) {
-  return fetchWrapper.post(
-    `${baseUrl}/change-password/${data.id_usuario}`,
-    data
-  );
+  return fetchWrapper.post(`${baseUrl}/change-password/${data.id_user}`, data);
 }
 
 function hasPermissionsTo(list_id_permission) {

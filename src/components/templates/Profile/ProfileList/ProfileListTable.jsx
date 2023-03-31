@@ -19,7 +19,7 @@ import {
 import { hasPermission } from "src/helpers/utils";
 import { useHasPermissionStatus } from "src/hooks";
 
-import styles from "../../../../../styles/TableFixedHeader.module.scss";
+import styles from "styles/TableFixedHeader.module.scss";
 
 export { ProfileListTable };
 
@@ -31,15 +31,24 @@ ProfileListTable.propTypes = {
 
 function ProfileListTable({ profiles, urlDownload, deleteProfileCallback }) {
   const permissions = useHasPermissionStatus([
-    "PERFI-VER",
-    "PERFI-CREAR",
-    "PERFI-MODIF",
-    "PERFI-ELIMI",
+    "see_single_profile",
+    "create_profile",
+    "alter_profile",
+    "delete_profile",
   ]);
-  const hasPermissionSeeProfile = hasPermission(permissions, "PERFI-VER");
-  const hasPermissionCreateProfile = hasPermission(permissions, "PERFI-CREAR");
-  const hasPermissionEditProfile = hasPermission(permissions, "PERFI-MODIF");
-  const hasPermissionDeleteProfile = hasPermission(permissions, "PERFI-ELIMI");
+  const hasPermissionSeeProfile = hasPermission(
+    permissions,
+    "see_single_profile"
+  );
+  const hasPermissionCreateProfile = hasPermission(
+    permissions,
+    "create_profile"
+  );
+  const hasPermissionEditProfile = hasPermission(permissions, "alter_profile");
+  const hasPermissionDeleteProfile = hasPermission(
+    permissions,
+    "delete_profile"
+  );
 
   return (
     <Container className="g-0">
@@ -67,7 +76,7 @@ function ProfileListTable({ profiles, urlDownload, deleteProfileCallback }) {
                     <ButtonDownload
                       buttonLabel="Exportar"
                       buttonIcon={<FaFileCsv />}
-                      idPermission="PERFI-EXPOR"
+                      idPermission="export_profiles"
                       url={urlDownload}
                     />
                   )}

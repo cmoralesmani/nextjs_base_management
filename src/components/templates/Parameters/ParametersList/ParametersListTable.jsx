@@ -9,7 +9,7 @@ import { SpinnerCustom, ButtonDownload } from "src/components/elements";
 import { hasPermission } from "src/helpers/utils";
 import { useHasPermissionStatus } from "src/hooks";
 
-import styles from "../../../../../styles/TableFixedHeader.module.scss";
+import styles from "styles/TableFixedHeader.module.scss";
 
 export { ParametersListTable };
 
@@ -19,9 +19,18 @@ ParametersListTable.propTypes = {
 };
 
 function ParametersListTable({ parameters, urlDownload }) {
-  const permissions = useHasPermissionStatus(["PARAM-VER", "PARAM-MODIF"]);
-  const hasPermissionSeeParameters = hasPermission(permissions, "PARAM-VER");
-  const hasPermissionEditParameters = hasPermission(permissions, "PARAM-MODIF");
+  const permissions = useHasPermissionStatus([
+    "see_single_parameter",
+    "alter_parameter",
+  ]);
+  const hasPermissionSeeParameters = hasPermission(
+    permissions,
+    "see_single_parameter"
+  );
+  const hasPermissionEditParameters = hasPermission(
+    permissions,
+    "alter_parameter"
+  );
 
   return (
     <Container className="g-0">
@@ -40,7 +49,7 @@ function ParametersListTable({ parameters, urlDownload }) {
                     <ButtonDownload
                       buttonLabel="Exportar"
                       buttonIcon={<FaFileCsv />}
-                      idPermission="PARAM-EXPOR"
+                      idPermission="export_parameters"
                       url={urlDownload}
                     />
                   )}

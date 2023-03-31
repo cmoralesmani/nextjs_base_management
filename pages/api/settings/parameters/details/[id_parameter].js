@@ -24,8 +24,8 @@ function handler(req, res) {
 
     // Tiene permiso para ver el detalle de empresas?
     const hasPermissionToSeeDetailParameter = hasPermission(
-      await hasPermissionsTo(req.user.username, ["PARAM-VER"]),
-      "PARAM-VER"
+      await hasPermissionsTo(req.user.username, ["see_single_parameter"]),
+      "see_single_parameter"
     );
     if (!hasPermissionToSeeDetailParameter) {
       return res
@@ -34,25 +34,25 @@ function handler(req, res) {
     }
 
     let buildWhere = {
-      ID_DEFINICION_M: id_parameter,
+      ID_DEFINITION_MASTER: id_parameter,
     };
 
     // En caso de poseer el permiso retorna los datos del parametro
-    const parameter = await db.bmauth_definicion_m.findOne({
+    const parameter = await db.bmauth_definition_master.findOne({
       where: buildWhere,
       include: [
         {
-          model: db.bmauth_definicion_d,
+          model: db.bmauth_definition_detail,
           required: false,
           where: buildWhere,
         },
       ],
     });
 
-    const objDefinicionD = parameter.BMAUTH_DEFINICION_Ds.map((p) => ({
-      id_definicion_d: p.ID_DEFINICION_D,
-      descripcion_definicion_d: p.DE_DEFINICION_D,
-      comentario_definicion_d: p.CM_DEFINICION_D,
+    const objDefinicionD = parameter.BMAUTH_DEFINITION_DETAILs.map((p) => ({
+      id_definicion_d: p.ID_DEFINITION_DETAIL,
+      descripcion_definicion_d: p.DE_DEFINITION_DETAIL,
+      comentario_definicion_d: p.COMMENT_DEFINITION_DETAIL,
     }));
 
     /* Verificacion de que si existe la empresa que estan solicitando */
@@ -62,8 +62,8 @@ function handler(req, res) {
 
     return res.status(200).json({
       parametro: {
-        id_definicion_m: parameter.ID_DEFINICION_M,
-        de_definicion_m: parameter.DE_DEFINICION_M,
+        id_definicion_m: parameter.ID_DEFINITION_MASTER,
+        de_definicion_m: parameter.DE_DEFINITION_MASTER,
         obj_definicion_d: objDefinicionD,
       },
     });

@@ -3,6 +3,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  publicRuntimeConfig: {
+    apiUrl:
+      process.env.NODE_ENV === "development"
+        ? "http://127.0.0.1:3000"
+        : "http://127.0.0.1:3000",
+  },
   serverRuntimeConfig: {
     // Will only be available on the server side
     // JWT_KEY: process.env.JWT_KEY,

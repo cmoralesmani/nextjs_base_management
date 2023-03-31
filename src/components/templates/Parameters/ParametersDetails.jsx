@@ -10,9 +10,18 @@ import { useHasPermissionStatus } from "src/hooks";
 export function ParametersDetails(props) {
   const parameter = props?.parameter?.parametro;
 
-  const permissions = useHasPermissionStatus(["PARAM-LISTA", "PARAM-MODIF"]);
-  const hasPermissionListParameters = hasPermission(permissions, "PARAM-LISTA");
-  const hasPermissionEditParameters = hasPermission(permissions, "PARAM-MODIF");
+  const permissions = useHasPermissionStatus([
+    "see_parameters",
+    "alter_parameter",
+  ]);
+  const hasPermissionListParameters = hasPermission(
+    permissions,
+    "see_parameters"
+  );
+  const hasPermissionEditParameters = hasPermission(
+    permissions,
+    "alter_parameter"
+  );
 
   if (!parameter) return null;
 

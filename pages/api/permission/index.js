@@ -18,8 +18,8 @@ function handler(req, res) {
 
   async function get() {
     const hasPermissionToListPermission = hasPermission(
-      await hasPermissionsTo(req.user.username, ["PERMI-LISTA"]),
-      "PERMI-LISTA"
+      await hasPermissionsTo(req.user.username, ["see_permissions"]),
+      "see_permissions"
     );
     if (!hasPermissionToListPermission) {
       return res
@@ -30,35 +30,35 @@ function handler(req, res) {
     const { search } = req.query;
 
     // Obtencion de la lista de permisos
-    const permissions = await db.bmauth_permiso.findAll({
+    const permissions = await db.bmauth_permission.findAll({
       where: {
-        DE_PERMISO: {
+        DE_PERMISSION: {
           [Op.substring]: search || "",
         },
       },
       include: [
         {
-          model: db.bmauth_permiso_grupo,
+          model: db.bmauth_permission_grupo,
           as: "BMAUTH_A_G",
           required: true,
         },
         {
-          model: db.bmauth_permiso_accion,
+          model: db.bmauth_permission_accion,
           as: "BMAUTH_P_A",
           required: true,
         },
       ],
-      order: [["BMAUTH_A_G", "DE_PERMISO_GRUPO", "ASC"]],
+      order: [["BMAUTH_A_G", "DE_PERMISSION_GRUPO", "ASC"]],
     });
 
     return res.status(200).json({
       permisos: permissions.map((p) => ({
-        id_permiso: p.ID_PERMISO,
-        de_permiso: p.DE_PERMISO,
-        id_permiso_grupo: p.ID_PERMISO_GRUPO,
-        id_permiso_accion: p.ID_PERMISO_ACCION,
-        de_permiso_grupo: p.BMAUTH_A_G.DE_PERMISO_GRUPO,
-        de_permiso_accion: p.BMAUTH_P_A.DE_PERMISO_ACCION,
+        id_permiso: p.ID_PERMISSION,
+        de_permiso: p.DE_PERMISSION,
+        id_permiso_grupo: p.ID_PERMISSION_GRUPO,
+        id_permiso_accion: p.ID_PERMISSION_ACCION,
+        de_permiso_grupo: p.BMAUTH_A_G.DE_PERMISSION_GRUPO,
+        de_permiso_accion: p.BMAUTH_P_A.DE_PERMISSION_ACCION,
       })),
     });
   }

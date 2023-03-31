@@ -30,9 +30,18 @@ export function ParametersAddEdit(props) {
   const router = useRouter();
 
   const [validated, setValidated] = useState(false);
-  const permissions = useHasPermissionStatus(["PARAM-LISTA", "PARAM-VER"]);
-  const hasPermissionListParameters = hasPermission(permissions, "PARAM-LISTA");
-  const hasPermissionSeeParameters = hasPermission(permissions, "PARAM-VER");
+  const permissions = useHasPermissionStatus([
+    "see_parameters",
+    "see_single_parameter",
+  ]);
+  const hasPermissionListParameters = hasPermission(
+    permissions,
+    "see_parameters"
+  );
+  const hasPermissionSeeParameters = hasPermission(
+    permissions,
+    "see_single_parameter"
+  );
 
   // Reglas de validacion para el formulario
   const validationSchema = Yup.object().shape({

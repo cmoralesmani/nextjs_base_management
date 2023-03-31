@@ -18,9 +18,9 @@ function handler(req, res) {
 
     return res.status(200).json({
       parametros: dataParameters.map((p) => ({
-        id_definicion_m: p.ID_DEFINICION_M,
-        de_definicion_m: p.DE_DEFINICION_M,
-        cm_definicion: p.CM_DEFINICION,
+        id_definicion_m: p.ID_DEFINITION_MASTER,
+        de_definicion_m: p.DE_DEFINITION_MASTER,
+        cm_definicion: p.COMMENT_DEFINITION,
       })),
     });
   }

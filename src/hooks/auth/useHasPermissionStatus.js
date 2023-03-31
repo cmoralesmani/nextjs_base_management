@@ -1,3 +1,5 @@
+// src/hooks/auth/useHasPermissionStatus.js
+
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -10,12 +12,12 @@ export function useHasPermissionStatus({ codenamePermission }) {
   useEffect(() => {
     if (!!userState) {
       const { user_permissions } = userState;
-      const permissionFiltered = user_permissions.filter(
+      const permissionFiltered = user_permissions?.filter(
         (permission) => permission.codename === codenamePermission
       );
-      setHasPermission(permissionFiltered.length > 0);
+      setHasPermission((permissionFiltered || []).length > 0);
     }
-  }, [userState]);
+  }, [userState, codenamePermission]);
 
   return hasPermission;
 }

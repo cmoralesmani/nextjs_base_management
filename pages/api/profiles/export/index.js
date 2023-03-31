@@ -17,8 +17,8 @@ function handler(req, res) {
 
   async function get() {
     const hasPermissionToExportProfiles = hasPermission(
-      await hasPermissionsTo(req.user.username, ["PERFI-EXPOR"]),
-      "PERFI-EXPOR"
+      await hasPermissionsTo(req.user.username, ["export_profiles"]),
+      "export_profiles"
     );
     if (!hasPermissionToExportProfiles) {
       return res
@@ -31,11 +31,11 @@ function handler(req, res) {
     const fields = [
       {
         label: "Perfil",
-        value: "DE_PERFIL",
+        value: "DE_PROFILE",
       },
       {
         label: "Estado",
-        value: "BMAUTH_DEFINICION_D.DE_DEFINICION_D",
+        value: "BMAUTH_DEFINITION_DETAIL.DE_DEFINITION_DETAIL",
       },
     ];
     return downloadResource(res, "lista_perfiles.csv", fields, dataProfiles);

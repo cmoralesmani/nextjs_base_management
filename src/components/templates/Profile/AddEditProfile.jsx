@@ -41,9 +41,18 @@ function AddEditProfile(props) {
   const isAddMode = !profile;
   const router = useRouter();
 
-  const permissionsSec = useHasPermissionStatus(["PERFI-VER", "PERFI-LISTA"]);
-  const hasPermissionSeeProfile = hasPermission(permissionsSec, "PERFI-VER");
-  const hasPermissionListProfile = hasPermission(permissionsSec, "PERFI-LISTA");
+  const permissionsSec = useHasPermissionStatus([
+    "see_single_profile",
+    "see_profiles",
+  ]);
+  const hasPermissionSeeProfile = hasPermission(
+    permissionsSec,
+    "see_single_profile"
+  );
+  const hasPermissionListProfile = hasPermission(
+    permissionsSec,
+    "see_profiles"
+  );
 
   const [users, setUsers] = useState([]);
   const [statusFetchUsers, setStatusFetchUsers] = useState("waiting");
@@ -155,7 +164,7 @@ function AddEditProfile(props) {
         ? false
         : undefined;
     props.profile.perfil.usuarios_seleccionados =
-      props.profile.perfil.usuarios.map((u) => u.id_usuario);
+      props.profile.perfil.usuarios.map((u) => u.id_user);
     props.profile.perfil.permisos_seleccionados = permissionsSelected;
     formOptions.defaultValues = props.profile.perfil;
   } else {
@@ -355,8 +364,8 @@ function AddEditProfile(props) {
                   isInvalid={!!errors.usuarios_seleccionados}
                 >
                   {users.map((n) => (
-                    <option key={n.id_usuario} value={n.id_usuario}>
-                      {n.nom_usuario} {n.ape_usuario} ({n.username})
+                    <option key={n.id_user} value={n.id_user}>
+                      {n.name_user} {n.lastname_user} ({n.username})
                     </option>
                   ))}
                 </Form.Control>

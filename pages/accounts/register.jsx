@@ -2,17 +2,19 @@
 
 import React from "react";
 
-import { SiteLayout } from "@app/components/layouts";
-import { UserAddEdit } from "@app/components/templates";
+import { PageLayout } from "src/layouts";
+import { UserAddEdit } from "src/components/accounts";
 
 export default function Register() {
   return (
-    <SiteLayout
-      titleSite="Nuevo usuario"
-      idPermission="CUEUS-CREAR"
-      handleLoadInit={async () => {}}
-    >
+    // <PageLayout
+    //   titleSite="Nuevo usuario"
+    //   idPermission="create_user"
+    //   handleLoadInit={async () => {}}
+    // >
+    <PageLayout codenamePermission={"see_users"} titlePage="Nuevo usuario">
       <UserAddEdit />
-    </SiteLayout>
+    </PageLayout>
+    // </PageLayout>
   );
 }

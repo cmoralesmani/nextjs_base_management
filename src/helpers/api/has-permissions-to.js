@@ -25,39 +25,39 @@ export async function hasPermissionsTo(username, list_id_permission) {
 
   try {
     if (username && list_id_permission.length > 0) {
-      const permitsBD = await db.bmauth_perfil_permiso.findAll({
-        attributes: ["ID_PERMISO"],
+      const permitsBD = await db.bmauth_profile_permissions.findAll({
+        attributes: ["ID_PERMISSION"],
         include: [
           {
             attributes: [],
-            model: db.bmauth_perfil,
+            model: db.bmauth_profile,
             required: true,
             include: [
               {
                 attributes: [],
-                model: db.bmauth_usuario_perfil,
+                model: db.bmauth_user_profiles,
                 required: true,
                 include: [
                   {
                     attributes: [],
-                    model: db.bmauth_usuario,
+                    model: db.bmauth_user,
                     required: true,
-                    where: { USERNAME: username, ES_USUARIO: "ESCUS-ACTIV" },
+                    where: { USERNAME: username, STATUS_USER: "ESCUS-ACTIV" },
                   },
                 ],
               },
             ],
-            where: { ES_PERFIL: "ESPER-ACTIV" },
+            where: { STATUS_PROFILE_ID: "ESPER-ACTIV" },
           },
         ],
-        where: { ID_PERMISO: { [Op.in]: list_id_permission } },
+        where: { ID_PERMISSION: { [Op.in]: list_id_permission } },
       });
 
       const permitsBDJSON = JSON.parse(JSON.stringify(permitsBD));
       const response = list_id_permission.map((permit) => ({
         id_permiso: permit,
         has_permission: permitsBDJSON.some(
-          (permitBD) => permitBD.ID_PERMISO === permit
+          (permitBD) => permitBD.ID_PERMISSION === permit
         ),
       }));
       return response;

@@ -9,8 +9,8 @@ const db = require("@db/models/index");
 
 export default async (req, res) => {
   const hasPermissionToListProfile = hasPermission(
-    await hasPermissionsTo(req.user.username, ["PERFI-LISTA"]),
-    "PERFI-LISTA"
+    await hasPermissionsTo(req.user.username, ["see_profiles"]),
+    "see_profiles"
   );
   if (!hasPermissionToListProfile) {
     throw "No tienes permiso para listar perfiles";
@@ -25,17 +25,17 @@ export default async (req, res) => {
   // Obtencion de la lista de perfiles
   let buildWhere = {};
   if (filters?.search)
-    buildWhere["DE_PERFIL"] = db.sequelize.where(
-      db.sequelize.fn("lower", db.sequelize.col("DE_PERFIL")),
+    buildWhere["DE_PROFILE"] = db.sequelize.where(
+      db.sequelize.fn("lower", db.sequelize.col("DE_PROFILE")),
       { [Op.substring]: filters.search.toLowerCase() }
     );
 
-  let dataProfiles = await db.bmauth_perfil.findAll({
+  let dataProfiles = await db.bmauth_profile.findAll({
     where: buildWhere,
     include: [
       {
-        attributes: ["DE_DEFINICION_D"],
-        model: db.bmauth_definicion_d,
+        attributes: ["DE_DEFINITION_DETAIL"],
+        model: db.bmauth_definition_detail,
         required: true,
       },
     ],

@@ -53,7 +53,7 @@ function handler(req, res) {
         return res.status(422).json({ errors: errors.array() });
       }
 
-      const user = await db.bmauth_usuario.findOne({
+      const user = await db.bmauth_user.findOne({
         where: { USERNAME: username },
       });
 
@@ -63,17 +63,17 @@ function handler(req, res) {
         throw "Usuario no encontrado";
       }
 
-      if (user.ES_USUARIO == "ESCUS-INACT") {
+      if (user.STATUS_USER == "ESCUS-INACT") {
         req.log.info(`-authenticate- El usuario está inactivo: ${username}`);
         throw "El usuario está inactivo";
       }
 
       /* Define variables */
       const dataUser = user.toJSON();
-      const userId = dataUser.ID_USUARIO,
+      const userId = dataUser.ID_USER,
         userUsername = dataUser.USERNAME,
-        userFirstName = dataUser.NOM_USUARIO,
-        userLastName = dataUser.APE_USUARIO,
+        userFirstName = dataUser.NAME_USER,
+        userLastName = dataUser.LASTNAME_USER,
         userPassword = dataUser.PASSWORD;
 
       /* Check and compare password */
@@ -96,11 +96,7 @@ function handler(req, res) {
       req.log.info(`-authenticate- Autenticado correctamente: ${userUsername}`);
 
       return res.status(200).json({
-        id_user: userId,
-        username: userUsername,
-        first_name: userFirstName,
-        last_name: userLastName,
-        JWT: token,
+        access: token,
         refresh: refreshToken,
       });
     } catch (err) {

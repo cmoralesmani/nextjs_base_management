@@ -1,17 +1,19 @@
+// src/layouts/SiteLayout/SiteLayout.jsx
+
 import React, { useEffect } from "react";
+import { ProSidebarProvider } from "react-pro-sidebar";
 import { useDispatch } from "react-redux";
 
-import HeadSEO from "./HeadSEO";
-import { useAuthCheck } from "src/hooks/auth";
-import { setUserState } from "src/redux/slices/user-slice";
-import { useUserAuth } from "src/hooks/user";
-import { useShowMenuSidebar } from "src/hooks/menu-sidebar";
-import Header from "./Header";
-import { ProSidebarProvider } from "react-pro-sidebar";
 import MenuSidebar from "src/components/menu-sidebar/MenuSidebar";
+import { useAuthCheck } from "src/hooks/auth";
+import { useShowMenuSidebar } from "src/hooks/menu-sidebar";
+import { useUserAuth } from "src/hooks/user";
+import { setUserState } from "src/redux/slices/user-slice";
+
+import HeadSEO from "./HeadSEO";
 import Footer from "./Footer";
 
-import styles from "styles/layouts/SiteLayout.module.css";
+import styles from "styles/layouts/SiteLayout.module.scss";
 
 export function SiteLayout({ children }) {
   const { user } = useUserAuth();
@@ -24,12 +26,11 @@ export function SiteLayout({ children }) {
     if (!!user) {
       dispatch(setUserState(user));
     }
-  }, [user]);
+  }, [dispatch, user]);
 
   return (
     <>
       <HeadSEO />
-      <Header />
       <main className={styles.main}>
         {showMenuSidebar && (
           <ProSidebarProvider>

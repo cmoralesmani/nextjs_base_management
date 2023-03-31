@@ -17,26 +17,26 @@ const db = require("@db/models/index");
 const validateBody = initMiddleware(
   validateMiddleware(
     [
-      check("nom_usuario")
+      check("name_user")
         .trim()
         .isLength({ min: 1, max: 80 })
         .withMessage("Nombres no válido"),
-      check("ape_usuario")
+      check("lastname_user")
         .trim()
         .isLength({ min: 1, max: 80 })
         .withMessage("Apellidos no válido"),
       check("email").trim().isEmail().withMessage("Email invalido"),
-      check("tel_contacto")
+      check("phone_contact")
         .trim()
         .isLength({ min: 1 })
         .withMessage("Telefono de contacto no valido"),
-      check("sex_usuario")
+      check("gender_user_id")
         .isIn(["SEX-M", "SEX-F"])
         .withMessage("Sexo no válido"),
-      check("es_usuario")
+      check("status_user_id")
         .isIn(["ESCUS-ACTIV", "ESCUS-INACT"])
         .withMessage("Estado no válido"),
-      check("perfiles_seleccionados")
+      check("profiles_seleccionados")
         .isArray()
         .withMessage("Perfiles no válidos"),
     ],
@@ -59,11 +59,11 @@ function handler(req, res) {
     const data = req.body;
 
     const permissions = await hasPermissionsTo(req.user.username, [
-      "CUEUS-MODIF",
-      "PERFI-LISTA",
+      "alter_user",
+      "see_profiles",
     ]);
 
-    const hasPermissionToEditUser = hasPermission(permissions, "CUEUS-MODIF");
+    const hasPermissionToEditUser = hasPermission(permissions, "alter_user");
     if (id_user !== req.user.id_user) {
       if (!hasPermissionToEditUser) {
         return res
@@ -74,7 +74,7 @@ function handler(req, res) {
 
     const hasPermissionToShowProfiles = hasPermission(
       permissions,
-      "PERFI-LISTA"
+      "see_profiles"
     );
 
     // Verificacion de que haya especificado el usuario que quiere editar
@@ -85,9 +85,9 @@ function handler(req, res) {
     let transaction;
     try {
       transaction = await db.sequelize.transaction();
-      const user = await db.bmauth_usuario.findOne(
+      const user = await db.bmauth_user.findOne(
         {
-          where: { ID_USUARIO: id_user },
+          where: { ID_USER: id_user },
         },
         { transaction }
       );
@@ -106,27 +106,27 @@ function handler(req, res) {
       }
 
       // Se establecen los nuevos valoresedi
-      (user.F_ACTUAL = moment().format("YYYY-MM-DD HH:mm:ss")),
-        (user.USR_ACTUAL = req.user.username);
-      user.PROG_ACTUAL = "API_WEB_TP";
-      user.NOM_USUARIO = data.nom_usuario;
-      user.APE_USUARIO = data.ape_usuario;
+      (user.MODIFIED_AT = moment().format("YYYY-MM-DD HH:mm:ss")),
+        (user.MODIFIED_BY = req.user.username);
+      user.MODIFIED_IN = "API_WEB_TP";
+      user.NAME_USER = data.name_user;
+      user.LASTNAME_USER = data.lastname_user;
       user.EMAIL = data.email;
-      user.TEL_CONTACTO = data.tel_contacto;
-      user.SEX_USUARIO = data.sex_usuario;
+      user.PHONE_CONTACT = data.phone_contact;
+      user.GENDER_USER_ID = data.gender_user_id;
 
       if (hasPermissionToEditUser) {
-        user.ES_USUARIO = data.es_usuario;
+        user.STATUS_USER = data.status_user_id;
       }
       await user.save({ transaction });
 
       if (hasPermissionToEditUser) {
         if (hasPermissionToShowProfiles) {
-          await db.bmauth_usuario_perfil.destroy({
+          await db.bmauth_user_profiles.destroy({
             where: {
-              ID_USUARIO: user.ID_USUARIO,
-              ID_PERFIL: {
-                [Op.notIn]: data.perfiles_seleccionados,
+              ID_USER: user.ID_USER,
+              ID_PROFILE: {
+                [Op.notIn]: data.profiles_seleccionados,
               },
             },
             transaction,
@@ -134,36 +134,36 @@ function handler(req, res) {
 
           const upCurrent = JSON.parse(
             JSON.stringify(
-              await db.bmauth_usuario_perfil.findAll(
+              await db.bmauth_user_profiles.findAll(
                 {
-                  attributes: ["ID_PERFIL"],
+                  attributes: ["ID_PROFILE"],
                   where: {
-                    ID_USUARIO: user.ID_USUARIO,
+                    ID_USER: user.ID_USER,
                   },
                 },
                 { transaction }
               )
             )
           ).map((x) => {
-            return x.ID_PERFIL;
+            return x.ID_PROFILE;
           });
 
-          const filtered = data.perfiles_seleccionados.filter((x) => {
+          const filtered = data.profiles_seleccionados.filter((x) => {
             return !upCurrent.includes(x);
           });
 
           if (filtered.length) {
             const list_user_profile = filtered.map((p) => ({
-              F_CREACION: moment().format("YYYY-MM-DD HH:mm:ss"),
-              USR_CREACION: req.user.username,
-              PROG_CREACION: "API_WEB_TP",
-              F_ACTUAL: moment().format("YYYY-MM-DD HH:mm:ss"),
-              USR_ACTUAL: req.user.username,
-              PROG_ACTUAL: "API_WEB_TP",
-              ID_USUARIO: user.ID_USUARIO,
-              ID_PERFIL: p,
+              CREATED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+              CREATED_BY: req.user.username,
+              CREATED_IN: "API_WEB_TP",
+              MODIFIED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+              MODIFIED_BY: req.user.username,
+              MODIFIED_IN: "API_WEB_TP",
+              ID_USER: user.ID_USER,
+              ID_PROFILE: p,
             }));
-            await db.bmauth_usuario_perfil.bulkCreate(list_user_profile, {
+            await db.bmauth_user_profiles.bulkCreate(list_user_profile, {
               transaction,
             });
           }

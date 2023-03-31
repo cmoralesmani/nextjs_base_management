@@ -7,10 +7,10 @@ import { isJsonString } from "src/helpers/api/util";
 import { hasPermission } from "src/helpers/utils";
 const db = require("@db/models/index");
 
-export default async (req, res) => {
+const accounts_list = async (req, res) => {
   const hasPermissionToListUser = hasPermission(
-    await hasPermissionsTo(req.user.username, ["CUEUS-LISTA"]),
-    "CUEUS-LISTA"
+    await hasPermissionsTo(req.user.username, ["see_users"]),
+    "see_users"
   );
   if (!hasPermissionToListUser) {
     return res
@@ -38,8 +38,8 @@ export default async (req, res) => {
               db.sequelize.fn(
                 "concat",
                 db.sequelize.col("USERNAME"),
-                db.sequelize.col("NOM_USUARIO"),
-                db.sequelize.col("APE_USUARIO")
+                db.sequelize.col("NAME_USER"),
+                db.sequelize.col("LASTNAME_USER")
               )
             ),
             {
@@ -48,20 +48,20 @@ export default async (req, res) => {
           );
         }),
     };
-  if (filters?.sex_user) buildWhere["SEX_USUARIO"] = filters.sex_user;
+  if (filters?.sex_user) buildWhere["GENDER_USER_ID"] = filters.sex_user;
 
-  const dataUsersDB = await db.bmauth_usuario.findAll({
+  const dataUsersDB = await db.bmauth_user.findAll({
     where: buildWhere,
     include: [
       {
-        model: db.bmauth_definicion_d,
+        model: db.bmauth_definition_detail,
         required: true,
-        as: "DEF_ES_USUARIO",
+        as: "DEF_STATUS_USER",
       },
       {
-        model: db.bmauth_definicion_d,
+        model: db.bmauth_definition_detail,
         required: true,
-        as: "DEF_SEX_USUARIO",
+        as: "DEF_GENDER_USER",
       },
     ],
   });
@@ -70,3 +70,5 @@ export default async (req, res) => {
 
   return dataUsers;
 };
+
+export default accounts_list;

@@ -17,11 +17,11 @@ function handler(req, res) {
     const dataProfiles = await listProfilesCore(req, res);
 
     return res.status(200).json({
-      perfiles: dataProfiles.map((p) => ({
-        id_perfil: p.ID_PERFIL,
-        de_perfil: p.DE_PERFIL,
-        es_perfil: p.ES_PERFIL,
-        de_es_perfil: p.BMAUTH_DEFINICION_D.DE_DEFINICION_D,
+      profiles: dataProfiles.map((p) => ({
+        id_perfil: p.ID_PROFILE,
+        de_perfil: p.DE_PROFILE,
+        es_perfil: p.STATUS_PROFILE_ID,
+        de_es_perfil: p.BMAUTH_DEFINITION_DETAIL.DE_DEFINITION_DETAIL,
       })),
     });
   }

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import { ProfileDetails } from "@app/components/templates";
-import { SiteLayout } from "@app/components/layouts";
-import { profileService } from "@app/services";
+import { ProfileDetails } from "src/components/templates";
+import { PageLayout } from "src/layouts";
+import { profileService } from "src/services";
 
 export default DetailsProfile;
 
@@ -18,13 +18,17 @@ function DetailsProfile({ id_profile }) {
   }
 
   return (
-    <SiteLayout
-      titleSite="Detalle de perfil"
-      idPermission="PERFI-VER"
-      handleLoadInit={handleLoadInit}
+    // <PageLayout
+    //   titleSite="Detalle de perfil"
+    //   idPermission="see_single_profile"
+    //   handleLoadInit={handleLoadInit}
+    // >
+    <PageLayout
+      titlePage="Detalle de perfil"
+      codenamePermission="see_single_profile"
     >
       <ProfileDetails profile={profile} />
-    </SiteLayout>
+    </PageLayout>
   );
 }
 

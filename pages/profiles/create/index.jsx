@@ -2,19 +2,20 @@
 
 import React from "react";
 
-import { SiteLayout } from "@app/components/layouts";
-import { AddEditProfile } from "@app/components/templates";
+import { PageLayout } from "src/layouts";
+import { AddEditProfile } from "src/components/templates";
 
 export default CreateProfile;
 
 function CreateProfile() {
   return (
-    <SiteLayout
-      titleSite="Nuevo perfil"
-      idPermission="PERFI-CREAR"
-      handleLoadInit={async () => {}}
-    >
+    // <PageLayout
+    //   titleSite="Nuevo perfil"
+    //   idPermission="create_profile"
+    //   handleLoadInit={async () => {}}
+    // >
+    <PageLayout titlePage="Nuevo perfil" codenamePermission="create_profile">
       <AddEditProfile />
-    </SiteLayout>
+    </PageLayout>
   );
 }

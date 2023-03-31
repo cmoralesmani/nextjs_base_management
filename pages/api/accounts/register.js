@@ -20,7 +20,7 @@ const validateBody = initMiddleware(
     [
       check("username").custom(async (username) => {
         //busca en la base para verificar que el nuevo usuario ingresado no existe
-        const user = await db.bmauth_usuario.findOne({
+        const user = await db.bmauth_user.findOne({
           where: { USERNAME: username },
         });
 
@@ -51,26 +51,26 @@ const validateBody = initMiddleware(
 
           return true;
         }),
-      check("nom_usuario")
+      check("name_user")
         .trim()
         .isLength({ min: 3, max: 80 })
         .withMessage("Nombre de usuario invalido longitd minima 3"),
-      check("ape_usuario")
+      check("lastname_user")
         .trim()
         .isLength({ min: 3, max: 80 })
         .withMessage("Apellido invalido longitd minima 3"),
       check("email").trim().isEmail().withMessage("Email invalido"),
-      check("tel_contacto")
+      check("phone_contact")
         .trim()
         .isLength({ min: 1 })
         .withMessage("Telefono de contacto no valido"),
-      check("sex_usuario")
+      check("gender_user_id")
         .isIn(["SEX-M", "SEX-F"])
         .withMessage("Sexo no válido"),
-      check("es_usuario")
+      check("status_user_id")
         .isIn(["ESCUS-ACTIV", "ESCUS-INACT"])
         .withMessage("Estado no válido"),
-      check("perfiles_seleccionados")
+      check("profiles_seleccionados")
         .isArray()
         .withMessage("Perfiles no válidos"),
     ],
@@ -92,12 +92,12 @@ function handler(req, res) {
     const data = req.body;
 
     const permissions = await hasPermissionsTo(req.user.username, [
-      "CUEUS-CREAR",
-      "PERFI-LISTA",
+      "create_user",
+      "see_profiles",
     ]);
 
     //Consulta si el usuario actual tiene permiso para crear un usuario
-    const hasPermissionToEditUser = hasPermission(permissions, "CUEUS-CREAR");
+    const hasPermissionToEditUser = hasPermission(permissions, "create_user");
     if (!hasPermissionToEditUser) {
       return res.status(403).json({
         message: "No posee los permisos para crear cuentas de usuario",
@@ -106,7 +106,7 @@ function handler(req, res) {
 
     const hasPermissionToShowProfiles = hasPermission(
       permissions,
-      "PERFI-LISTA"
+      "see_profiles"
     );
 
     // Validacion de formulario
@@ -122,39 +122,39 @@ function handler(req, res) {
 
       // Se establecen los valores en un objeto
       const newData = {
-        F_CREACION: moment().format("YYYY-MM-DD HH:mm:ss"),
-        USR_CREACION: req.user.username,
-        PROG_CREACION: "API_WEB_TP",
-        F_ACTUAL: moment().format("YYYY-MM-DD HH:mm:ss"),
-        USR_ACTUAL: req.user.username,
-        PROG_ACTUAL: "API_WEB_TP",
-        ID_USUARIO: v4(),
+        CREATED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+        CREATED_BY: req.user.username,
+        CREATED_IN: "API_WEB_TP",
+        MODIFIED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+        MODIFIED_BY: req.user.username,
+        MODIFIED_IN: "API_WEB_TP",
+        ID_USER: v4(),
         USERNAME: data.username,
         PASSWORD: data.password,
-        NOM_USUARIO: data.nom_usuario,
-        APE_USUARIO: data.ape_usuario,
+        NAME_USER: data.name_user,
+        LASTNAME_USER: data.lastname_user,
         EMAIL: data.email,
-        TEL_CONTACTO: data.tel_contacto,
-        SEX_USUARIO: data.sex_usuario,
-        ES_USUARIO: data.es_usuario,
+        PHONE_CONTACT: data.phone_contact,
+        GENDER_USER_ID: data.gender_user_id,
+        STATUS_USER_ID: data.status_user_id,
       };
       // instruccion para crear un nuevo registro con los datos ingresados
-      const dataReceived = await db.bmauth_usuario.create(newData, {
+      const dataReceived = await db.bmauth_user.create(newData, {
         transaction,
       });
 
-      if (hasPermissionToShowProfiles && data.perfiles_seleccionados?.length) {
-        const list_user_profile = data.perfiles_seleccionados.map((p) => ({
-          F_CREACION: moment().format("YYYY-MM-DD HH:mm:ss"),
-          USR_CREACION: req.user.username,
-          PROG_CREACION: "API_WEB_TP",
-          F_ACTUAL: moment().format("YYYY-MM-DD HH:mm:ss"),
-          USR_ACTUAL: req.user.username,
-          PROG_ACTUAL: "API_WEB_TP",
-          ID_USUARIO: dataReceived.ID_USUARIO,
-          ID_PERFIL: p,
+      if (hasPermissionToShowProfiles && data.profiles_seleccionados?.length) {
+        const list_user_profile = data.profiles_seleccionados.map((p) => ({
+          CREATED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+          CREATED_BY: req.user.username,
+          CREATED_IN: "API_WEB_TP",
+          MODIFIED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+          MODIFIED_BY: req.user.username,
+          MODIFIED_IN: "API_WEB_TP",
+          ID_USER: dataReceived.ID_USER,
+          ID_PROFILE: p,
         }));
-        await db.bmauth_usuario_perfil.bulkCreate(list_user_profile, {
+        await db.bmauth_user_profiles.bulkCreate(list_user_profile, {
           transaction,
         });
       }

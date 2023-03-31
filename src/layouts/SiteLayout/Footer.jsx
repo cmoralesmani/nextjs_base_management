@@ -1,26 +1,17 @@
-import Image from "next/image";
-import React from "react";
+// src/layouts/SiteLayout/Footer.jsx
 
-import styles from "styles/layouts/SiteLayout.module.css";
+import React from "react";
 
 export default function Footer() {
   return (
-    <footer className={styles.footer}>
-      <a
-        href="https://www.thedataage.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Hecho por
-        <span className={styles.logo}>
-          <Image
-            src="/the-data-age-logo.png"
-            alt="The Data Age Logo"
-            width={52}
-            height={16}
-          />
-        </span>
-      </a>
+    <footer>
+      <small>
+        © 2021 hecho por -{" "}
+        <a target="_blank" rel="noopener noreferrer" href="https://nextjs.org">
+          Desarrollador NextJS
+        </a>
+      </small>
+      <br />
     </footer>
   );
 }

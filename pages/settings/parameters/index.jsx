@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import { SiteLayout } from "@app/components/layouts";
-import { ParametersList } from "@app/components/templates";
-import { parametersService } from "@app/services";
+import { PageLayout } from "src/layouts";
+import { ParametersList } from "src/components/templates";
+import { parametersService } from "src/services";
 
 export default function ListParameters() {
   const [parameters, setParameters] = useState(null);
@@ -17,16 +17,21 @@ export default function ListParameters() {
   }
 
   return (
-    <SiteLayout
-      titleSite="Lista de Parametros"
-      idPermission="PARAM-LISTA"
-      handleLoadInit={async () => {}}
+    // <PageLayout
+    //   titleSite="Lista de Parametros"
+    //   idPermission="see_parameters"
+    //   handleLoadInit={async () => {}}
+    // >
+    <PageLayout
+      codenamePermission={"see_users"}
+      titlePage="Lista de Parametros"
     >
       <ParametersList
         parameters={parameters}
         updateParametersCallback={updateParametersCallback}
         setParameters={setParameters}
       />
-    </SiteLayout>
+    </PageLayout>
+    // </PageLayout>
   );
 }

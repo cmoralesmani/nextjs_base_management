@@ -21,8 +21,8 @@ const validateBody = initMiddleware(
         .withMessage("Id de perfil invalido longitud maxima 5")
         .custom(async (id_perfil) => {
           //busca en la base para verificar que el nuevo perfil ingresado no existe
-          const profile = await db.bmauth_perfil.findOne({
-            where: { ID_PERFIL: id_perfil },
+          const profile = await db.bmauth_profile.findOne({
+            where: { ID_PROFILE: id_perfil },
           });
 
           if (profile) throw new Error("El id del perfil ya existe");
@@ -52,13 +52,13 @@ function handler(req, res) {
     const data = req.body;
 
     const permissions = await hasPermissionsTo(req.user.username, [
-      "PERFI-CREAR",
-      "CUEUS-LISTA",
-      "PERMI-LISTA",
+      "create_profile",
+      "see_users",
+      "see_permissions",
     ]);
     const hasPermissionToCreateProfile = hasPermission(
       permissions,
-      "PERFI-CREAR"
+      "create_profile"
     );
     if (!hasPermissionToCreateProfile) {
       return res
@@ -66,10 +66,10 @@ function handler(req, res) {
         .json({ message: "No tiene permiso para crear perfil" });
     }
 
-    const hasPermissionToShowUsers = hasPermission(permissions, "CUEUS-LISTA");
+    const hasPermissionToShowUsers = hasPermission(permissions, "see_users");
     const hasPermissionToShowPermissions = hasPermission(
       permissions,
-      "PERMI-LISTA"
+      "see_permissions"
     );
 
     // Validacion de formulario
@@ -85,18 +85,18 @@ function handler(req, res) {
 
       // Se establecen los valores en un objeto
       const newData = {
-        F_CREACION: moment().format("YYYY-MM-DD HH:mm:ss"),
-        USR_CREACION: req.user.username,
-        PROG_CREACION: "API_WEB_TP",
-        F_ACTUAL: moment().format("YYYY-MM-DD HH:mm:ss"),
-        USR_ACTUAL: req.user.username,
-        PROG_ACTUAL: "API_WEB_TP",
-        ID_PERFIL: data.id_perfil,
-        DE_PERFIL: data.de_perfil,
-        ES_PERFIL: data.es_perfil,
+        CREATED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+        CREATED_BY: req.user.username,
+        CREATED_IN: "API_WEB_TP",
+        MODIFIED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+        MODIFIED_BY: req.user.username,
+        MODIFIED_IN: "API_WEB_TP",
+        ID_PROFILE: data.id_perfil,
+        DE_PROFILE: data.de_perfil,
+        STATUS_PROFILE_ID: data.es_perfil,
       };
       // instruccion para crear un nuevo registro con los datos ingresados
-      const dataReceived = await db.bmauth_perfil.create(newData, {
+      const dataReceived = await db.bmauth_profile.create(newData, {
         transaction,
       });
 
@@ -104,17 +104,17 @@ function handler(req, res) {
         if (data.usuarios_seleccionados?.length) {
           const list_users_permission = data.usuarios_seleccionados.map(
             (p) => ({
-              F_CREACION: moment().format("YYYY-MM-DD HH:mm:ss"),
-              USR_CREACION: req.user.username,
-              PROG_CREACION: "API_WEB_TP",
-              F_ACTUAL: moment().format("YYYY-MM-DD HH:mm:ss"),
-              USR_ACTUAL: req.user.username,
-              PROG_ACTUAL: "API_WEB_TP",
-              ID_USUARIO: p,
-              ID_PERFIL: dataReceived.ID_PERFIL,
+              CREATED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+              CREATED_BY: req.user.username,
+              CREATED_IN: "API_WEB_TP",
+              MODIFIED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+              MODIFIED_BY: req.user.username,
+              MODIFIED_IN: "API_WEB_TP",
+              ID_USER: p,
+              ID_PROFILE: dataReceived.ID_PROFILE,
             })
           );
-          await db.bmauth_usuario_perfil.bulkCreate(list_users_permission, {
+          await db.bmauth_user_profiles.bulkCreate(list_users_permission, {
             transaction,
           });
         }
@@ -124,26 +124,29 @@ function handler(req, res) {
         if (data.permisos_seleccionados?.length) {
           const list_profile_permission = data.permisos_seleccionados.map(
             (p) => ({
-              F_CREACION: moment().format("YYYY-MM-DD HH:mm:ss"),
-              USR_CREACION: req.user.username,
-              PROG_CREACION: "API_WEB_TP",
-              F_ACTUAL: moment().format("YYYY-MM-DD HH:mm:ss"),
-              USR_ACTUAL: req.user.username,
-              PROG_ACTUAL: "API_WEB_TP",
-              ID_PERFIL: dataReceived.ID_PERFIL,
-              ID_PERMISO: p,
+              CREATED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+              CREATED_BY: req.user.username,
+              CREATED_IN: "API_WEB_TP",
+              MODIFIED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+              MODIFIED_BY: req.user.username,
+              MODIFIED_IN: "API_WEB_TP",
+              ID_PROFILE: dataReceived.ID_PROFILE,
+              ID_PERMISSION: p,
             })
           );
-          await db.bmauth_perfil_permiso.bulkCreate(list_profile_permission, {
-            transaction,
-          });
+          await db.bmauth_profile_permissions.bulkCreate(
+            list_profile_permission,
+            {
+              transaction,
+            }
+          );
         }
       }
 
       await transaction.commit();
       return res.status(200).json({
         perfil: {
-          id_perfil: dataReceived.ID_PERFIL,
+          id_perfil: dataReceived.ID_PROFILE,
           de_perfil: dataReceived.de_perfil,
         },
       });

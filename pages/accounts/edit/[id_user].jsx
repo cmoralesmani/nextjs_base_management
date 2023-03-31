@@ -3,10 +3,10 @@
 import router from "next/router";
 import { useState } from "react";
 
-import { SpinnerCustom } from "@app/components/elements";
-import { SiteLayout } from "@app/components/layouts";
-import { UserAddEdit } from "@app/components/templates";
-import { toastService, userService } from "@app/services";
+import { SpinnerCustom } from "src/components/elements";
+import { PageLayout } from "src/layouts";
+import { UserAddEdit } from "src/components/templates";
+import { toastService, userService } from "src/services";
 
 export default EditUser;
 
@@ -40,14 +40,15 @@ function EditUser({ id_user }) {
   }
 
   return (
-    <SiteLayout
-      titleSite="Edición de usuario"
-      idPermission="CUEUS-MODIF"
-      callbackHasPermission={allowSelfUser}
-      handleLoadInit={handleLoadInit}
-    >
+    // <PageLayout
+    //   titleSite="Edición de usuario"
+    //   idPermission="alter_user"
+    //   callbackHasPermission={allowSelfUser}
+    //   handleLoadInit={handleLoadInit}
+    // >
+    <PageLayout titlePage="Edición de usuario" codenamePermission="alter_user">
       {user ? <UserAddEdit user={user} /> : <SpinnerCustom />}
-    </SiteLayout>
+    </PageLayout>
   );
 }
 

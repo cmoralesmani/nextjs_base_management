@@ -38,8 +38,7 @@ export async function tokenRefresh(refreshtoken, res) {
       const refreshToken = generateRefreshToken(payload);
 
       return {
-        content: payload,
-        JWT: token,
+        access: token,
         refresh: refreshToken,
       };
     } catch (error) {

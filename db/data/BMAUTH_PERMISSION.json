@@ -1,0 +1,182 @@
+[
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "see_single_user",
+    "DE_PERMISSION": "Puede ver usuario individual"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "create_user",
+    "DE_PERMISSION": "Puede crear usuario"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "alter_user",
+    "DE_PERMISSION": "Puede editar usuario"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "delete_user",
+    "DE_PERMISSION": "Puede eliminar usuario"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "see_users",
+    "DE_PERMISSION": "Puede ver usuarios"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "change_password_users",
+    "DE_PERMISSION": "Puede cambiar contraseña de usuarios"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "export_users",
+    "DE_PERMISSION": "Puede exportar usuarios"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "see_parameters",
+    "DE_PERMISSION": "Puede ver parametros"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "export_parameters",
+    "DE_PERMISSION": "Puede exportar parametros"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "alter_parameter",
+    "DE_PERMISSION": "Puede editar parametro"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "see_single_parameter",
+    "DE_PERMISSION": "Puede ver parametro individual"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "see_profiles",
+    "DE_PERMISSION": "Puede ver perfiles"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "see_single_profile",
+    "DE_PERMISSION": "Puede ver perfil individual"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "alter_profile",
+    "DE_PERMISSION": "Puede editar perfil"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "delete_profile",
+    "DE_PERMISSION": "Puede eliminar perfil"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "create_profile",
+    "DE_PERMISSION": "Puede crear perfil"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "export_profiles",
+    "DE_PERMISSION": "Puede exportar perfiles"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "see_permissions",
+    "DE_PERMISSION": "Puede ver permisos"
+  }
+]

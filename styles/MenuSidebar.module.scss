@@ -1,24 +1,51 @@
 // styles/MenuSidebar.module.scss
 
-.header {
-    text-align: center;
-    h2 {
-      padding: 24px;
-      letter-spacing: 1px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-  }
-  
-  .footer {
-    text-align: center;
-  }
-  
-  .wrapButton {
-    padding: 20px 24px;
-  
-    .fontProfile {
-      font-size: 2rem;
-    }
-  }
+// .header {
+//     text-align: center;
+//     h2 {
+//       padding: 24px;
+//       letter-spacing: 1px;
+//       overflow: hidden;
+//       text-overflow: ellipsis;
+//       white-space: nowrap;
+//     }
+//   }
+
+//   .footer {
+//     text-align: center;
+//   }
+
+//   .wrapButton {
+//     padding: 20px 24px;
+
+//     .fontProfile {
+//       font-size: 2rem;
+//     }
+//   }
+
+.sidebar {
+  position: relative;
+}
+
+.sidebarMenu {
+  height: 100%;
+}
+
+.toogleSidebar {
+  color: var(--primary);
+  border: none;
+  border-radius: 50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray-light);
+  padding: 0.5rem;
+  position: absolute;
+  top: calc(50vh - 2.4rem);
+  right: -1.2rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  z-index: 10;
+}

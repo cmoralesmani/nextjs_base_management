@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import { SiteLayout } from "@app/components/layouts";
-import { ProfileList } from "@app/components/templates";
-import { profileService, toastService } from "@app/services";
+import { PageLayout } from "src/layouts";
+import { ProfileList } from "src/components/templates";
+import { profileService, toastService } from "src/services";
 
 export default ListProfile;
 
@@ -14,7 +14,7 @@ function ListProfile() {
   function updateProfilesCallback(filters) {
     setProfiles(null);
     return profileService.getProfiles(filters).then((u) => {
-      setProfiles(u.perfiles);
+      setProfiles(u.profiles);
     });
   }
 
@@ -39,16 +39,18 @@ function ListProfile() {
   }
 
   return (
-    <SiteLayout
-      titleSite="Lista de perfiles"
-      idPermission="PERFI-LISTA"
-      handleLoadInit={async () => {}}
-    >
+    // <PageLayout
+    //   titleSite="Lista de perfiles"
+    //   idPermission="see_profiles"
+    //   handleLoadInit={async () => {}}
+    // >
+    <PageLayout codenamePermission={"see_users"} titlePage="Lista de perfiles">
       <ProfileList
         profiles={profiles}
         updateProfilesCallback={updateProfilesCallback}
         deleteProfileCallback={deleteProfileCallback}
       />
-    </SiteLayout>
+    </PageLayout>
+    // </PageLayout>
   );
 }

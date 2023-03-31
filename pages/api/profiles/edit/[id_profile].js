@@ -50,14 +50,14 @@ function handler(req, res) {
     const data = req.body;
 
     const hasPermissions = await hasPermissionsTo(req.user.username, [
-      "PERFI-MODIF",
-      "CUEUS-LISTA",
-      "PERMI-LISTA",
+      "alter_profile",
+      "see_users",
+      "see_permissions",
     ]);
     // Tiene permiso para editar perfiles?
     const hasPermissionToEditProfile = hasPermission(
       hasPermissions,
-      "PERFI-MODIF"
+      "alter_profile"
     );
     if (!hasPermissionToEditProfile) {
       return res
@@ -65,13 +65,10 @@ function handler(req, res) {
         .json({ message: "No tiene permiso para editar perfil" });
     }
 
-    const hasPermissionToShowUsers = hasPermission(
-      hasPermissions,
-      "CUEUS-LISTA"
-    );
+    const hasPermissionToShowUsers = hasPermission(hasPermissions, "see_users");
     const hasPermissionToShowPermissions = hasPermission(
       hasPermissions,
-      "PERMI-LISTA"
+      "see_permissions"
     );
 
     // Verificacion de que haya especificado el usuario que quiere editar
@@ -82,9 +79,9 @@ function handler(req, res) {
     let transaction;
     try {
       transaction = await db.sequelize.transaction();
-      const profile = await db.bmauth_perfil.findOne(
+      const profile = await db.bmauth_profile.findOne(
         {
-          where: { ID_PERFIL: id_profile },
+          where: { ID_PROFILE: id_profile },
         },
         { transaction }
       );
@@ -94,7 +91,7 @@ function handler(req, res) {
         throw "El perfil no existe";
       }
 
-      if (profile.ID_PERFIL == "SUADM") {
+      if (profile.ID_PROFILE == "SUADM") {
         throw "El perfil Super Administrador está protegido y no puede ser editado";
       }
 
@@ -107,18 +104,18 @@ function handler(req, res) {
       }
 
       // Se establecen los nuevos valores
-      (profile.F_ACTUAL = moment().format("YYYY-MM-DD HH:mm:ss")),
-        (profile.USR_ACTUAL = req.user.username);
-      profile.PROG_ACTUAL = "API_WEB_TP";
-      profile.DE_PERFIL = data.de_perfil;
-      profile.ES_PERFIL = data.es_perfil;
+      (profile.MODIFIED_AT = moment().format("YYYY-MM-DD HH:mm:ss")),
+        (profile.MODIFIED_BY = req.user.username);
+      profile.MODIFIED_IN = "API_WEB_TP";
+      profile.DE_PROFILE = data.de_perfil;
+      profile.STATUS_PROFILE_ID = data.es_perfil;
       await profile.save({ transaction });
 
       if (hasPermissionToShowUsers) {
-        await db.bmauth_usuario_perfil.destroy({
+        await db.bmauth_user_profiles.destroy({
           where: {
-            ID_PERFIL: profile.ID_PERFIL,
-            ID_USUARIO: {
+            ID_PROFILE: profile.ID_PROFILE,
+            ID_USER: {
               [Op.notIn]: data.usuarios_seleccionados,
             },
           },
@@ -127,11 +124,11 @@ function handler(req, res) {
 
         const userProfileCurrent = JSON.parse(
           JSON.stringify(
-            await db.bmauth_usuario_perfil.findAll(
+            await db.bmauth_user_profiles.findAll(
               {
-                attributes: ["ID_USUARIO"],
+                attributes: ["ID_USER"],
                 where: {
-                  ID_PERFIL: profile.ID_PERFIL,
+                  ID_PROFILE: profile.ID_PROFILE,
                 },
               },
               {
@@ -140,7 +137,7 @@ function handler(req, res) {
             )
           )
         ).map((x) => {
-          return x.ID_USUARIO;
+          return x.ID_USER;
         });
 
         const filtered = data.usuarios_seleccionados.filter((x) => {
@@ -149,26 +146,26 @@ function handler(req, res) {
 
         if (filtered.length) {
           const list_user_profile = filtered.map((u) => ({
-            F_CREACION: moment().format("YYYY-MM-DD HH:mm:ss"),
-            USR_CREACION: req.user.username,
-            PROG_CREACION: "API_WEB_TP",
-            F_ACTUAL: moment().format("YYYY-MM-DD HH:mm:ss"),
-            USR_ACTUAL: req.user.username,
-            PROG_ACTUAL: "API_WEB_TP",
-            ID_USUARIO: u,
-            ID_PERFIL: profile.ID_PERFIL,
+            CREATED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+            CREATED_BY: req.user.username,
+            CREATED_IN: "API_WEB_TP",
+            MODIFIED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+            MODIFIED_BY: req.user.username,
+            MODIFIED_IN: "API_WEB_TP",
+            ID_USER: u,
+            ID_PROFILE: profile.ID_PROFILE,
           }));
-          await db.bmauth_usuario_perfil.bulkCreate(list_user_profile, {
+          await db.bmauth_user_profiles.bulkCreate(list_user_profile, {
             transaction,
           });
         }
       }
 
       if (hasPermissionToShowPermissions) {
-        await db.bmauth_perfil_permiso.destroy({
+        await db.bmauth_profile_permissions.destroy({
           where: {
-            ID_PERFIL: profile.ID_PERFIL,
-            ID_PERMISO: {
+            ID_PROFILE: profile.ID_PROFILE,
+            ID_PERMISSION: {
               [Op.notIn]: data.permisos_seleccionados,
             },
           },
@@ -177,11 +174,11 @@ function handler(req, res) {
 
         const profilePermissionCurrent = JSON.parse(
           JSON.stringify(
-            await db.bmauth_perfil_permiso.findAll(
+            await db.bmauth_profile_permissions.findAll(
               {
-                attributes: ["ID_PERMISO"],
+                attributes: ["ID_PERMISSION"],
                 where: {
-                  ID_PERFIL: profile.ID_PERFIL,
+                  ID_PROFILE: profile.ID_PROFILE,
                 },
               },
               {
@@ -190,7 +187,7 @@ function handler(req, res) {
             )
           )
         ).map((x) => {
-          return x.ID_PERMISO;
+          return x.ID_PERMISSION;
         });
 
         const filtered = data.permisos_seleccionados.filter((x) => {
@@ -199,18 +196,21 @@ function handler(req, res) {
 
         if (filtered.length) {
           const list_profile_permission = filtered.map((p) => ({
-            F_CREACION: moment().format("YYYY-MM-DD HH:mm:ss"),
-            USR_CREACION: req.user.username,
-            PROG_CREACION: "API_WEB_TP",
-            F_ACTUAL: moment().format("YYYY-MM-DD HH:mm:ss"),
-            USR_ACTUAL: req.user.username,
-            PROG_ACTUAL: "API_WEB_TP",
-            ID_PERFIL: profile.ID_PERFIL,
-            ID_PERMISO: p,
+            CREATED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+            CREATED_BY: req.user.username,
+            CREATED_IN: "API_WEB_TP",
+            MODIFIED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+            MODIFIED_BY: req.user.username,
+            MODIFIED_IN: "API_WEB_TP",
+            ID_PROFILE: profile.ID_PROFILE,
+            ID_PERMISSION: p,
           }));
-          await db.bmauth_perfil_permiso.bulkCreate(list_profile_permission, {
-            transaction,
-          });
+          await db.bmauth_profile_permissions.bulkCreate(
+            list_profile_permission,
+            {
+              transaction,
+            }
+          );
         }
       }
 
@@ -223,9 +223,9 @@ function handler(req, res) {
       await transaction.commit();
       return res.status(200).json({
         perfil: {
-          id_perfil: profile.ID_PERFIL,
-          de_perfil: profile.DE_PERFIL,
-          es_perfil: profile.ES_PERFIL,
+          id_perfil: profile.ID_PROFILE,
+          de_perfil: profile.DE_PROFILE,
+          es_perfil: profile.STATUS_PROFILE_ID,
         },
       });
     } catch (error) {

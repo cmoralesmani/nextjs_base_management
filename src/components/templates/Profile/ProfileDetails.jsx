@@ -14,13 +14,13 @@ function ProfileDetails(props) {
   const profile = props?.profile;
 
   const permissions = useHasPermissionStatus([
-    "PERFI-MODIF",
-    "PERFI-LISTA",
-    "CUEUS-VER",
+    "alter_profile",
+    "see_profiles",
+    "see_single_user",
   ]);
-  const hasPermissionEditProfile = hasPermission(permissions, "PERFI-MODIF");
-  const hasPermissionListProfile = hasPermission(permissions, "PERFI-LISTA");
-  const hasPermissionSeeUser = hasPermission(permissions, "CUEUS-VER");
+  const hasPermissionEditProfile = hasPermission(permissions, "alter_profile");
+  const hasPermissionListProfile = hasPermission(permissions, "see_profiles");
+  const hasPermissionSeeUser = hasPermission(permissions, "see_single_user");
 
   if (!profile) return null;
 
@@ -107,18 +107,17 @@ function ProfileDetails(props) {
                     {profile.perfil.usuarios.map((usuario) => {
                       return (
                         <ListGroup.Item
-                          key={usuario.id_usuario}
+                          key={usuario.id_user}
                           variant="secondary"
                         >
                           {hasPermissionSeeUser ||
-                          usuario.id_usuario ===
-                            userService.userValue.id_user ? (
+                          usuario.id_user === userService.userValue.id_user ? (
                             <>
                               <Link
-                                href={`/accounts/details/${usuario.id_usuario}`}
+                                href={`/accounts/details/${usuario.id_user}`}
                               >
                                 <a>
-                                  {usuario.nom_usuario} {usuario.ape_usuario}
+                                  {usuario.name_user} {usuario.lastname_user}
                                 </a>
                               </Link>
                               <Badge className="ms-2" bg="info">
@@ -127,7 +126,7 @@ function ProfileDetails(props) {
                             </>
                           ) : (
                             <>
-                              {usuario.nom_usuario} {usuario.ape_usuario}{" "}
+                              {usuario.name_user} {usuario.lastname_user}{" "}
                               <Badge bg="info">{usuario.username}</Badge>
                             </>
                           )}

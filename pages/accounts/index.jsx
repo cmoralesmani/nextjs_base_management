@@ -1,14 +1,26 @@
 // pages/accounts/index.jsx
 
+// import { PageLayout } from "src/layouts";
+// import { UserList } from "src/components/accounts";
+
+// export default function AccountsPage() {
+//   return (
+//     <PageLayout codenamePermission={"see_users"}>
+//       <UserList />
+//     </PageLayout>
+//   );
+// }
+
 import { useState } from "react";
 
-import { SiteLayout } from "@app/components/layouts";
-import { UserList } from "@app/components/templates";
-import { userService, toastService } from "@app/services";
+import { PageLayout } from "src/layouts";
+import { UserList } from "src/components/accounts";
+// import { UserList } from "src/components/templates";
+import { userService, toastService } from "src/services";
 
-export default ListUser;
+export default AccountsPage;
 
-function ListUser() {
+function AccountsPage() {
   const [users, setUsers] = useState(null);
 
   function updateUsersCallback(filters) {
@@ -18,12 +30,12 @@ function ListUser() {
     });
   }
 
-  function deleteUserCallback(id_usuario) {
+  function deleteUserCallback(id_user) {
     return userService
-      .delete(id_usuario)
+      .delete(id_user)
       .then(() => {
         const timer = setTimeout(() => {
-          setUsers((users) => users.filter((x) => x.id_usuario !== id_usuario));
+          setUsers((users) => users.filter((x) => x.id_user !== id_user));
         });
         toastService.success("Se eliminó correctamente el usuario");
         return () => {
@@ -34,18 +46,19 @@ function ListUser() {
         toastService.warn(error.message);
       });
   }
-
   return (
-    <SiteLayout
-      titleSite="Lista de Usuarios"
-      idPermission="CUEUS-LISTA"
-      handleLoadInit={async () => {}}
-    >
+    // <SiteLayout
+    //   titleSite="Lista de Usuarios"
+    //   idPermission="CUEUS-LISTA"
+    //   handleLoadInit={async () => {}}
+    // >
+    <PageLayout codenamePermission={"see_users"} titlePage="Lista de Usuarios">
       <UserList
         users={users}
         updateUsersCallback={updateUsersCallback}
         deleteUserCallback={deleteUserCallback}
       />
-    </SiteLayout>
+      {/* </SiteLayout> */}
+    </PageLayout>
   );
 }

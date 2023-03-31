@@ -1,0 +1,362 @@
+[
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "see_single_user"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "create_user"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "alter_user"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "delete_user"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "see_users"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "change_password_users"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "export_users"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "see_parameters"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "alter_parameter"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "see_single_parameter"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "see_profiles"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "see_single_profile"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "alter_profile"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "delete_profile"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "create_profile"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "export_profiles"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "see_permissions"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "export_parameters"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "see_single_user"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "create_user"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "alter_user"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "delete_user"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "see_users"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "change_password_users"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "export_users"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "see_parameters"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "alter_parameter"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "see_single_parameter"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "see_profiles"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "see_single_profile"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "alter_profile"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "delete_profile"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "create_profile"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "export_profiles"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "see_permissions"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "export_parameters"
+  }
+]

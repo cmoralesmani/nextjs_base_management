@@ -19,8 +19,8 @@ function handler(req, res) {
 
   async function get() {
     const hasPermissionToExportUsers = hasPermission(
-      await hasPermissionsTo(req.user.username, ["CUEUS-EXPOR"]),
-      "CUEUS-EXPOR"
+      await hasPermissionsTo(req.user.username, ["export_users"]),
+      "export_users"
     );
 
     if (!hasPermissionToExportUsers) {
@@ -32,7 +32,7 @@ function handler(req, res) {
     const dataUsers = await listUsersCore(req, res);
 
     map(dataUsers, (u) => {
-      u.de_es_activo = u.DEF_ES_USUARIO.DE_DEFINICION_D;
+      u.de_es_activo = u.DEF_STATUS_USER.DE_DEFINITION_DETAIL;
     });
 
     const fields = [
@@ -42,11 +42,11 @@ function handler(req, res) {
       },
       {
         label: "Nombre",
-        value: "NOM_USUARIO",
+        value: "NAME_USER",
       },
       {
         label: "Apellido",
-        value: "APE_USUARIO",
+        value: "LASTNAME_USER",
       },
       {
         label: "Estado",

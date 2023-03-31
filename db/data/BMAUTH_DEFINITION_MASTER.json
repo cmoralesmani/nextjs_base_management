@@ -1,0 +1,38 @@
+[
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_DEFINITION_MASTER": "ESCUS",
+    "DE_DEFINITION_MASTER": "Estados para los usuarios",
+    "COMMENT_DEFINITION": "Estados para los usuarios",
+    "ID_FIELD": "STATUS_USER"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_DEFINITION_MASTER": "ESPER",
+    "DE_DEFINITION_MASTER": "Estados para los perfiles",
+    "COMMENT_DEFINITION": "Estados para los perfiles",
+    "ID_FIELD": "STATUS_PROFILE_ID"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_DEFINITION_MASTER": "SEX",
+    "DE_DEFINITION_MASTER": "Sexo/Genero de las personas",
+    "COMMENT_DEFINITION": "Sexo/Genero de las personas",
+    "ID_FIELD": "GENDER_USER_ID"
+  }
+]

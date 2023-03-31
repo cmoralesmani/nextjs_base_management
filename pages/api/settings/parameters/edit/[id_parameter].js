@@ -45,8 +45,8 @@ function handler(req, res) {
     let objs = [];
     // Tiene permiso para editar empresa?
     const hasPermissionToEditParameter = hasPermission(
-      await hasPermissionsTo(req.user.username, ["PARAM-MODIF"]),
-      "PARAM-MODIF"
+      await hasPermissionsTo(req.user.username, ["alter_parameter"]),
+      "alter_parameter"
     );
 
     const obj_definicion_d = req.body?.obj_definicion_d || [];
@@ -76,9 +76,9 @@ function handler(req, res) {
     try {
       transaction = await db.sequelize.transaction();
 
-      const parameter = await db.bmauth_definicion_m.findOne(
+      const parameter = await db.bmauth_definition_master.findOne(
         {
-          where: { ID_DEFINICION_M: id_parameter },
+          where: { ID_DEFINITION_MASTER: id_parameter },
         },
         { transaction }
       );
@@ -97,19 +97,19 @@ function handler(req, res) {
       }
 
       // Se establecen los nuevos valores
-      parameter.F_ACTUAL = moment().format("YYYY-MM-DD HH:mm:ss");
-      parameter.USR_ACTUAL = req.user.username;
-      parameter.PROG_ACTUAL = "API_WEB_TP";
-      parameter.DE_DEFINICION_M = data.de_definicion_m;
+      parameter.MODIFIED_AT = moment().format("YYYY-MM-DD HH:mm:ss");
+      parameter.MODIFIED_BY = req.user.username;
+      parameter.MODIFIED_IN = "API_WEB_TP";
+      parameter.DE_DEFINITION_MASTER = data.de_definicion_m;
       await parameter.save({ transaction });
 
       for (let i = 0; i < objs.length; i++) {
-        await db.bmauth_definicion_d.update(
+        await db.bmauth_definition_detail.update(
           {
-            DE_DEFINICION_D: objs[i]["descripcion_definicion_d"],
+            DE_DEFINITION_DETAIL: objs[i]["descripcion_definicion_d"],
           },
           {
-            where: { ID_DEFINICION_D: objs[i]["id_definicion_d"] },
+            where: { ID_DEFINITION_DETAIL: objs[i]["id_definicion_d"] },
           },
           { transaction }
         );

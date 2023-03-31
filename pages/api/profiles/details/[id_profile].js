@@ -23,8 +23,8 @@ function handler(req, res) {
 
     // Tiene permiso para ver el detalle de perfil?
     const hasPermissionToSeeDetailProfile = hasPermission(
-      await hasPermissionsTo(req.user.username, ["PERFI-VER"]),
-      "PERFI-VER"
+      await hasPermissionsTo(req.user.username, ["see_single_profile"]),
+      "see_single_profile"
     );
     if (!hasPermissionToSeeDetailProfile) {
       return res
@@ -33,38 +33,38 @@ function handler(req, res) {
     }
 
     // Se obtiene el detalle del perfil
-    const profile = await db.bmauth_perfil.findOne({
-      where: { ID_PERFIL: id_profile },
+    const profile = await db.bmauth_profile.findOne({
+      where: { ID_PROFILE: id_profile },
       include: [
         {
-          model: db.bmauth_usuario_perfil,
+          model: db.bmauth_user_profiles,
           required: false,
           include: [
             {
-              model: db.bmauth_usuario,
+              model: db.bmauth_user,
               required: true,
             },
           ],
         },
         {
-          model: db.bmauth_definicion_d,
+          model: db.bmauth_definition_detail,
           required: false,
         },
         {
-          model: db.bmauth_perfil_permiso,
+          model: db.bmauth_profile_permissions,
           required: false,
           include: [
             {
-              model: db.bmauth_permiso,
+              model: db.bmauth_permission,
               required: true,
               include: [
                 {
-                  model: db.bmauth_permiso_grupo,
+                  model: db.bmauth_permission_grupo,
                   required: true,
                   as: "BMAUTH_A_G",
                 },
                 {
-                  model: db.bmauth_permiso_accion,
+                  model: db.bmauth_permission_accion,
                   required: true,
                   as: "BMAUTH_P_A",
                 },
@@ -81,21 +81,21 @@ function handler(req, res) {
     }
 
     // Obtencion usuario del perfil consultados
-    const objUsers = profile.BMAUTH_USUARIO_PERFILs.map((u) => ({
-      id_usuario: u.BMAUTH_USUARIO.ID_USUARIO,
-      username: u.BMAUTH_USUARIO.USERNAME,
-      nom_usuario: u.BMAUTH_USUARIO.NOM_USUARIO,
-      ape_usuario: u.BMAUTH_USUARIO.APE_USUARIO,
+    const objUsers = profile.BMAUTH_USER_PROFILEs.map((u) => ({
+      id_user: u.BMAUTH_USER.ID_USER,
+      username: u.BMAUTH_USER.USERNAME,
+      name_user: u.BMAUTH_USER.NAME_USER,
+      lastname_user: u.BMAUTH_USER.LASTNAME_USER,
     }));
 
-    const objPermissions = profile.BMAUTH_PERFIL_PERMISOs.map((p) => ({
-      id_perfil: p.ID_PERFIL,
-      id_permiso: p.ID_PERMISO,
-      de_permiso: p.BMAUTH_PERMISO.DE_PERMISO,
-      id_permiso_grupo: p.BMAUTH_PERMISO.BMAUTH_A_G.ID_PERMISO_GRUPO,
-      de_permiso_grupo: p.BMAUTH_PERMISO.BMAUTH_A_G.DE_PERMISO_GRUPO,
-      id_permiso_accion: p.BMAUTH_PERMISO.BMAUTH_P_A.ID_PERMISO_ACCION,
-      de_permiso_accion: p.BMAUTH_PERMISO.BMAUTH_P_A.DE_PERMISO_ACCION,
+    const objPermissions = profile.BMAUTH_PROFILE_PERMISSIONs.map((p) => ({
+      id_perfil: p.ID_PROFILE,
+      id_permiso: p.ID_PERMISSION,
+      de_permiso: p.BMAUTH_PERMISSION.DE_PERMISSION,
+      id_permiso_grupo: p.BMAUTH_PERMISSION.BMAUTH_A_G.ID_PERMISSION_GRUPO,
+      de_permiso_grupo: p.BMAUTH_PERMISSION.BMAUTH_A_G.DE_PERMISSION_GRUPO,
+      id_permiso_accion: p.BMAUTH_PERMISSION.BMAUTH_P_A.ID_PERMISSION_ACCION,
+      de_permiso_accion: p.BMAUTH_PERMISSION.BMAUTH_P_A.DE_PERMISSION_ACCION,
     }));
     const objPermissionsSort = objPermissions.sort((a, b) =>
       a.de_permiso > b.de_permiso ? 1 : -1
@@ -103,10 +103,10 @@ function handler(req, res) {
 
     return res.status(200).json({
       perfil: {
-        id_perfil: profile.ID_PERFIL,
-        de_perfil: profile.DE_PERFIL,
-        es_perfil: profile.ES_PERFIL,
-        de_es_perfil: profile.BMAUTH_DEFINICION_D.DE_DEFINICION_D,
+        id_perfil: profile.ID_PROFILE,
+        de_perfil: profile.DE_PROFILE,
+        es_perfil: profile.STATUS_PROFILE_ID,
+        de_es_perfil: profile.BMAUTH_DEFINITION_DETAIL.DE_DEFINITION_DETAIL,
         usuarios: objUsers,
         permisos: objPermissionsSort,
       },

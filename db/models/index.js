@@ -28,17 +28,16 @@ if (config.url) {
 }
 
 const modules = [
-  require("./bmauth_usuario.js"),
-  require("./bmauth_perfil.js"),
-  require("./bmauth_usuario_perfil.js"),
-  require("./bmauth_permiso_grupo.js"),
-  require("./bmauth_permiso_accion.js"),
-  require("./bmauth_permiso.js"),
-  require("./bmauth_perfil_permiso.js"),
-  require("./bmauth_definicion_m.js"),
-  require("./bmauth_definicion_d.js"),
-  require("./bmauth_definicion_g.js"),
-  require("./bmauth_definicion_p.js"),
+  require("./bmauth_definition_crossover.js"),
+  require("./bmauth_definition_detail.js"),
+  require("./bmauth_definition_group.js"),
+  require("./bmauth_definition_master.js"),
+  require("./bmauth_permission.js"),
+  require("./bmauth_profile_permissions.js"),
+  require("./bmauth_profile.js"),
+  require("./bmauth_user_permissions.js"),
+  require("./bmauth_user_profiles.js"),
+  require("./bmauth_user.js"),
 ];
 
 modules.forEach((module) => {

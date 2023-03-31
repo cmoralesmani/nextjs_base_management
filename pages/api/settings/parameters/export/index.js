@@ -17,8 +17,8 @@ function handler(req, res) {
 
   async function get() {
     const hasPermissionToExportParameters = hasPermission(
-      await hasPermissionsTo(req.user.username, ["PARAM-EXPOR"]),
-      "PARAM-EXPOR"
+      await hasPermissionsTo(req.user.username, ["export_parameters"]),
+      "export_parameters"
     );
     if (!hasPermissionToExportParameters) {
       return res.status(403).json({
@@ -31,7 +31,7 @@ function handler(req, res) {
     const fields = [
       {
         label: "Parametro",
-        value: "DE_DEFINICION_M",
+        value: "DE_DEFINITION_MASTER",
       },
     ];
 

@@ -19,8 +19,8 @@ function handler(req, res) {
 
     // Tiene permiso para eliminar usuarios?
     const hasPermissionToDeleteUser = hasPermission(
-      await hasPermissionsTo(req.user.username, ["CUEUS-ELIMI"]),
-      "CUEUS-ELIMI"
+      await hasPermissionsTo(req.user.username, ["delete_user"]),
+      "delete_user"
     );
     if (!hasPermissionToDeleteUser) {
       return res
@@ -36,9 +36,9 @@ function handler(req, res) {
     let transaction;
     try {
       transaction = await db.sequelize.transaction();
-      const user = await db.bmauth_usuario.findOne(
+      const user = await db.bmauth_user.findOne(
         {
-          where: { ID_USUARIO: id_user },
+          where: { ID_USER: id_user },
         },
         { transaction }
       );

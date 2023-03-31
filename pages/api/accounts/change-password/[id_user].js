@@ -57,8 +57,8 @@ function handler(req, res) {
       transaction = await db.sequelize.transaction();
 
       let hasPermissionToChancePassworUser = hasPermission(
-        await hasPermissionsTo(req.user.username, ["CUEUS-CAMCA"]),
-        "CUEUS-CAMCA"
+        await hasPermissionsTo(req.user.username, ["change_password_users"]),
+        "change_password_users"
       );
       if (id_user == req.user.id_user) {
         hasPermissionToChancePassworUser = true;
@@ -69,9 +69,9 @@ function handler(req, res) {
           .json({ message: "No tiene permisos para cambiar contraseña" });
       }
 
-      const user = await db.bmauth_usuario.findOne(
+      const user = await db.bmauth_user.findOne(
         {
-          where: { ID_USUARIO: id_user },
+          where: { ID_USER: id_user },
         },
         { transaction }
       );
@@ -101,20 +101,20 @@ function handler(req, res) {
       }
 
       // Se establecen la nueva contrase;a
-      user.F_ACTUAL = moment().format("YYYY-MM-DD HH:mm:ss");
-      user.USR_ACTUAL = req.user.username;
-      user.PROG_ACTUAL = "API_WEB_TP";
+      user.MODIFIED_AT = moment().format("YYYY-MM-DD HH:mm:ss");
+      user.MODIFIED_BY = req.user.username;
+      user.MODIFIED_IN = "API_WEB_TP";
       user.PASSWORD = await bcrypt.hashSync(data.newPassword, 10);
       await user.save({ transaction });
 
       await transaction.commit();
       return res.status(200).json({
         usuario: {
-          id_usuario: user.ID_USUARIO,
+          id_user: user.ID_USER,
           username: user.USERNAME,
-          nom_usuario: user.NOM_USUARIO,
-          ape_usuario: user.APE_USUARIO,
-          sex_usuario: user.SEX_USUARIO,
+          name_user: user.NAME_USER,
+          lastname_user: user.LASTNAME_USER,
+          gender_user_id: user.GENDER_USER_ID,
         },
       });
     } catch (error) {

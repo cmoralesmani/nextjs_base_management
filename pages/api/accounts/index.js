@@ -17,14 +17,14 @@ function handler(req, res) {
     const dataUsers = await listUsersCore(req, res);
     return res.status(200).json({
       users: dataUsers.map((p) => ({
-        id_usuario: p.ID_USUARIO,
+        id_user: p.ID_USER,
         username: p.USERNAME,
-        nom_usuario: p.NOM_USUARIO,
-        ape_usuario: p.APE_USUARIO,
-        sex_usuario: p.SEX_USUARIO,
-        de_sex_usuario: p.DEF_SEX_USUARIO.DE_DEFINICION_D,
-        es_usuario: p.ES_USUARIO,
-        de_es_usuario: p.DEF_ES_USUARIO.DE_DEFINICION_D,
+        name_user: p.NAME_USER,
+        lastname_user: p.LASTNAME_USER,
+        gender_user_id: p.GENDER_USER_ID,
+        de_gender_user: p.DEF_GENDER_USER.DE_DEFINITION_DETAIL,
+        status_user_id: p.STATUS_USER_ID,
+        de_status_user: p.DEF_STATUS_USER.DE_DEFINITION_DETAIL,
       })),
     });
   }

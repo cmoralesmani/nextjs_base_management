@@ -1,0 +1,24 @@
+[
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PROFILE": "SUADM",
+    "DE_PROFILE": "Super Administrador",
+    "STATUS_PROFILE_ID": "ESPER-ACTIV"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PROFILE": "ADMIN",
+    "DE_PROFILE": "Administrador",
+    "STATUS_PROFILE_ID": "ESPER-ACTIV"
+  }
+]
