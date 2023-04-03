@@ -2,16 +2,17 @@
 
 import React from "react";
 
-import stylesMenuSidebar from "styles/MenuSidebar.module.scss";
 import { CardUser } from "./CardUser";
 
-export const SidebarHeader = () => {
+import stylesMenuSidebar from "styles/MenuSidebar.module.scss";
+
+export const SidebarHeader = ({ collapsed }) => {
   return (
-    <div className={stylesMenuSidebar.sidebarHeaderWrapper}>
-      <div>
-        <h2>NextJS</h2>
-        <CardUser />
-      </div>
+    <div
+      className={`${stylesMenuSidebar.sidebarSectionWrapper} ${stylesMenuSidebar.sidebarSectionHeaderWrapper}`}
+    >
+      <h2>NextJS</h2>
+      <CardUser collapsed={collapsed} />
     </div>
   );
 };

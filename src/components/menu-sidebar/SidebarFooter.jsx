@@ -12,27 +12,23 @@ import stylesButton from "styles/Button.module.scss";
 export const SidebarFooter = ({ collapsed }) => {
   const { auth } = useAuth();
 
+  if (!auth) return;
+
   return (
-    <div className={stylesMenuSidebar.sidebarFooterWrapper}>
-      {collapsed ? (
-        <Link href="/logout">
-          <a className={stylesButton.buttonDark}>
-            <FaSignOutAlt />
-          </a>
-        </Link>
-      ) : (
-        <div className={stylesMenuSidebar.sidebarFooter}>
-          <div>
-            {!!auth && (
-              <Link href="/logout">
-                <a className={stylesButton.buttonLight}>
-                  <FaSignOutAlt /> <span>Cerrar sesión</span>
-                </a>
-              </Link>
-            )}
-          </div>
-        </div>
-      )}
+    <div
+      className={`${stylesMenuSidebar.sidebarSectionWrapper} ${stylesMenuSidebar.sidebarSectionFooterWrapper}`}
+    >
+      <Link href="/logout">
+        <a
+          className={
+            !!collapsed
+              ? `${stylesButton.buttonLight} ${stylesButton.round}`
+              : `${stylesButton.buttonLight} ${stylesButton.semiRound}`
+          }
+        >
+          <FaSignOutAlt /> <span>Cerrar sesión</span>
+        </a>
+      </Link>
     </div>
   );
 };

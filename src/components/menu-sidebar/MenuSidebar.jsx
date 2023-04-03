@@ -35,11 +35,9 @@ export default function MenuSidebar() {
           color: theme.sidebar.color,
         }}
       >
-        <div>
-          <SidebarHeader />
-          <SidebarContent />
-          <SidebarFooter collapsed={collapsed} />
-        </div>
+        <SidebarHeader collapsed={collapsed} />
+        <SidebarContent />
+        <SidebarFooter collapsed={collapsed} />
       </Sidebar>
     </div>
   );

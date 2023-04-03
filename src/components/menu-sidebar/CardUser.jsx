@@ -1,7 +1,6 @@
 // src/components/menu-sidebar/CardUser.jsx
 
-import { useRouter } from "next/router";
-import { Col, Container, Row } from "react-bootstrap";
+import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
@@ -11,34 +10,22 @@ import stylesButton from "styles/Button.module.scss";
 
 export { CardUser };
 
-function CardUser() {
+function CardUser({ collapsed }) {
   const userState = useSelector(selectUserState);
-
-  const router = useRouter();
-
-  function handleClick(url) {
-    router.push(url);
-  }
 
   if (!userState) return null;
 
   return (
-    <Container fluid className="g-0">
-      <Row>
-        <Col className="text-center">
-          <div className={stylesButton.buttonCardUserWrapper}>
-            <a
-              href="#"
-              onClick={() =>
-                handleClick(`/accounts/details/${userState.id_user}`)
-              }
-            >
-              <FaUserCircle />
-              <span> {userState.username}</span>
-            </a>
-          </div>
-        </Col>
-      </Row>
-    </Container>
+    <Link href={`/accounts/details/${userState.id_user}`}>
+      <a
+        className={
+          !!collapsed
+            ? `${stylesButton.buttonLight} ${stylesButton.round}`
+            : `${stylesButton.buttonLight} ${stylesButton.semiRound}`
+        }
+      >
+        <FaUserCircle /> <span> {userState.username}</span>
+      </a>
+    </Link>
   );
 }
