@@ -48,6 +48,17 @@ $size-button: 1.6rem;
 .sidebarSectionHeaderWrapper {
   margin-bottom: 2.4rem;
   margin-top: 1.6rem;
+  text-align: center;
+
+  h2 {
+    font-size: 1.5rem;
+    width: 100%;
+    padding: 2.4rem 0.5rem;
+    letter-spacing: 0.1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 /* Contenido del menu */
 .sidebarContent {
