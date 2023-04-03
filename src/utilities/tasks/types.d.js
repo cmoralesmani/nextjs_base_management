@@ -15,7 +15,7 @@ export const STATES_TASK = {
   PROGRESS: {
     text: "En progreso",
     icon: <FaCircleNotch className={styles.iconRotary} />,
-    backgroundColor: "var(--vintage)",
+    backgroundColor: "var(--purple-100)",
   },
   FAILED: {
     text: "Error",

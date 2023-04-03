@@ -1,9 +1,17 @@
+// src/components/menu-sidebar/SidebarHeader.jsx
+
 import React from "react";
 
-export const SidebarHeader = ({ children, ...rest }) => {
+import stylesMenuSidebar from "styles/MenuSidebar.module.scss";
+import { CardUser } from "./CardUser";
+
+export const SidebarHeader = () => {
   return (
-    <div {...rest}>
-      <div style={{ display: "flex", alignItems: "center" }}>NextJS</div>
+    <div className={stylesMenuSidebar.sidebarHeaderWrapper}>
+      <div>
+        <h2>NextJS</h2>
+        <CardUser />
+      </div>
     </div>
   );
 };

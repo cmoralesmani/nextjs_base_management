@@ -8,15 +8,15 @@ export const themes = {
       menuContent: "var(--primary)",
       icon: "var(--white)",
       active: {
-        backgroundColor: "var(--blue-secondary)",
-        color: "var(--vintage)",
+        backgroundColor: "var(--blue-600)",
+        color: "var(--yellow-100)",
       },
       hover: {
         backgroundColor: "var(--gray-light-transparent)",
-        color: "var(--gray-light)",
+        color: "var(--gray-300)",
       },
       disabled: {
-        color: "var(--gray-dark)",
+        color: "var(--gray-900)",
       },
     },
   },

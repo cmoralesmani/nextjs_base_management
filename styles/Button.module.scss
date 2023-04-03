@@ -1,12 +1,17 @@
+// styles/Button.module.scss
+
 .buttonLight {
-  padding: 5px 16px;
-  border-radius: 4px;
+  padding: 0.5rem 1.6rem;
+  border-radius: 0.4rem;
   border: none;
   cursor: pointer;
   display: inline-block;
   background-color: var(--white);
   color: var(--primary);
   text-decoration: none;
+  &:hover {
+    color: var(--gray-600);
+  }
 }
 
 .buttonDark {
@@ -21,4 +26,35 @@
   color: var(--primary);
   // background: linear-gradient(45deg, var(--primary) 0%, var(--light-blue) 100%);
   background-color: var(--white);
+}
+
+.buttonCardUserWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > a {
+    padding: 0.5rem 1.6rem;
+    border-radius: 4rem;
+    background: var(--white);
+    color: var(--primary);
+    text-decoration: none;
+    margin: 0 auto;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    > svg {
+      font-size: 2rem;
+    }
+    span {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
+    &:hover {
+      color: var(--gray-600);
+    }
+  }
 }

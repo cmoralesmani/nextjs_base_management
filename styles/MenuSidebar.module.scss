@@ -1,7 +1,7 @@
 // styles/MenuSidebar.module.scss
 
-/* Sidebar general */
-.sidebar {
+/* Contenedor del Sidebar general */
+.sidebarWrapper {
   position: relative;
 }
 
@@ -17,7 +17,7 @@ $size-button: 1.6rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--gray-light);
+  background-color: var(--gray-400);
   padding: 0.2rem;
   position: absolute;
   top: calc(50vh - $size-button);
@@ -28,8 +28,14 @@ $size-button: 1.6rem;
 }
 
 /* Menu del Sidebar */
-.sidebarMenu {
+.sidebar {
   height: 100%;
+
+  > div {
+    display: "flex";
+    flex-direction: "column";
+    height: "100%";
+  }
 }
 
 /* Footer del sidebar */
@@ -50,4 +56,16 @@ $size-button: 1.6rem;
 .sidebarContent {
   flex: 1;
   margin-bottom: 3.2rem;
+}
+
+/* Header del sidebar */
+.sidebarHeaderWrapper {
+  margin-bottom: 2.4rem;
+  margin-top: 1.6rem;
+
+  > div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 }

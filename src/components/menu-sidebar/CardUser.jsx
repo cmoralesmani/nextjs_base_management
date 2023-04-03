@@ -1,38 +1,44 @@
-// src/components/templates/MenuSidebar/CardUser.jsx
+// src/components/menu-sidebar/CardUser.jsx
 
 import { useRouter } from "next/router";
 import { Col, Container, Row } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
-import styles from "styles/MenuSidebar.module.scss";
+import { selectUserState } from "src/redux/slices/user-slice";
+
+import stylesButton from "styles/Button.module.scss";
 
 export { CardUser };
 
-function CardUser({ user }) {
+function CardUser() {
+  const userState = useSelector(selectUserState);
+
   const router = useRouter();
 
   function handleClick(url) {
     router.push(url);
   }
 
+  if (!userState) return null;
+
   return (
-    <>
-      <Container fluid className="g-0">
-        <Row>
-          <Col className="text-center">
-            <div className={`sidebar-btn-wrapper ${styles.wrapButton}`}>
-              <a
-                className={"sidebar-btn"}
-                href="#"
-                onClick={() => handleClick(`/accounts/details/${user.id_user}`)}
-              >
-                <FaUserCircle className={styles.fontProfile} />
-                <span> {user.username}</span>
-              </a>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </>
+    <Container fluid className="g-0">
+      <Row>
+        <Col className="text-center">
+          <div className={stylesButton.buttonCardUserWrapper}>
+            <a
+              href="#"
+              onClick={() =>
+                handleClick(`/accounts/details/${userState.id_user}`)
+              }
+            >
+              <FaUserCircle />
+              <span> {userState.username}</span>
+            </a>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 }

@@ -4,7 +4,7 @@ export function Label({
   text = "",
   title = "",
   icon,
-  backgroundColor = "var(--gray-light)",
+  backgroundColor = "var(--gray-100)",
   color = "var(--black)",
 }) {
   return (
