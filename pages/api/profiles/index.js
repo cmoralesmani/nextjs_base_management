@@ -14,15 +14,14 @@ function handler(req, res) {
   }
 
   async function get() {
-    const dataProfiles = await listProfilesCore(req, res);
+    const dataProfilesCoreAsJSON = await listProfilesCore(req, res);
+    const dataProfiles = dataProfilesCoreAsJSON.map((p) => ({
+      id_perfil: p.ID_PROFILE,
+      de_perfil: p.DE_PROFILE,
+      es_perfil: p.STATUS_PROFILE_ID,
+      de_es_perfil: p.BMAUTH_DEFINITION_DETAIL.DE_DEFINITION_DETAIL,
+    }));
 
-    return res.status(200).json({
-      profiles: dataProfiles.map((p) => ({
-        id_perfil: p.ID_PROFILE,
-        de_perfil: p.DE_PROFILE,
-        es_perfil: p.STATUS_PROFILE_ID,
-        de_es_perfil: p.BMAUTH_DEFINITION_DETAIL.DE_DEFINITION_DETAIL,
-      })),
-    });
+    return res.status(200).json(dataProfiles);
   }
 }

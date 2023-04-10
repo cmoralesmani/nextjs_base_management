@@ -1,34 +1,14 @@
 // pages/accounts/index.jsx
 
-// import { PageLayout } from "src/layouts";
-// import { UserList } from "src/components/accounts";
-
-// export default function AccountsPage() {
-//   return (
-//     <PageLayout codenamePermission={"see_users"}>
-//       <UserList />
-//     </PageLayout>
-//   );
-// }
-
-import { useEffect, useState } from "react";
-
 import { PageLayout } from "src/layouts";
 import { UserList } from "src/components/accounts";
-// import { UserList } from "src/components/templates";
 import { userService, toastService } from "src/services";
 import { useUsers } from "src/hooks/user/useUsers";
 
 export default AccountsPage;
 
 function AccountsPage() {
-  const { users, isLoading, error, setUsersCallback } = useUsers();
-
-  useEffect(() => {
-    if (error) {
-      toastService.error(error.message, { keepAfterRouteChange: true });
-    }
-  }, [error]);
+  const { users, isLoading, setUsersCallback } = useUsers();
 
   function deleteUserCallback(id_user) {
     return userService

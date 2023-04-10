@@ -3,8 +3,6 @@
 import Router from "next/router";
 import { BehaviorSubject } from "rxjs";
 
-// import { fetchWrapper } from "src/helpers";
-
 import { fetchWrapper } from "src/utilities";
 
 const userSubject = new BehaviorSubject(
