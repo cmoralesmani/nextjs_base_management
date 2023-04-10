@@ -17,12 +17,13 @@ import { ToastCustom } from "src/components/miscellaneous/toast";
 
 function MyApp({ Component, pageProps }) {
   const { store, props } = wrapper.useWrappedStore(pageProps);
-  const { _pageProps } = props;
+  // const { _pageProps } = props;
+  // console.log(">>>> 89 ", props, _pageProps);
 
   return (
     <Provider store={store}>
       <SiteLayout>
-        <Component {..._pageProps} />
+        <Component {...props} />
         <ToastCustom />
       </SiteLayout>
     </Provider>

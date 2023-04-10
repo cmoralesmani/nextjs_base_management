@@ -18,9 +18,11 @@ import * as Yup from "yup";
 
 import { SpinnerCustom, ResetCancelSave } from "src/components/elements";
 import { FormAddEditLayout } from "src/layouts";
-import { hasPermission } from "src/helpers/utils";
-import { useHasPermissionStatus } from "src/hooks";
+import { useHasPermissionStatus } from "src/hooks/auth";
 import { userService, profileService, toastService } from "src/services";
+
+import { selectUserState } from "src/redux/slices/user-slice";
+import { useSelector } from "react-redux";
 
 export { UserAddEdit };
 
@@ -28,15 +30,17 @@ function UserAddEdit(props) {
   const user = props?.user;
   const isAddMode = !user;
   const router = useRouter();
+  const userState = useSelector(selectUserState);
 
   const hasPermissionSeeUser = !isAddMode
-    ? hasPermission(
-        useHasPermissionStatus(["see_single_user"], allowSelfUser),
-        "see_single_user"
-      )
+    ? useHasPermissionStatus({
+        codenamePermission: "see_single_user",
+      })
     : undefined;
   const hasPermissionEditUser = !isAddMode
-    ? hasPermission(useHasPermissionStatus(["alter_user"]), "alter_user")
+    ? useHasPermissionStatus({
+        codenamePermission: "alter_user",
+      })
     : undefined;
 
   const [profiles, setProfiles] = useState([]);
@@ -45,10 +49,9 @@ function UserAddEdit(props) {
   // Estados para mostrar u ocultar la contrasena
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
-  const hasPermissionListUsers = hasPermission(
-    useHasPermissionStatus(["see_users"]),
-    "see_users"
-  );
+  const hasPermissionListUsers = useHasPermissionStatus({
+    codenamePermission: "see_users",
+  });
 
   useEffect(() => {
     // Lista de los perfiles
@@ -225,7 +228,7 @@ function UserAddEdit(props) {
     y se establece en verdadero si el usuario que esta intentando
     editar es el mismo que esta autenticado 
     */
-    if (user.id_user === userService.userValue.id_user) {
+    if (user.id_user === userState?.id_user) {
       setPermissions((permissions) => {
         return (permissions || []).map((p) => {
           p.has_permission = true;

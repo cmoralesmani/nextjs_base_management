@@ -1,4 +1,4 @@
-// pages/api/accounts/details/[username].js
+// pages/api/accounts/details/[id_user].js
 
 import { apiHandler, hasPermissionsTo } from "src/helpers/api";
 import { hasPermission } from "src/helpers/utils";
@@ -16,17 +16,17 @@ function handler(req, res) {
   }
 
   async function get() {
-    const { username } = req.query;
+    const { id_user } = req.query;
 
-    if (!username) {
+    if (!id_user) {
       throw "No especificó el usuario que desea ver";
     }
 
     // Tiene permiso para ver el detalle de usuarios?
     // Si soy el que esta conectado puedo acceder
-    if (username !== req.user.username) {
+    if (id_user !== req.user.id_user) {
       const hasPermissionToSeeDetailUser = hasPermission(
-        await hasPermissionsTo(req.user.username, ["see_single_user"]),
+        await hasPermissionsTo(req.user.id_user, ["see_single_user"]),
         "see_single_user"
       );
       if (!hasPermissionToSeeDetailUser) {
@@ -38,19 +38,8 @@ function handler(req, res) {
 
     // En caso de poseer el permiso retorna los datos del usuarios
     const user = await db.bmauth_user.findOne({
-      where: { USERNAME: username },
+      where: { ID_USER: id_user },
       include: [
-        {
-          model: db.bmauth_user_profiles,
-          required: false,
-          include: [
-            {
-              model: db.bmauth_profile,
-              required: true,
-              where: { STATUS_PROFILE_ID: "ESPER-ACTIV" },
-            },
-          ],
-        },
         {
           model: db.bmauth_definition_detail,
           required: true,
@@ -64,15 +53,32 @@ function handler(req, res) {
       ],
     });
 
-    /* Check if exists */
+    /* Verifica si existe el usuario */
     if (!user) {
       throw "El usuario no existe";
     }
 
     // Obtencion perfiles del usuario consultado
-    const objProfiles = user.BMAUTH_USER_PROFILEs.map((p) => ({
-      id_perfil: p.BMAUTH_PROFILE.ID_PROFILE,
-      de_perfil: p.BMAUTH_PROFILE.DE_PROFILE,
+    const profiles = await db.bmauth_profile.findAll({
+      where: { STATUS_PROFILE_ID: "ESPER-ACTIV" },
+      include: [
+        {
+          model: db.bmauth_user_profiles,
+          required: true,
+          include: [
+            {
+              model: db.bmauth_user,
+              required: true,
+              where: { ID_USER: id_user },
+            },
+          ],
+        },
+      ],
+    });
+
+    const profilesOfUser = profiles.map((p) => ({
+      id_perfil: p.ID_PROFILE,
+      de_perfil: p.DE_PROFILE,
     }));
 
     // Obtencion de permisos del usuario consultado
@@ -88,7 +94,7 @@ function handler(req, res) {
               {
                 model: db.bmauth_user,
                 required: true,
-                where: { USERNAME: username },
+                where: { ID_USER: id_user },
               },
             ],
           },
@@ -113,7 +119,7 @@ function handler(req, res) {
                       {
                         model: db.bmauth_user,
                         required: true,
-                        where: { USERNAME: username },
+                        where: { ID_USER: id_user },
                       },
                     ],
                   },
@@ -129,7 +135,7 @@ function handler(req, res) {
     const permissionsAll = permissionsJSON.map((p) => ({
       codename: p.ID_PERMISSION,
     }));
-    const permissionsUnique = permissionsAll.filter((obj, index) => {
+    const permissionsUniqueOfUser = permissionsAll.filter((obj, index) => {
       return (
         index === permissionsAll.findIndex((o) => obj.codename === o.codename)
       );
@@ -155,12 +161,12 @@ function handler(req, res) {
       created_at: user.CREATED_AT,
       status_user_id: user.STATUS_USER_ID,
       de_status_user: user.DEF_STATUS_USER.DE_DEFINITION_DETAIL,
-      profiles: objProfiles,
+      profiles: profilesOfUser,
       created_by: user.CREATED_BY,
       id_user_creacion: userCreate?.ID_USER,
       name_user_creacion: userCreate?.NAME_USER,
       lastname_user_creacion: userCreate?.LASTNAME_USER,
-      user_permissions: permissionsUnique,
+      user_permissions: permissionsUniqueOfUser,
     });
   }
 }

@@ -11,13 +11,12 @@ import {
   FaBan,
 } from "react-icons/fa";
 
+import { useHasPermissionStatus } from "src/hooks/auth";
 import {
   SpinnerCustom,
   ButtonDownload,
   ButtonDeleteConfirm,
 } from "src/components/elements";
-import { hasPermission } from "src/helpers/utils";
-import { useHasPermissionStatus } from "src/hooks";
 
 import styles from "styles/TableFixedHeader.module.scss";
 
@@ -30,16 +29,18 @@ UserListTable.propTypes = {
 };
 
 function UserListTable({ users, urlDownload, deleteUserCallback }) {
-  const permissions = useHasPermissionStatus([
-    "see_single_user",
-    "create_user",
-    "alter_user",
-    "delete_user",
-  ]);
-  const hasPermissionSeeUsers = hasPermission(permissions, "see_single_user");
-  const hasPermissionCreateUser = hasPermission(permissions, "create_user");
-  const hasPermissionEditUser = hasPermission(permissions, "alter_user");
-  const hasPermissionDeleteUser = hasPermission(permissions, "delete_user");
+  const hasPermissionSeeUser = useHasPermissionStatus({
+    codenamePermission: "see_single_user",
+  });
+  const hasPermissionCreateUser = useHasPermissionStatus({
+    codenamePermission: "create_user",
+  });
+  const hasPermissionEditUser = useHasPermissionStatus({
+    codenamePermission: "alter_user",
+  });
+  const hasPermissionDeleteUser = useHasPermissionStatus({
+    codenamePermission: "delete_user",
+  });
 
   return (
     <Container className="g-0">
@@ -83,7 +84,7 @@ function UserListTable({ users, urlDownload, deleteUserCallback }) {
                   <th>Nombre</th>
                   <th>Apellido</th>
                   <th>Estado</th>
-                  {(hasPermissionSeeUsers ||
+                  {(hasPermissionSeeUser ||
                     hasPermissionEditUser ||
                     hasPermissionDeleteUser) &&
                     users &&
@@ -96,7 +97,7 @@ function UserListTable({ users, urlDownload, deleteUserCallback }) {
                   users.map((user) => (
                     <tr key={user.id_user}>
                       <td>
-                        {hasPermissionSeeUsers ? (
+                        {hasPermissionSeeUser ? (
                           <Link
                             href={`/accessibility/accounts/details/${user.id_user}`}
                           >
@@ -115,11 +116,11 @@ function UserListTable({ users, urlDownload, deleteUserCallback }) {
                           <Badge bg="danger">{user.de_status_user}</Badge>
                         )}
                       </td>
-                      {(hasPermissionSeeUsers ||
+                      {(hasPermissionSeeUser ||
                         hasPermissionEditUser ||
                         hasPermissionDeleteUser) && (
                         <td className="text-center text-nowrap">
-                          {hasPermissionSeeUsers && (
+                          {hasPermissionSeeUser && (
                             <Link
                               href={`/accessibility/accounts/details/${user.id_user}`}
                             >

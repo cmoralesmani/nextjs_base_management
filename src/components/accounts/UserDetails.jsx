@@ -12,56 +12,49 @@ import {
   Row,
 } from "react-bootstrap";
 import { FaEdit, FaListAlt, FaUser, FaUserTie } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 import { ResetPassword } from "src/components/templates/ResetPassword";
 import { hasPermission } from "src/helpers/utils";
-import { useHasPermissionStatus } from "src/hooks";
+import { useHasPermissionStatus } from "src/hooks/auth";
 import { userService } from "src/services";
+
+import { selectUserState } from "src/redux/slices/user-slice";
 
 export { UserDetails };
 
 function UserDetails(props) {
-  const user = props?.user;
+  const { user } = props;
+  const userState = useSelector(selectUserState);
 
-  const permissions = useHasPermissionStatus([
-    "see_users",
-    "see_single_profile",
-    "EMPRE-VER",
-    "see_single_user",
-  ]);
-  const hasPermissionListUsers = hasPermission(permissions, "see_users");
-  const hasPermissionSeeProfile = hasPermission(
-    permissions,
-    "see_single_profile"
-  );
-  const hasPermissionSeeUsers = hasPermission(permissions, "see_single_user");
+  const hasPermissionListUsers = useHasPermissionStatus({
+    codenamePermission: "see_users",
+  });
+  const hasPermissionSeeProfile = useHasPermissionStatus({
+    codenamePermission: "see_single_profile",
+  });
+  const hasPermissionSeeUsers = useHasPermissionStatus({
+    codenamePermission: "see_single_user",
+  });
 
-  const PermissionsWithCallback = useHasPermissionStatus(
-    ["alter_user", "change_password_users"],
-    allowSelfUser
-  );
-  const hasPermissionEditUser = hasPermission(
-    PermissionsWithCallback,
-    "alter_user"
-  );
-  const hasPermissionChangePassword = hasPermission(
-    PermissionsWithCallback,
-    "change_password_users"
-  );
+  const hasPermissionAlterUser = useHasPermissionStatus({
+    codenamePermission: "alter_user",
+    callback: allowSelfUser,
+  });
+  const hasPermissionChangePassword = useHasPermissionStatus({
+    codenamePermission: "change_password_users",
+    callback: allowSelfUser,
+  });
 
-  function allowSelfUser(setPermissions) {
+  function allowSelfUser(params) {
     /*
     Callback que recibe la funcion que modifica los permisos
     y se establece en verdadero si el usuario que esta intentando
     editar es el mismo que esta autenticado.
     */
-    if (user.id_user === userService.userValue.id_user) {
-      setPermissions((permissions) => {
-        return (permissions || []).map((p) => {
-          p.has_permission = true;
-          return p;
-        });
-      });
+    const { id_user, setHasPermission } = params;
+    if (user.id_user === id_user) {
+      setHasPermission(true);
     }
   }
 
@@ -83,7 +76,7 @@ function UserDetails(props) {
                 <Container className="my-3">
                   <Row>
                     <Col className="py-2">
-                      {hasPermissionEditUser && (
+                      {hasPermissionAlterUser && (
                         <Link
                           href={`/accessibility/accounts/edit/${user.id_user}`}
                         >
@@ -107,7 +100,7 @@ function UserDetails(props) {
                       )}
                       <h3>
                         <FaUser /> {user.username}
-                        {user.id_user === userService.userValue.id_user && (
+                        {user.id_user === userState.id_user && (
                           <Badge className="ms-2" bg="info" size="lg">
                             Mi usuario
                           </Badge>

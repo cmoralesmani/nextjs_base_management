@@ -37,7 +37,6 @@ export const SidebarContent = () => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(router.asPath);
     setItemsMenu([
       {
         key: "home",

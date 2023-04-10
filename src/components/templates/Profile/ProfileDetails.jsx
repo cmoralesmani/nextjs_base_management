@@ -8,6 +8,9 @@ import { hasPermission } from "src/helpers/utils";
 import { useHasPermissionStatus } from "src/hooks";
 import { userService } from "src/services";
 
+import { selectUserState } from "src/redux/slices/user-slice";
+import { useSelector } from "react-redux";
+
 export { ProfileDetails };
 
 function ProfileDetails(props) {
@@ -21,6 +24,8 @@ function ProfileDetails(props) {
   const hasPermissionEditProfile = hasPermission(permissions, "alter_profile");
   const hasPermissionListProfile = hasPermission(permissions, "see_profiles");
   const hasPermissionSeeUser = hasPermission(permissions, "see_single_user");
+
+  const userState = useSelector(selectUserState);
 
   if (!profile) return null;
 
@@ -111,7 +116,7 @@ function ProfileDetails(props) {
                           variant="secondary"
                         >
                           {hasPermissionSeeUser ||
-                          usuario.id_user === userService.userValue.id_user ? (
+                          usuario.id_user === userState?.id_user ? (
                             <>
                               <Link
                                 href={`/accounts/details/${usuario.id_user}`}

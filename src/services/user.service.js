@@ -21,6 +21,7 @@ export const userService = {
   login,
   logout,
   getUserByUsername,
+  getUserById,
   getUsers,
   register,
   update,
@@ -52,7 +53,11 @@ function logout() {
 }
 
 function getUserByUsername(username) {
-  return fetchWrapper.get(`${baseUrl}/details/${username}/`);
+  return fetchWrapper.get(`${baseUrl}/details/by_username/${username}/`);
+}
+
+function getUserById(id_user) {
+  return fetchWrapper.get(`${baseUrl}/details/by_id/${id_user}/`);
 }
 
 function getUsers(filters = {}) {

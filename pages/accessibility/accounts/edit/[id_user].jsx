@@ -8,10 +8,14 @@ import { PageLayout } from "src/layouts";
 import { UserAddEdit } from "src/components/templates";
 import { toastService, userService } from "src/services";
 
+import { selectUserState } from "src/redux/slices/user-slice";
+import { useSelector } from "react-redux";
+
 export default EditUser;
 
 function EditUser({ id_user }) {
   const [user, setUser] = useState(null);
+  const userState = useSelector(selectUserState);
 
   function allowSelfUser(setHasPermission) {
     /*
@@ -19,7 +23,7 @@ function EditUser({ id_user }) {
         y se establece en verdadero si el usuario que esta intentando
         editar es el mismo que esta autenticado 
         */
-    if (id_user === userService.userValue.id_user) setHasPermission(true);
+    if (id_user === userState?.id_user) setHasPermission(true);
   }
 
   function handleLoadInit() {

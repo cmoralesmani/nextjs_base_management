@@ -21,7 +21,9 @@ import {
 } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
+import { useSelector } from "react-redux";
 
+import { selectUserState } from "src/redux/slices/user-slice";
 import { userService, toastService } from "src/services";
 
 export { ResetPassword };
@@ -33,11 +35,12 @@ function ResetPassword({ user }) {
   const [showPasswordOld, setShowPasswordOld] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const userState = useSelector(selectUserState);
 
   // Reglas de validacion para el formulario
   const validationSchema = Yup.object().shape({
     oldPassword: Yup.string().concat(
-      user.id_user == userService.userValue.id_user
+      user.id_user == userState?.id_user
         ? Yup.string().required("La contraseña anterior es requerida")
         : null
     ),
@@ -114,7 +117,7 @@ function ResetPassword({ user }) {
   if (!user) return null;
 
   const username =
-    user.id_user == userService.userValue.id_user
+    user.id_user == userState?.id_user
       ? `${user.username} (Mi usuario)`
       : `${user.username}`;
 
@@ -141,7 +144,7 @@ function ResetPassword({ user }) {
           <Modal.Title>
             <FaLock className="me-1" />
             Cambio de Contraseña
-            {user.id_user == userService.userValue.id_user && (
+            {user.id_user == userState?.id_user && (
               <Badge className="ms-2" bg="info" size="lg">
                 Mi usuario
               </Badge>
@@ -166,7 +169,7 @@ function ResetPassword({ user }) {
                   />
                   <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                 </Form.Group>
-                {user.id_user == userService.userValue.id_user && (
+                {user.id_user == userState?.id_user && (
                   <Form.Group className="mb-3" controlId="oldPassword">
                     <Form.Label>Contraseña anterior</Form.Label>
                     <InputGroup>
