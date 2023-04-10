@@ -17,7 +17,7 @@ const db = require("@db/models/index");
  * @throws {Error} - Si no se puede consultar la lista de permisos
  * @example
  * hasPermissionsTo("admin", ["CUEUS_LISTA", "CUEUS_CREAR"]);
- * // => [{id_permiso: "CUEUS_LISTA", has_permission: true}, {id_permiso: "CUEUS_CREAR", has_permission: true}]
+ * // => [{id_permission: "CUEUS_LISTA", has_permission: true}, {id_permission: "CUEUS_CREAR", has_permission: true}]
  */
 export async function hasPermissionsTo(username, list_id_permission) {
   if (!Array.isArray(list_id_permission))
@@ -26,7 +26,7 @@ export async function hasPermissionsTo(username, list_id_permission) {
   try {
     if (username && list_id_permission.length > 0) {
       const permitsBD = await db.bmauth_profile_permissions.findAll({
-        attributes: ["ID_PERMISSION"],
+        attributes: ["PERMISSION_ID"],
         include: [
           {
             attributes: [],
@@ -42,7 +42,10 @@ export async function hasPermissionsTo(username, list_id_permission) {
                     attributes: [],
                     model: db.bmauth_user,
                     required: true,
-                    where: { USERNAME: username, STATUS_USER: "ESCUS-ACTIV" },
+                    where: {
+                      USERNAME: username,
+                      STATUS_USER_ID: "ESCUS-ACTIV",
+                    },
                   },
                 ],
               },
@@ -50,14 +53,14 @@ export async function hasPermissionsTo(username, list_id_permission) {
             where: { STATUS_PROFILE_ID: "ESPER-ACTIV" },
           },
         ],
-        where: { ID_PERMISSION: { [Op.in]: list_id_permission } },
+        where: { PERMISSION_ID: { [Op.in]: list_id_permission } },
       });
 
       const permitsBDJSON = JSON.parse(JSON.stringify(permitsBD));
       const response = list_id_permission.map((permit) => ({
-        id_permiso: permit,
+        id_permission: permit,
         has_permission: permitsBDJSON.some(
-          (permitBD) => permitBD.ID_PERMISSION === permit
+          (permitBD) => permitBD.PERMISSION_ID === permit
         ),
       }));
       return response;

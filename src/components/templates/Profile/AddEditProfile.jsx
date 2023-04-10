@@ -139,14 +139,16 @@ function AddEditProfile(props) {
      * {id, name, selected}
      * Recibe la lista de permisos total y cuales de esos
      * son los que ya tiene el perfil */
-    //  isAddMode ? false : (props.profile.perfil?.permisos || []).map(p => p.id_permiso).includes(p.id_permiso)
+    //  isAddMode ? false : (props.profile.perfil?.permisos || []).map(p => p.id_permission).includes(p.id_permission)
     return (permissions || []).map((p) => {
       return {
-        id: p.id_permiso,
+        id: p.id_permission,
         name: `${p.de_permiso_grupo} (${p.de_permiso_accion})`,
         selected: !permissionsCurrent
           ? false
-          : permissionsCurrent.map((p) => p.id_permiso).includes(p.id_permiso),
+          : permissionsCurrent
+              .map((p) => p.id_permission)
+              .includes(p.id_permission),
       };
     });
   }

@@ -14,18 +14,17 @@ function handler(req, res) {
   }
 
   async function get() {
-    const dataUsers = await listUsersCore(req, res);
-    return res.status(200).json({
-      users: dataUsers.map((p) => ({
-        id_user: p.ID_USER,
-        username: p.USERNAME,
-        name_user: p.NAME_USER,
-        lastname_user: p.LASTNAME_USER,
-        gender_user_id: p.GENDER_USER_ID,
-        de_gender_user: p.DEF_GENDER_USER.DE_DEFINITION_DETAIL,
-        status_user_id: p.STATUS_USER_ID,
-        de_status_user: p.DEF_STATUS_USER.DE_DEFINITION_DETAIL,
-      })),
-    });
+    const dataUsersCoreAsJSON = await listUsersCore(req, res);
+    const dataUsers = dataUsersCoreAsJSON.map((p) => ({
+      id_user: p.ID_USER,
+      username: p.USERNAME,
+      name_user: p.NAME_USER,
+      lastname_user: p.LASTNAME_USER,
+      gender_user_id: p.GENDER_USER_ID,
+      de_gender_user: p.DEF_GENDER_USER.DE_DEFINITION_DETAIL,
+      status_user_id: p.STATUS_USER_ID,
+      de_status_user: p.DEF_STATUS_USER.DE_DEFINITION_DETAIL,
+    }));
+    return res.status(200).json(dataUsers);
   }
 }

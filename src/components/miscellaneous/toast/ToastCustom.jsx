@@ -1,4 +1,4 @@
-// src/components/elements/ToastTP.jsx
+// src/components/miscellaneous/toast/ToastCustom.jsx
 
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
@@ -8,19 +8,19 @@ import { FaComments } from "react-icons/fa";
 
 import { toastService, ToastType } from "src/services";
 
-export { ToastTP };
+export { ToastCustom };
 
-ToastTP.propTypes = {
+ToastCustom.propTypes = {
   id: PropTypes.string,
   fade: PropTypes.bool,
 };
 
-ToastTP.defaultProps = {
+ToastCustom.defaultProps = {
   id: "default-toast",
   fade: true,
 };
 
-function ToastTP({ id, fade }) {
+function ToastCustom({ id, fade }) {
   const router = useRouter();
   const [toasts, setToasts] = useState([]);
 

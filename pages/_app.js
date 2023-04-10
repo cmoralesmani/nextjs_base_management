@@ -13,6 +13,7 @@ import { SiteLayout } from "src/layouts";
 import { wrapper } from "src/redux/store";
 
 import "../styles/App.scss";
+import { ToastCustom } from "src/components/miscellaneous/toast";
 
 function MyApp({ Component, pageProps }) {
   const { store, props } = wrapper.useWrappedStore(pageProps);
@@ -22,6 +23,7 @@ function MyApp({ Component, pageProps }) {
     <Provider store={store}>
       <SiteLayout>
         <Component {..._pageProps} />
+        <ToastCustom />
       </SiteLayout>
     </Provider>
   );

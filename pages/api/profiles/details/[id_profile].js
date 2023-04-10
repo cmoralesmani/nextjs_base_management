@@ -90,7 +90,7 @@ function handler(req, res) {
 
     const objPermissions = profile.BMAUTH_PROFILE_PERMISSIONs.map((p) => ({
       id_perfil: p.ID_PROFILE,
-      id_permiso: p.ID_PERMISSION,
+      id_permission: p.ID_PERMISSION,
       de_permiso: p.BMAUTH_PERMISSION.DE_PERMISSION,
       id_permiso_grupo: p.BMAUTH_PERMISSION.BMAUTH_A_G.ID_PERMISSION_GRUPO,
       de_permiso_grupo: p.BMAUTH_PERMISSION.BMAUTH_A_G.DE_PERMISSION_GRUPO,

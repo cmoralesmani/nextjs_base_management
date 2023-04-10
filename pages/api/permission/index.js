@@ -53,7 +53,7 @@ function handler(req, res) {
 
     return res.status(200).json({
       permisos: permissions.map((p) => ({
-        id_permiso: p.ID_PERMISSION,
+        id_permission: p.ID_PERMISSION,
         de_permiso: p.DE_PERMISSION,
         id_permiso_grupo: p.ID_PERMISSION_GRUPO,
         id_permiso_accion: p.ID_PERMISSION_ACCION,

@@ -11,24 +11,24 @@
 //   );
 // }
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { PageLayout } from "src/layouts";
 import { UserList } from "src/components/accounts";
 // import { UserList } from "src/components/templates";
 import { userService, toastService } from "src/services";
+import { useUsers } from "src/hooks/user/useUsers";
 
 export default AccountsPage;
 
 function AccountsPage() {
-  const [users, setUsers] = useState(null);
+  const { users, isLoading, error, setUsersCallback } = useUsers();
 
-  function updateUsersCallback(filters) {
-    setUsers(null);
-    return userService.getUsers(filters).then((u) => {
-      setUsers(u.users);
-    });
-  }
+  useEffect(() => {
+    if (error) {
+      toastService.error(error.message, { keepAfterRouteChange: true });
+    }
+  }, [error]);
 
   function deleteUserCallback(id_user) {
     return userService
@@ -47,18 +47,12 @@ function AccountsPage() {
       });
   }
   return (
-    // <SiteLayout
-    //   titleSite="Lista de Usuarios"
-    //   idPermission="CUEUS-LISTA"
-    //   handleLoadInit={async () => {}}
-    // >
     <PageLayout codenamePermission={"see_users"} titlePage="Lista de Usuarios">
       <UserList
         users={users}
-        updateUsersCallback={updateUsersCallback}
+        updateUsersCallback={setUsersCallback}
         deleteUserCallback={deleteUserCallback}
       />
-      {/* </SiteLayout> */}
     </PageLayout>
   );
 }

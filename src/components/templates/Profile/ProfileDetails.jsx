@@ -152,7 +152,7 @@ function ProfileDetails(props) {
                     {profile.perfil.permisos.map((permiso) => {
                       return (
                         <ListGroup.Item
-                          key={permiso.id_permiso}
+                          key={permiso.id_permission}
                           variant="secondary"
                         >
                           <span>{permiso.de_permiso_grupo}</span>{" "}

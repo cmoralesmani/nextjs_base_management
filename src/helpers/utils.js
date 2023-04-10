@@ -10,7 +10,7 @@ export { hasPermission };
  */
 function hasPermission(list_permissions, id_permission) {
   const result = list_permissions
-    ? list_permissions.find((x) => x.id_permiso == id_permission)
+    ? list_permissions.find((x) => x.id_permission == id_permission)
         ?.has_permission ?? false
     : undefined;
   return result;
