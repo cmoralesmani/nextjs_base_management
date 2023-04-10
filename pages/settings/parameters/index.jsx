@@ -5,33 +5,21 @@ import { useState } from "react";
 import { PageLayout } from "src/layouts";
 import { ParametersList } from "src/components/templates";
 import { parametersService } from "src/services";
+import { useParameters } from "src/hooks/parameter/useParameters";
 
 export default function ListParameters() {
-  const [parameters, setParameters] = useState(null);
-
-  function updateParametersCallback(filters) {
-    setParameters(null);
-    return parametersService.getParameters(filters).then((b) => {
-      setParameters(b.parametros);
-    });
-  }
+  const { parameters, isLoading, error, setParametersCallback } =
+    useParameters();
 
   return (
-    // <PageLayout
-    //   titleSite="Lista de Parametros"
-    //   idPermission="see_parameters"
-    //   handleLoadInit={async () => {}}
-    // >
     <PageLayout
-      codenamePermission={"see_users"}
+      codenamePermission={"see_parameters"}
       titlePage="Lista de Parametros"
     >
       <ParametersList
         parameters={parameters}
-        updateParametersCallback={updateParametersCallback}
-        setParameters={setParameters}
+        updateParametersCallback={setParametersCallback}
       />
     </PageLayout>
-    // </PageLayout>
   );
 }

@@ -14,14 +14,13 @@ function handler(req, res) {
   }
 
   async function get() {
-    const dataParameters = await listParametersCore(req, res);
+    const dataParametersCoreAsJSON = await listParametersCore(req, res);
+    const dataParameters = dataParametersCoreAsJSON.map((p) => ({
+      id_definicion_m: p.ID_DEFINITION_MASTER,
+      de_definicion_m: p.DE_DEFINITION_MASTER,
+      cm_definicion: p.COMMENT_DEFINITION,
+    }));
 
-    return res.status(200).json({
-      parametros: dataParameters.map((p) => ({
-        id_definicion_m: p.ID_DEFINITION_MASTER,
-        de_definicion_m: p.DE_DEFINITION_MASTER,
-        cm_definicion: p.COMMENT_DEFINITION,
-      })),
-    });
+    return res.status(200).json(dataParameters);
   }
 }

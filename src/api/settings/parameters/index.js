@@ -7,7 +7,7 @@ import { isJsonString } from "src/helpers/api/util";
 import { hasPermission } from "src/helpers/utils";
 const db = require("@db/models/index");
 
-export default async (req, res) => {
+const parametersAsJSON = async (req, res) => {
   const hasPermissionToListParameters = hasPermission(
     await hasPermissionsTo(req.user.username, ["see_parameters"]),
     "see_parameters"
@@ -38,3 +38,5 @@ export default async (req, res) => {
 
   return dataParameters;
 };
+
+export default parametersAsJSON;
