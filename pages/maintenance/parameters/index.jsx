@@ -4,10 +4,11 @@ import { useState } from "react";
 
 import { PageLayout } from "src/layouts";
 import { ParametersList } from "src/components/templates";
-import { parametersService } from "src/services";
 import { useParameters } from "src/hooks/parameter/useParameters";
 
-export default function ListParameters() {
+export default ParametersPage;
+
+function ParametersPage() {
   const { parameters, isLoading, error, setParametersCallback } =
     useParameters();
 

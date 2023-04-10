@@ -56,7 +56,7 @@ function UserListTable({ users, urlDownload, deleteUserCallback }) {
                 <Row className="row-cols-auto">
                   {hasPermissionCreateUser && (
                     <Col>
-                      <Link href="/accounts/register">
+                      <Link href="/accessibility/accounts/register">
                         <a className="btn btn-primary btn-sm">
                           <FaPlus /> Nuevo
                         </a>
@@ -97,7 +97,9 @@ function UserListTable({ users, urlDownload, deleteUserCallback }) {
                     <tr key={user.id_user}>
                       <td>
                         {hasPermissionSeeUsers ? (
-                          <Link href={`/accounts/details/${user.id_user}`}>
+                          <Link
+                            href={`/accessibility/accounts/details/${user.id_user}`}
+                          >
                             <a>{user.username}</a>
                           </Link>
                         ) : (
@@ -118,14 +120,18 @@ function UserListTable({ users, urlDownload, deleteUserCallback }) {
                         hasPermissionDeleteUser) && (
                         <td className="text-center text-nowrap">
                           {hasPermissionSeeUsers && (
-                            <Link href={`/accounts/details/${user.id_user}`}>
+                            <Link
+                              href={`/accessibility/accounts/details/${user.id_user}`}
+                            >
                               <a className="mx-1">
                                 <FaFolderOpen />
                               </a>
                             </Link>
                           )}
                           {hasPermissionEditUser && (
-                            <Link href={`/accounts/edit/${user.id_user}`}>
+                            <Link
+                              href={`/accessibility/accounts/edit/${user.id_user}`}
+                            >
                               <a className="mx-1">
                                 <FaRegEdit />
                               </a>

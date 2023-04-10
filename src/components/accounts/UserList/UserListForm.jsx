@@ -15,7 +15,7 @@ function UserListForm({ updateUsersCallback, setUrlDownload }) {
   return (
     <SearchForm
       updateCallback={updateUsersCallback}
-      urlBaseDownload={`/accounts/export`}
+      urlBaseDownload={`/accessibility/accounts/export`}
       setUrlDownload={setUrlDownload}
     />
   );

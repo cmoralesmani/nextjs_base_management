@@ -84,7 +84,9 @@ function UserDetails(props) {
                   <Row>
                     <Col className="py-2">
                       {hasPermissionEditUser && (
-                        <Link href={`/accounts/edit/${user.id_user}`}>
+                        <Link
+                          href={`/accessibility/accounts/edit/${user.id_user}`}
+                        >
                           <a
                             className="btn btn-link float-end"
                             title="Editar usuario"
@@ -94,7 +96,7 @@ function UserDetails(props) {
                         </Link>
                       )}
                       {hasPermissionListUsers && (
-                        <Link href={`/accounts`}>
+                        <Link href={`/accessibility/accounts`}>
                           <a
                             className="btn btn-link float-end"
                             title="Lista de usuarios"
@@ -216,7 +218,7 @@ function UserDetails(props) {
                                 <Col as="dd" xs={12}>
                                   {hasPermissionSeeUsers ? (
                                     <Link
-                                      href={`/accounts/details/${user.id_user_creacion}`}
+                                      href={`/accessibility/accounts/details/${user.id_user_creacion}`}
                                     >
                                       <a>{user.CREATED_BY}</a>
                                     </Link>

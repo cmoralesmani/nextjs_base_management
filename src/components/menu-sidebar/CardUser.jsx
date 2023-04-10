@@ -16,7 +16,7 @@ function CardUser({ collapsed }) {
   if (!userState) return null;
 
   return (
-    <Link href={`/accounts/details/${userState.id_user}`}>
+    <Link href={`/accessibility/accounts/details/${userState.id_user}`}>
       <a
         className={
           !!collapsed

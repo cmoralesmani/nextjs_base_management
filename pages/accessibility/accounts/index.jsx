@@ -1,4 +1,4 @@
-// pages/accounts/index.jsx
+// pages/accessibility/accounts/index.jsx
 
 import { PageLayout } from "src/layouts";
 import { UserList } from "src/components/accounts";

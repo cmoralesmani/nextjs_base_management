@@ -174,8 +174,9 @@ function UserAddEdit(props) {
           `El usuario "${data.username}" ha sido actualizado`,
           { keepAfterRouteChange: true }
         );
-        if (hasPermissionSeeUser) router.push(`/accounts/details/${id_user}`);
-        else if (hasPermissionListUsers) router.push("/accounts");
+        if (hasPermissionSeeUser)
+          router.push(`/accessibility/accounts/details/${id_user}`);
+        else if (hasPermissionListUsers) router.push("/accessibility/accounts");
         else router.push("/");
       })
       .catch((err) => {
@@ -237,7 +238,7 @@ function UserAddEdit(props) {
   const itemsTopRightComponents = [];
   if (hasPermissionListUsers) {
     itemsTopRightComponents.push(
-      <Link key="listUser" href={`/accounts`}>
+      <Link key="listUser" href={`/accessibility/accounts`}>
         <a className="btn btn-link" title="Lista de usuarios">
           <FaListAlt />
         </a>
@@ -246,7 +247,10 @@ function UserAddEdit(props) {
   }
   if (!isAddMode && hasPermissionSeeUser) {
     itemsTopRightComponents.push(
-      <Link key="detailsUser" href={`/accounts/details/${user?.id_user}`}>
+      <Link
+        key="detailsUser"
+        href={`/accessibility/accounts/details/${user?.id_user}`}
+      >
         <a className="btn btn-link" title="Detalle del usuario">
           <FaRegFileAlt />
         </a>

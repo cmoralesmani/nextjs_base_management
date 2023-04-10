@@ -37,6 +37,7 @@ export const SidebarContent = () => {
   const router = useRouter();
 
   useEffect(() => {
+    console.log(router.asPath);
     setItemsMenu([
       {
         key: "home",
@@ -44,7 +45,7 @@ export const SidebarContent = () => {
         href: "/",
         icon: <FaHome />,
         hasPermission: true,
-        active: router.asPath.includes("/"),
+        active: router.asPath == "/",
         children: [],
       },
       {
@@ -54,35 +55,35 @@ export const SidebarContent = () => {
           hasPermissionSeeUsers ||
           hasPermissionCreateUser ||
           hasPermissionSeeProfiles,
-        active: router.asPath.includes("/"),
+        active: router.asPath.includes("/accessibility/"),
         icon: <FaUserSlash />,
         children: [
           {
             key: "users",
             label: "Usuarios",
-            href: "/accounts/",
+            href: "/accessibility/accounts/",
             icon: <FaUsers />,
             hasPermission: hasPermissionSeeUsers,
             children: [],
-            active: router.asPath.includes("/accounts/"),
+            active: router.asPath.includes("/accessibility/accounts"),
           },
           {
             key: "new_user",
             label: "Nuevo usuario",
-            href: "/accounts/register/",
+            href: "/accessibility/accounts/create",
             icon: <FaUserPlus />,
             hasPermission: hasPermissionCreateUser,
             children: [],
-            active: router.asPath.includes("/accounts/register"),
+            active: router.asPath.includes("/accessibility/accounts/create"),
           },
           {
             key: "profiles",
             label: "Perfiles",
-            href: "/profiles/",
+            href: "/accessibility/profiles/",
             icon: <FaIdCard />,
             hasPermission: hasPermissionSeeProfiles,
             children: [],
-            active: router.asPath.includes("/profiles/"),
+            active: router.asPath.includes("/accessibility/profiles"),
           },
         ],
       },
@@ -90,17 +91,17 @@ export const SidebarContent = () => {
         key: "maintenance",
         label: "Mantenimiento",
         hasPermission: hasPermissionSeeParameters,
-        active: router.asPath.includes("/"),
+        active: router.asPath.includes("/maintenance/"),
         icon: <FaBox />,
         children: [
           {
             key: "parameters",
             label: "Parametros",
-            href: "/settings/parameters/",
+            href: "/maintenance/parameters/",
             icon: <FaCubes />,
             hasPermission: hasPermissionSeeParameters,
             children: [],
-            active: router.asPath.includes("/settings/parameters/"),
+            active: router.asPath.includes("/maintenance/parameters/"),
           },
         ],
       },

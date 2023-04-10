@@ -1,13 +1,13 @@
-// pages/profiles/index.jsx
+// pages/accessibility/profiles/index.jsx
 
 import { PageLayout } from "src/layouts";
 import { ProfileList } from "src/components/templates";
 import { profileService, toastService } from "src/services";
 import { useProfiles } from "src/hooks/profile/useProfiles";
 
-export default ListProfile;
+export default ProfilesPage;
 
-function ListProfile() {
+function ProfilesPage() {
   const { profiles, isLoading, error, setProfilesCallback } = useProfiles();
 
   function deleteProfileCallback(id_profile) {
