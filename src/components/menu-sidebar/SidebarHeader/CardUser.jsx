@@ -1,4 +1,4 @@
-// src/components/menu-sidebar/CardUser.jsx
+// src/components/menu-sidebar/SidebarHeader/CardUser.jsx
 
 import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
