@@ -1,4 +1,4 @@
-// src/components/templates/Parameters/ParametersList/ParametersListForm.jsx
+// src/components/parameters/ParametersList/ParametersListForm.jsx
 
 import PropTypes from "prop-types";
 

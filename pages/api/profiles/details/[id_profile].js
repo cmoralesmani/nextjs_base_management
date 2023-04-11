@@ -57,18 +57,6 @@ function handler(req, res) {
             {
               model: db.bmauth_permission,
               required: true,
-              include: [
-                {
-                  model: db.bmauth_permission_grupo,
-                  required: true,
-                  as: "BMAUTH_A_G",
-                },
-                {
-                  model: db.bmauth_permission_accion,
-                  required: true,
-                  as: "BMAUTH_P_A",
-                },
-              ],
             },
           ],
         },
@@ -92,10 +80,6 @@ function handler(req, res) {
       id_perfil: p.ID_PROFILE,
       id_permission: p.ID_PERMISSION,
       de_permiso: p.BMAUTH_PERMISSION.DE_PERMISSION,
-      id_permiso_grupo: p.BMAUTH_PERMISSION.BMAUTH_A_G.ID_PERMISSION_GRUPO,
-      de_permiso_grupo: p.BMAUTH_PERMISSION.BMAUTH_A_G.DE_PERMISSION_GRUPO,
-      id_permiso_accion: p.BMAUTH_PERMISSION.BMAUTH_P_A.ID_PERMISSION_ACCION,
-      de_permiso_accion: p.BMAUTH_PERMISSION.BMAUTH_P_A.DE_PERMISSION_ACCION,
     }));
     const objPermissionsSort = objPermissions.sort((a, b) =>
       a.de_permiso > b.de_permiso ? 1 : -1

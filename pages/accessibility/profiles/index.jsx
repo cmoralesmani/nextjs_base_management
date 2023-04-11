@@ -1,7 +1,7 @@
 // pages/accessibility/profiles/index.jsx
 
 import { PageLayout } from "src/layouts";
-import { ProfileList } from "src/components/templates";
+import { ProfileList } from "src/components/profiles";
 import { profileService, toastService } from "src/services";
 import { useProfiles } from "src/hooks/profile/useProfiles";
 

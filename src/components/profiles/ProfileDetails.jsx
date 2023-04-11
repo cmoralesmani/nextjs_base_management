@@ -1,11 +1,11 @@
-// src/components/templates/Profile/ProfileDetails.jsx
+// src/components/profiles/ProfileDetails.jsx
 
 import Link from "next/link";
 import { Alert, Badge, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { FaIdCard, FaRegEdit, FaListAlt } from "react-icons/fa";
 
 import { hasPermission } from "src/helpers/utils";
-import { useHasPermissionStatus } from "src/hooks";
+import { useHasPermissionStatus } from "src/hooks/auth";
 import { userService } from "src/services";
 
 import { selectUserState } from "src/redux/slices/user-slice";
@@ -16,14 +16,15 @@ export { ProfileDetails };
 function ProfileDetails(props) {
   const profile = props?.profile;
 
-  const permissions = useHasPermissionStatus([
-    "alter_profile",
-    "see_profiles",
-    "see_single_user",
-  ]);
-  const hasPermissionEditProfile = hasPermission(permissions, "alter_profile");
-  const hasPermissionListProfile = hasPermission(permissions, "see_profiles");
-  const hasPermissionSeeUser = hasPermission(permissions, "see_single_user");
+  const hasPermissionEditProfile = useHasPermissionStatus({
+    codenamePermission: "alter_profile",
+  });
+  const hasPermissionListProfile = useHasPermissionStatus({
+    codenamePermission: "see_profiles",
+  });
+  const hasPermissionSeeUser = useHasPermissionStatus({
+    codenamePermission: "see_single_user",
+  });
 
   const userState = useSelector(selectUserState);
 
@@ -37,14 +38,16 @@ function ProfileDetails(props) {
             <Row>
               <Col className="text-center">
                 {hasPermissionEditProfile && (
-                  <Link href={`/profiles/edit/${profile.perfil.id_perfil}`}>
+                  <Link
+                    href={`/accessibility/profiles/edit/${profile.perfil.id_perfil}`}
+                  >
                     <a className="btn btn-link float-end">
                       <FaRegEdit />
                     </a>
                   </Link>
                 )}
                 {hasPermissionListProfile && (
-                  <Link href={`/accounts`}>
+                  <Link href={`/accessibility/accounts`}>
                     <a
                       className="btn btn-link float-end"
                       title="Lista de usuarios"
@@ -119,7 +122,7 @@ function ProfileDetails(props) {
                           usuario.id_user === userState?.id_user ? (
                             <>
                               <Link
-                                href={`/accounts/details/${usuario.id_user}`}
+                                href={`/accessibility/accounts/details/${usuario.id_user}`}
                               >
                                 <a>
                                   {usuario.name_user} {usuario.lastname_user}

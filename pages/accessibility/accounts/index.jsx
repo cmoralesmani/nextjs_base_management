@@ -27,7 +27,11 @@ function AccountsPage() {
       });
   }
   return (
-    <PageLayout codenamePermission={"see_users"} titlePage="Lista de Usuarios">
+    <PageLayout
+      codenamePermission={"see_users"}
+      titlePage="Lista de Usuarios"
+      // isLoading={false}
+    >
       <UserList
         users={users}
         updateUsersCallback={setUsersCallback}

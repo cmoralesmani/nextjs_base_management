@@ -1,57 +1,44 @@
-// pages/accounts/edit/[id_user].jsx
+// pages/accessibility/accounts/edit/[id_user].jsx
 
 import router from "next/router";
-import { useState } from "react";
+import { useEffect, useCallback } from "react";
 
-import { SpinnerCustom } from "src/components/elements";
+import { UserAddEdit } from "src/components/accounts";
+import { useUser } from "src/hooks/user/useUser";
 import { PageLayout } from "src/layouts";
-import { UserAddEdit } from "src/components/templates";
-import { toastService, userService } from "src/services";
-
-import { selectUserState } from "src/redux/slices/user-slice";
-import { useSelector } from "react-redux";
 
 export default EditUser;
 
 function EditUser({ id_user }) {
-  const [user, setUser] = useState(null);
-  const userState = useSelector(selectUserState);
+  const { user, isLoading, error } = useUser({ id_user });
 
-  function allowSelfUser(setHasPermission) {
-    /*
-        Callback que recibe la funcion que modifica el permiso
-        y se establece en verdadero si el usuario que esta intentando
-        editar es el mismo que esta autenticado 
-        */
-    if (id_user === userState?.id_user) setHasPermission(true);
-  }
+  useEffect(() => {
+    if (!!error && error?.message == "Forbidden") router.push("/");
+  }, [error]);
 
-  function handleLoadInit() {
-    return userService
-      .getById(id_user)
-      .then((x) => {
-        setUser(x);
-      })
-      .catch((err) => {
-        if (err.message == "Forbidden") {
-          toastService.info(
-            "No se puede cargar el detalle del usuario por falta de permiso",
-            { keepAfterRouteChange: true }
-          );
-          router.push("/");
-        }
-      });
-  }
+  const allowSelfUser = useCallback(
+    async ({ id_user }) => {
+      /*
+      Callback que recibe el id_user de la sesion en cuestion
+      y se devuelve verdadero si el usuario que esta intentando
+      editar es el mismo que esta autenticado
+      */
+      if (user?.id_user === id_user) {
+        return true;
+      }
+      return false;
+    },
+    [user]
+  );
 
   return (
-    // <PageLayout
-    //   titleSite="Edición de usuario"
-    //   idPermission="alter_user"
-    //   callbackHasPermission={allowSelfUser}
-    //   handleLoadInit={handleLoadInit}
-    // >
-    <PageLayout titlePage="Edición de usuario" codenamePermission="alter_user">
-      {user ? <UserAddEdit user={user} /> : <SpinnerCustom />}
+    <PageLayout
+      titlePage="Edición de usuario"
+      codenamePermission="alter_user"
+      isLoading={isLoading}
+      callbackHasPermission={allowSelfUser}
+    >
+      {!!user && <UserAddEdit user={user} />}
     </PageLayout>
   );
 }

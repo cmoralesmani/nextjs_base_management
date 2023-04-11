@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { PageLayout } from "src/layouts";
-import { ParametersList } from "src/components/templates";
+import { ParametersList } from "src/components/parameters";
 import { useParameters } from "src/hooks/parameter/useParameters";
 
 export default ParametersPage;

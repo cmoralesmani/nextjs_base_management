@@ -1,4 +1,4 @@
-// src/components/templates/Parameters/ParametersList/ParametersListTable.jsx
+// src/components/parameters/ParametersList/ParametersListTable.jsx
 
 import Link from "next/link";
 import PropTypes from "prop-types";
@@ -6,8 +6,7 @@ import { Alert, Badge, Col, Container, Row, Table } from "react-bootstrap";
 import { FaBan, FaFileCsv, FaRegEdit, FaFolderOpen } from "react-icons/fa";
 
 import { SpinnerCustom, ButtonDownload } from "src/components/elements";
-import { hasPermission } from "src/helpers/utils";
-import { useHasPermissionStatus } from "src/hooks";
+import { useHasPermissionStatus } from "src/hooks/auth";
 
 import styles from "styles/TableFixedHeader.module.scss";
 
@@ -19,18 +18,12 @@ ParametersListTable.propTypes = {
 };
 
 function ParametersListTable({ parameters, urlDownload }) {
-  const permissions = useHasPermissionStatus([
-    "see_single_parameter",
-    "alter_parameter",
-  ]);
-  const hasPermissionSeeParameters = hasPermission(
-    permissions,
-    "see_single_parameter"
-  );
-  const hasPermissionEditParameters = hasPermission(
-    permissions,
-    "alter_parameter"
-  );
+  const hasPermissionSeeParameters = useHasPermissionStatus({
+    codenamePermission: "see_single_parameter",
+  });
+  const hasPermissionEditParameters = useHasPermissionStatus({
+    codenamePermission: "alter_parameter",
+  });
 
   return (
     <Container className="g-0">
@@ -75,7 +68,7 @@ function ParametersListTable({ parameters, urlDownload }) {
                       <td>
                         {hasPermissionSeeParameters ? (
                           <Link
-                            href={`/settings/parameters/details/${p.id_definicion_m}`}
+                            href={`/maintenance/parameters/details/${p.id_definicion_m}`}
                           >
                             <a>{p.de_definicion_m}</a>
                           </Link>
@@ -88,7 +81,7 @@ function ParametersListTable({ parameters, urlDownload }) {
                         <td className="text-center text-nowrap">
                           {hasPermissionSeeParameters && (
                             <Link
-                              href={`/settings/parameters/details/${p.id_definicion_m}`}
+                              href={`/maintenance/parameters/details/${p.id_definicion_m}`}
                             >
                               <a className="mx-1">
                                 <FaFolderOpen />
@@ -97,7 +90,7 @@ function ParametersListTable({ parameters, urlDownload }) {
                           )}
                           {hasPermissionEditParameters && (
                             <Link
-                              href={`/settings/parameters/edit/${p.id_definicion_m}`}
+                              href={`/maintenance/parameters/edit/${p.id_definicion_m}`}
                             >
                               <a className="mx-1">
                                 <FaRegEdit />

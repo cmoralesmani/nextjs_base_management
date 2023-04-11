@@ -1,4 +1,4 @@
-// app/components/templates/TitleSite/TitleSite.jsx
+// app/components/title-page/TitleSite.jsx
 
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";

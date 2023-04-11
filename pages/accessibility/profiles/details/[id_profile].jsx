@@ -1,28 +1,15 @@
 // pages/profiles/details/[id_profile].jsx
 
-import { useState } from "react";
-
-import { ProfileDetails } from "src/components/templates";
+import { ProfileDetails } from "src/components/profiles";
+import { useProfile } from "src/hooks/profile/useProfile";
 import { PageLayout } from "src/layouts";
-import { profileService } from "src/services";
 
 export default DetailsProfile;
 
 function DetailsProfile({ id_profile }) {
-  const [profile, setProfile] = useState(null);
-
-  function handleLoadInit() {
-    return profileService.getProfileById(id_profile).then((x) => {
-      setProfile(x);
-    });
-  }
+  const { profile, isLoading } = useProfile({ id_profile });
 
   return (
-    // <PageLayout
-    //   titleSite="Detalle de perfil"
-    //   idPermission="see_single_profile"
-    //   handleLoadInit={handleLoadInit}
-    // >
     <PageLayout
       titlePage="Detalle de perfil"
       codenamePermission="see_single_profile"

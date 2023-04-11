@@ -1,4 +1,4 @@
-// src/hooks/auth/useHasPermissionStatus.js
+// src/hooks/auth/useHasPermissionStatus.jsx
 
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";

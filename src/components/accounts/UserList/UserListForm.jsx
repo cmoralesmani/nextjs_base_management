@@ -1,4 +1,4 @@
-// src/components/templates/User/UserList/UserListForm.jsx
+// src/components/accounts/UserList/UserListForm.jsx
 
 import PropTypes from "prop-types";
 
@@ -15,7 +15,7 @@ function UserListForm({ updateUsersCallback, setUrlDownload }) {
   return (
     <SearchForm
       updateCallback={updateUsersCallback}
-      urlBaseDownload={`/accessibility/accounts/export`}
+      urlBaseDownload={`/accounts/export`}
       setUrlDownload={setUrlDownload}
     />
   );

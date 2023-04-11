@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-import { userService, toastService } from "src/services";
+import { profileService, toastService } from "src/services";
 
 import { useIsMounted } from "..";
 
-export function useUser({ id_user }) {
-  const [user, setUser] = useState(null);
+export function useProfile({ id_profile }) {
+  const [profile, setProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
@@ -17,7 +17,7 @@ export function useUser({ id_user }) {
     if (error) {
       if (error.message == "Forbidden") {
         toastService.info(
-          "No se puede cargar el detalle del usuario por falta de permiso",
+          "No se puede cargar el detalle del perfil por falta de permiso",
           { keepAfterRouteChange: true }
         );
       } else {
@@ -28,12 +28,12 @@ export function useUser({ id_user }) {
 
   useEffect(() => {
     setIsLoading(true);
-    userService
-      .getUserById(id_user)
-      .then((response) => isMounted() && setUser(response))
+    profileService
+      .getProfileById(id_profile)
+      .then((response) => isMounted() && setProfile(response))
       .catch((error) => isMounted() && setError(error))
       .finally(() => isMounted() && setIsLoading(false));
-  }, [isMounted, id_user]);
+  }, [isMounted, id_profile]);
 
-  return { user, isLoading, error };
+  return { profile, isLoading, error };
 }

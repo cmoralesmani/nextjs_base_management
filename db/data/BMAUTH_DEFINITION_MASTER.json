@@ -9,7 +9,7 @@
     "ID_DEFINITION_MASTER": "ESCUS",
     "DE_DEFINITION_MASTER": "Estados para los usuarios",
     "COMMENT_DEFINITION": "Estados para los usuarios",
-    "ID_FIELD": "STATUS_USER"
+    "ID_FIELD": "STATUS_USER_ID"
   },
   {
     "CREATED_AT": "2021-10-01 00:00:00",

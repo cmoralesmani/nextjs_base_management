@@ -1,4 +1,4 @@
-// src/components/templates/User/UserDetails.jsx
+// src/components/accounts/UserDetails.jsx
 
 const moment = require("moment");
 import Link from "next/link";
@@ -14,10 +14,8 @@ import {
 import { FaEdit, FaListAlt, FaUser, FaUserTie } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
-import { ResetPassword } from "src/components/templates/ResetPassword";
-import { hasPermission } from "src/helpers/utils";
+import { ResetPassword } from "src/components/accounts";
 import { useHasPermissionStatus } from "src/hooks/auth";
-import { userService } from "src/services";
 
 import { selectUserState } from "src/redux/slices/user-slice";
 
@@ -253,7 +251,7 @@ function UserDetails(props) {
                               >
                                 {hasPermissionSeeProfile ? (
                                   <Link
-                                    href={`/profiles/details/${perfil.id_perfil}`}
+                                    href={`/accessibility/profiles/details/${perfil.id_perfil}`}
                                   >
                                     <a>{perfil.de_perfil}</a>
                                   </Link>

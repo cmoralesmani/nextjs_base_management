@@ -26,9 +26,10 @@ function handler(req, res) {
     // Si soy el que esta conectado puedo acceder
     if (id_user !== req.user.id_user) {
       const hasPermissionToSeeDetailUser = hasPermission(
-        await hasPermissionsTo(req.user.id_user, ["see_single_user"]),
+        await hasPermissionsTo(req.user.username, ["see_single_user"]),
         "see_single_user"
       );
+      console.log(">>>>> 9d ", hasPermissionToSeeDetailUser);
       if (!hasPermissionToSeeDetailUser) {
         return res.status(403).json({
           message: "No tiene permisos para ver el detalle del usuario",

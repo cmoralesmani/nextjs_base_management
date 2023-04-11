@@ -33,18 +33,21 @@ function handler(req, res) {
         .json({ message: "No tiene permiso para ver detalle de parametro" });
     }
 
-    let buildWhere = {
+    let buildWhereMain = {
       ID_DEFINITION_MASTER: id_parameter,
+    };
+    let buildWhereSecondary = {
+      DEFINITION_MASTER_ID: id_parameter,
     };
 
     // En caso de poseer el permiso retorna los datos del parametro
     const parameter = await db.bmauth_definition_master.findOne({
-      where: buildWhere,
+      where: buildWhereMain,
       include: [
         {
           model: db.bmauth_definition_detail,
           required: false,
-          where: buildWhere,
+          where: buildWhereSecondary,
         },
       ],
     });

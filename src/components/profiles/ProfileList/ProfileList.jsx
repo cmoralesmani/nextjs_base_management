@@ -1,4 +1,4 @@
-// src/components/templates/Profile/ProfileList/ProfileList.jsx
+// src/components/profiles/ProfileList/ProfileList.jsx
 
 import PropTypes from "prop-types";
 import { useState } from "react";

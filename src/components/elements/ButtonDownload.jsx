@@ -6,8 +6,7 @@ import { useState } from "react";
 import { Button, ButtonGroup, Col, Dropdown } from "react-bootstrap";
 import { FaFileDownload } from "react-icons/fa";
 
-import { hasPermission } from "src/helpers/utils";
-import { useHasPermissionStatus } from "src/hooks";
+import { useHasPermissionStatus } from "src/hooks/auth";
 import { exportService, toastService } from "src/services";
 
 export { ButtonDownload };
@@ -69,7 +68,7 @@ function ButtonDownload({
    * Tendrian que agregarme el slash (/) y la direccion de la ruta
    */
   const hasPermissionIt = idPermission
-    ? hasPermission(useHasPermissionStatus([idPermission]), idPermission)
+    ? useHasPermissionStatus({ codenamePermission: idPermission })
     : true;
   const [isSubmitting, setIsSubmitting] = useState(false);
 

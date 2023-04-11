@@ -1,4 +1,4 @@
-// src/components/templates/User/UserAddEdit.jsx
+// src/components/accounts/UserAddEdit.jsx
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
@@ -58,10 +58,10 @@ function UserAddEdit(props) {
     let isMounted = true;
     profileService
       .getProfiles({ active: "S" })
-      .then((x) => {
+      .then((response) => {
         if (isMounted) {
           setstatusFetchProfiles("ready");
-          setProfiles(x.profiles);
+          setProfiles(response);
           if (!isAddMode) {
             setValue(
               "profiles_seleccionados",

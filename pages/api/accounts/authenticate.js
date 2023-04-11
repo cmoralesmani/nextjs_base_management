@@ -63,7 +63,7 @@ function handler(req, res) {
         throw "Usuario no encontrado";
       }
 
-      if (user.STATUS_USER == "ESCUS-INACT") {
+      if (user.STATUS_USER_ID == "ESCUS-INACT") {
         req.log.info(`-authenticate- El usuario está inactivo: ${username}`);
         throw "El usuario está inactivo";
       }

@@ -1,4 +1,4 @@
-// src/components/templates/User/UserList/UserList.jsx
+// src/components/accounts/UserList/UserList.jsx
 
 import PropTypes from "prop-types";
 import { useState } from "react";

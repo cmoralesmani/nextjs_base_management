@@ -1,4 +1,4 @@
-// src/components/templates/User/UserList/UserListTable.jsx
+// src/components/accounts/UserList/UserListTable.jsx
 
 import Link from "next/link";
 import PropTypes from "prop-types";

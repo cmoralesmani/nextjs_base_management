@@ -1,4 +1,4 @@
-// src/components/templates/Parameters/ParametersAddEdit.jsx
+// src/components/parameters/ParametersAddEdit.jsx
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
@@ -20,7 +20,7 @@ import * as Yup from "yup";
 import { ResetCancelSave } from "src/components/elements";
 import { FormAddEditLayout } from "src/layouts";
 import { hasPermission } from "src/helpers/utils";
-import { useHasPermissionStatus } from "src/hooks/useHasPermissionStatus";
+import { useHasPermissionStatus } from "src/hooks/auth";
 import { parametersService, toastService } from "src/services";
 
 export function ParametersAddEdit(props) {

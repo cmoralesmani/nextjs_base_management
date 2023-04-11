@@ -1,6 +1,6 @@
 // src/services/permission.service.js
 
-import { fetchWrapper } from "src/helpers";
+import { fetchWrapper } from "src/utilities";
 
 const baseUrl = `/api/permission`;
 

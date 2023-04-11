@@ -1,3 +1,3 @@
-// src/components/templates/User/UserList/index.js
+// src/components/accounts/UserList/index.js
 
 export { UserList } from "./UserList";

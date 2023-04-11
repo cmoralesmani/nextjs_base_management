@@ -1,4 +1,4 @@
-// src/components/templates/Parameters/ParametersList/ParametersList.jsx
+// src/components/parameters/ParametersList/ParametersList.jsx
 
 import PropTypes from "prop-types";
 import React, { useState } from "react";

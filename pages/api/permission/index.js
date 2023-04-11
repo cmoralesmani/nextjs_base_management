@@ -36,29 +36,12 @@ function handler(req, res) {
           [Op.substring]: search || "",
         },
       },
-      include: [
-        {
-          model: db.bmauth_permission_grupo,
-          as: "BMAUTH_A_G",
-          required: true,
-        },
-        {
-          model: db.bmauth_permission_accion,
-          as: "BMAUTH_P_A",
-          required: true,
-        },
-      ],
-      order: [["BMAUTH_A_G", "DE_PERMISSION_GRUPO", "ASC"]],
     });
 
     return res.status(200).json({
       permisos: permissions.map((p) => ({
         id_permission: p.ID_PERMISSION,
         de_permiso: p.DE_PERMISSION,
-        id_permiso_grupo: p.ID_PERMISSION_GRUPO,
-        id_permiso_accion: p.ID_PERMISSION_ACCION,
-        de_permiso_grupo: p.BMAUTH_A_G.DE_PERMISSION_GRUPO,
-        de_permiso_accion: p.BMAUTH_P_A.DE_PERMISSION_ACCION,
       })),
     });
   }

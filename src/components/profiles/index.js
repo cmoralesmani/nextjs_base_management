@@ -1,4 +1,4 @@
-// src/components/templates/Profile/index.js
+// src/components/profiles/index.js
 
 export * from "./ProfileList";
 export * from "./ProfileDetails";

@@ -7,7 +7,7 @@ export { thereIsAnyAdmin };
 async function thereIsAnyAdmin(transaction) {
   const count_admin = await db.bmauth_user_profiles.count({
     where: {
-      ID_PROFILE: "SUADM",
+      PROFILE_ID: "SUADM",
     },
     transaction,
   });

@@ -4,26 +4,15 @@ import { useState } from "react";
 
 import { SpinnerCustom } from "src/components/elements";
 import { PageLayout } from "src/layouts";
-import { ParametersAddEdit } from "src/components/templates";
-import { parametersService } from "src/services";
+import { ParametersAddEdit } from "src/components/parameters";
+import { useParameter } from "src/hooks/parameter/useParameter";
 
 export default EditParameter;
 
 function EditParameter({ id_parameter }) {
-  const [parameter, setParameter] = useState(null);
-
-  function handleLoadInit() {
-    return parametersService.getById(id_parameter).then((x) => {
-      setParameter(x);
-    });
-  }
+  const { parameter, isLoading } = useParameter({ id_parameter });
 
   return (
-    // <PageLayout
-    //   titleSite="Edición de parametro"
-    //   idPermission="alter_parameter"
-    //   handleLoadInit={handleLoadInit}
-    // >
     <PageLayout
       titlePage="Edición de parametro"
       codenamePermission="alter_parameter"

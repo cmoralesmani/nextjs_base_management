@@ -1,27 +1,20 @@
-// src/components/templates/Parameters/ParametersDetails.jsx
+// src/components/parameters/ParametersDetails.jsx
 
 import Link from "next/link";
 import { Badge, Col, Container, Row, ListGroup } from "react-bootstrap";
 import { FaBuilding, FaRegEdit, FaListAlt } from "react-icons/fa";
 
-import { hasPermission } from "src/helpers/utils";
-import { useHasPermissionStatus } from "src/hooks";
+import { useHasPermissionStatus } from "src/hooks/auth";
 
 export function ParametersDetails(props) {
   const parameter = props?.parameter?.parametro;
 
-  const permissions = useHasPermissionStatus([
-    "see_parameters",
-    "alter_parameter",
-  ]);
-  const hasPermissionListParameters = hasPermission(
-    permissions,
-    "see_parameters"
-  );
-  const hasPermissionEditParameters = hasPermission(
-    permissions,
-    "alter_parameter"
-  );
+  const hasPermissionListParameters = useHasPermissionStatus({
+    codenamePermission: "see_parameters",
+  });
+  const hasPermissionEditParameters = useHasPermissionStatus({
+    codenamePermission: "alter_parameter",
+  });
 
   if (!parameter) return null;
 
@@ -34,7 +27,7 @@ export function ParametersDetails(props) {
               <Col>
                 {hasPermissionEditParameters && (
                   <Link
-                    href={`/settings/parameters/edit/${parameter.id_definicion_m}`}
+                    href={`/maintenance/parameters/edit/${parameter.id_definicion_m}`}
                   >
                     <a
                       className="btn btn-link float-end"

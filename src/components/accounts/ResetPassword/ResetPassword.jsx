@@ -1,4 +1,4 @@
-// src/components/templates/ResetPassword/ResetPassword.jsx
+// src/components/accounts/ResetPassword/ResetPassword.jsx
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";

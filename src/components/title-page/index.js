@@ -1,3 +1,3 @@
-// app/components/templates/TitleSite/index.js
+// app/components/title-page/index.js
 
 export * from "./TitlePage";

@@ -1,4 +1,4 @@
-// src/components/templates/Profile/ProfileList/ProfileListForm.jsx
+// src/components/profiles/ProfileList/ProfileListForm.jsx
 
 import PropTypes from "prop-types";
 

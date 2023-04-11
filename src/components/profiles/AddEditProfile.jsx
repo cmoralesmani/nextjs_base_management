@@ -1,4 +1,4 @@
-// src/components/templates/Profile/AddEditProfile.jsx
+// src/components/profiles/AddEditProfile.jsx
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
@@ -26,7 +26,7 @@ import * as Yup from "yup";
 import { SpinnerCustom, ResetCancelSave } from "src/components/elements";
 import { FormAddEditLayout } from "src/layouts";
 import { hasPermission } from "src/helpers/utils";
-import { useHasPermissionStatus } from "src/hooks/useHasPermissionStatus";
+import { useHasPermissionStatus } from "src/hooks/auth";
 import {
   userService,
   permissionService,
@@ -69,7 +69,7 @@ function AddEditProfile(props) {
       .then((x) => {
         if (isMounted) {
           setStatusFetchUsers("ready");
-          setUsers(x.users);
+          setUsers(x);
           if (!isAddMode) {
             setValue(
               "usuarios_seleccionados",
@@ -264,7 +264,7 @@ function AddEditProfile(props) {
   const itemsTopRightComponents = [];
   if (hasPermissionListProfile) {
     itemsTopRightComponents.push(
-      <Link key="listProfile" href={`/profiles`}>
+      <Link key="listProfile" href={`/accessibility/profiles`}>
         <a className="btn btn-link" title="Lista de perfiles">
           <FaListAlt />
         </a>
@@ -275,7 +275,7 @@ function AddEditProfile(props) {
     itemsTopRightComponents.push(
       <Link
         key="detailsProfile"
-        href={`/profiles/details/${profile?.id_perfil}`}
+        href={`/accessibility/profiles/details/${profile?.id_perfil}`}
       >
         <a className="btn btn-link" title="Detalle del perfil">
           <FaRegFileAlt />

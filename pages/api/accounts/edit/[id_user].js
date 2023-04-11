@@ -116,7 +116,7 @@ function handler(req, res) {
       user.GENDER_USER_ID = data.gender_user_id;
 
       if (hasPermissionToEditUser) {
-        user.STATUS_USER = data.status_user_id;
+        user.STATUS_USER_ID = data.status_user_id;
       }
       await user.save({ transaction });
 
@@ -124,8 +124,8 @@ function handler(req, res) {
         if (hasPermissionToShowProfiles) {
           await db.bmauth_user_profiles.destroy({
             where: {
-              ID_USER: user.ID_USER,
-              ID_PROFILE: {
+              USER_ID: user.ID_USER,
+              PROFILE_ID: {
                 [Op.notIn]: data.profiles_seleccionados,
               },
             },
@@ -136,16 +136,16 @@ function handler(req, res) {
             JSON.stringify(
               await db.bmauth_user_profiles.findAll(
                 {
-                  attributes: ["ID_PROFILE"],
+                  attributes: ["PROFILE_ID"],
                   where: {
-                    ID_USER: user.ID_USER,
+                    USER_ID: user.ID_USER,
                   },
                 },
                 { transaction }
               )
             )
           ).map((x) => {
-            return x.ID_PROFILE;
+            return x.PROFILE_ID;
           });
 
           const filtered = data.profiles_seleccionados.filter((x) => {
@@ -160,8 +160,8 @@ function handler(req, res) {
               MODIFIED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
               MODIFIED_BY: req.user.username,
               MODIFIED_IN: "API_WEB_TP",
-              ID_USER: user.ID_USER,
-              ID_PROFILE: p,
+              USER_ID: user.ID_USER,
+              PROFILE_ID: p,
             }));
             await db.bmauth_user_profiles.bulkCreate(list_user_profile, {
               transaction,
