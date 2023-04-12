@@ -16,7 +16,7 @@ import { NavbarLogin } from "./NavbarLogin";
 const { authSubject } = authService;
 const { formLoginSchema } = utilitiesLogin;
 
-import logo from "assets/images/logo.svg";
+import logo from "public/assets/images/logo.svg";
 
 export function Login() {
   const router = useRouter();

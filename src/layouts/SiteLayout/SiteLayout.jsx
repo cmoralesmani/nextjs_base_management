@@ -1,8 +1,8 @@
 // src/layouts/SiteLayout/SiteLayout.jsx
 
 import React, { useEffect } from "react";
-import { ProSidebarProvider } from "react-pro-sidebar";
 import { useDispatch } from "react-redux";
+import { ProSidebarProvider } from "react-pro-sidebar";
 
 import MenuSidebar from "src/components/menu-sidebar/MenuSidebar";
 import { useAuthCheck } from "src/hooks/auth";
@@ -10,8 +10,8 @@ import { useShowMenuSidebar } from "src/hooks/menu-sidebar";
 import { useUserAuth } from "src/hooks/user";
 import { setUserState } from "src/redux/slices/user-slice";
 
-import HeadSEO from "./HeadSEO";
 import Footer from "./Footer";
+import HeadSEO from "./HeadSEO";
 
 import styles from "styles/layouts/SiteLayout.module.scss";
 
