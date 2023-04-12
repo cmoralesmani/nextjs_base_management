@@ -119,10 +119,13 @@ export function ParametersAddEdit(props) {
   const itemsTopRightComponents = [];
   if (hasPermissionListParameters) {
     itemsTopRightComponents.push(
-      <Link key="listParameters" href={`/settings/parameters`}>
-        <a className="btn btn-link" title="Lista de parametros">
-          <FaListAlt />
-        </a>
+      <Link
+        key="listParameters"
+        href={`/maintenance/parameters`}
+        className="btn btn-link"
+        title="Lista de parametros"
+      >
+        <FaListAlt />
       </Link>
     );
   }
@@ -130,11 +133,11 @@ export function ParametersAddEdit(props) {
     itemsTopRightComponents.push(
       <Link
         key="detailsParameters"
-        href={`/settings/parameters/details/${parameter?.id_definicion_m}`}
+        href={`/maintenance/parameters/details/${parameter?.id_definicion_m}`}
+        className="btn btn-link"
+        title="Detalle del parametro"
       >
-        <a className="btn btn-link" title="Detalle del parametro">
-          <FaRegFileAlt />
-        </a>
+        <FaRegFileAlt />
       </Link>
     );
   }

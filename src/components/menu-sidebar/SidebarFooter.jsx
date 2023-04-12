@@ -18,16 +18,15 @@ export const SidebarFooter = ({ collapsed }) => {
     <div
       className={`${stylesMenuSidebar.sidebarSectionWrapper} ${stylesMenuSidebar.sidebarSectionFooterWrapper}`}
     >
-      <Link href="/logout">
-        <a
-          className={
-            !!collapsed
-              ? `${stylesButton.buttonLight} ${stylesButton.round}`
-              : `${stylesButton.buttonLight} ${stylesButton.semiRound}`
-          }
-        >
-          <FaSignOutAlt /> <span>Cerrar sesión</span>
-        </a>
+      <Link
+        href="/logout"
+        className={
+          !!collapsed
+            ? `${stylesButton.buttonLight} ${stylesButton.round}`
+            : `${stylesButton.buttonLight} ${stylesButton.semiRound}`
+        }
+      >
+        <FaSignOutAlt /> <span>Cerrar sesión</span>
       </Link>
     </div>
   );

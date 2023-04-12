@@ -241,10 +241,13 @@ function UserAddEdit(props) {
   const itemsTopRightComponents = [];
   if (hasPermissionListUsers) {
     itemsTopRightComponents.push(
-      <Link key="listUser" href={`/accessibility/accounts`}>
-        <a className="btn btn-link" title="Lista de usuarios">
-          <FaListAlt />
-        </a>
+      <Link
+        key="listUser"
+        href={`/accessibility/accounts`}
+        className="btn btn-link"
+        title="Lista de usuarios"
+      >
+        <FaListAlt />
       </Link>
     );
   }
@@ -253,10 +256,10 @@ function UserAddEdit(props) {
       <Link
         key="detailsUser"
         href={`/accessibility/accounts/details/${user?.id_user}`}
+        className="btn btn-link"
+        title="Detalle del usuario"
       >
-        <a className="btn btn-link" title="Detalle del usuario">
-          <FaRegFileAlt />
-        </a>
+        <FaRegFileAlt />
       </Link>
     );
   }

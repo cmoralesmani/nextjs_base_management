@@ -57,10 +57,11 @@ function ProfileListTable({ profiles, urlDownload, deleteProfileCallback }) {
                 <Row className="row-cols-auto">
                   <Col>
                     {hasPermissionCreateProfile && (
-                      <Link href="/accessibility/profiles/create">
-                        <a className="btn btn-primary btn-sm">
-                          <FaPlus /> Nuevo
-                        </a>
+                      <Link
+                        href="/accessibility/profiles/create"
+                        className="btn btn-primary btn-sm"
+                      >
+                        <FaPlus /> Nuevo
                       </Link>
                     )}
                   </Col>
@@ -98,7 +99,7 @@ function ProfileListTable({ profiles, urlDownload, deleteProfileCallback }) {
                           <Link
                             href={`/accessibility/profiles/details/${profile.id_perfil}`}
                           >
-                            <a>{profile.de_perfil}</a>
+                            {profile.de_perfil}
                           </Link>
                         ) : (
                           profile.de_perfil
@@ -118,19 +119,17 @@ function ProfileListTable({ profiles, urlDownload, deleteProfileCallback }) {
                           {hasPermissionSeeProfile && (
                             <Link
                               href={`/accessibility/profiles/details/${profile.id_perfil}`}
+                              className="mx-1"
                             >
-                              <a className="mx-1">
-                                <FaFolderOpen />
-                              </a>
+                              <FaFolderOpen />
                             </Link>
                           )}
                           {hasPermissionEditProfile && (
                             <Link
                               href={`/accessibility/profiles/edit/${profile.id_perfil}`}
+                              className="mx-1"
                             >
-                              <a className="mx-1">
-                                <FaRegEdit />
-                              </a>
+                              <FaRegEdit />
                             </Link>
                           )}
                           {hasPermissionDeleteProfile && (

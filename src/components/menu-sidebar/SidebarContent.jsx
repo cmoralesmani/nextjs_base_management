@@ -127,8 +127,17 @@ export const SidebarContent = () => {
             <RenderItemsMenu itemsMenu={im.children} />
           </SubMenu>
         ) : (
-          <MenuItem key={im.key} icon={im.icon} active={!!im.active}>
-            <Link href={im.href}>{im.label}</Link>
+          <MenuItem
+            key={im.key}
+            icon={im.icon}
+            active={!!im.active}
+            // href={im.href}
+            component={im.href && <Link href={im.href} />}
+            // children={<Link href={im.href}>{im.label}</Link>}
+            // component={<CustomItem to={im.href} label="hol" />}
+          >
+            {/* <Link href={im.href}>{im.label}</Link> */}
+            {im.label}
           </MenuItem>
         ))
     );

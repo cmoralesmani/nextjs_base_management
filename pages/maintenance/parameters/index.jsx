@@ -1,4 +1,4 @@
-// pages/settings/parameters/index.jsx
+// pages/maintenance/parameters/index.jsx
 
 import { useState } from "react";
 

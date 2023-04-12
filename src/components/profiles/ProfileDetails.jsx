@@ -40,20 +40,18 @@ function ProfileDetails(props) {
                 {hasPermissionEditProfile && (
                   <Link
                     href={`/accessibility/profiles/edit/${profile.perfil.id_perfil}`}
+                    className="btn btn-link float-end"
                   >
-                    <a className="btn btn-link float-end">
-                      <FaRegEdit />
-                    </a>
+                    <FaRegEdit />
                   </Link>
                 )}
                 {hasPermissionListProfile && (
-                  <Link href={`/accessibility/accounts`}>
-                    <a
-                      className="btn btn-link float-end"
-                      title="Lista de usuarios"
-                    >
-                      <FaListAlt />
-                    </a>
+                  <Link
+                    href={`/accessibility/accounts`}
+                    className="btn btn-link float-end"
+                    title="Lista de usuarios"
+                  >
+                    <FaListAlt />
                   </Link>
                 )}
                 <h3>
@@ -124,9 +122,7 @@ function ProfileDetails(props) {
                               <Link
                                 href={`/accessibility/accounts/details/${usuario.id_user}`}
                               >
-                                <a>
-                                  {usuario.name_user} {usuario.lastname_user}
-                                </a>
+                                {usuario.name_user} {usuario.lastname_user}
                               </Link>
                               <Badge className="ms-2" bg="info">
                                 {usuario.username}

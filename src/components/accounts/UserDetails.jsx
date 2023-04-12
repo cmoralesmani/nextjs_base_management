@@ -77,23 +77,19 @@ function UserDetails(props) {
                       {hasPermissionAlterUser && (
                         <Link
                           href={`/accessibility/accounts/edit/${user.id_user}`}
+                          className="btn btn-link float-end"
+                          title="Editar usuario"
                         >
-                          <a
-                            className="btn btn-link float-end"
-                            title="Editar usuario"
-                          >
-                            <FaEdit />
-                          </a>
+                          <FaEdit />
                         </Link>
                       )}
                       {hasPermissionListUsers && (
-                        <Link href={`/accessibility/accounts`}>
-                          <a
-                            className="btn btn-link float-end"
-                            title="Lista de usuarios"
-                          >
-                            <FaListAlt />
-                          </a>
+                        <Link
+                          href={`/accessibility/accounts`}
+                          className="btn btn-link float-end"
+                          title="Lista de usuarios"
+                        >
+                          <FaListAlt />
                         </Link>
                       )}
                       <h3>
@@ -147,7 +143,7 @@ function UserDetails(props) {
                         </Col>
                         <Col as="dd" xs={12}>
                           <Link href={`tel:${user.phone_contact}`}>
-                            <a>{user.phone_contact}</a>
+                            {user.phone_contact}
                           </Link>
                         </Col>
                       </Row>
@@ -161,7 +157,7 @@ function UserDetails(props) {
                         </Col>
                         <Col as="dd" xs={12}>
                           <Link href={`mailto:${user.email_usuario}`}>
-                            <a>{user.email}</a>
+                            {user.email}
                           </Link>
                         </Col>
                       </Row>
@@ -211,7 +207,7 @@ function UserDetails(props) {
                                     <Link
                                       href={`/accessibility/accounts/details/${user.id_user_creacion}`}
                                     >
-                                      <a>{user.CREATED_BY}</a>
+                                      {user.CREATED_BY}
                                     </Link>
                                   ) : (
                                     user.CREATED_BY
@@ -253,7 +249,7 @@ function UserDetails(props) {
                                   <Link
                                     href={`/accessibility/profiles/details/${perfil.id_perfil}`}
                                   >
-                                    <a>{perfil.de_perfil}</a>
+                                    {perfil.de_perfil}
                                   </Link>
                                 ) : (
                                   <>{perfil.de_perfil}</>

@@ -16,16 +16,15 @@ function CardUser({ collapsed }) {
   if (!userState) return null;
 
   return (
-    <Link href={`/accessibility/accounts/details/${userState.id_user}`}>
-      <a
-        className={
-          !!collapsed
-            ? `${stylesButton.buttonLight} ${stylesButton.round}`
-            : `${stylesButton.buttonLight} ${stylesButton.semiRound}`
-        }
-      >
-        <FaUserCircle /> <span> {userState.username}</span>
-      </a>
+    <Link
+      href={`/accessibility/accounts/details/${userState.id_user}`}
+      className={
+        !!collapsed
+          ? `${stylesButton.buttonLight} ${stylesButton.round}`
+          : `${stylesButton.buttonLight} ${stylesButton.semiRound}`
+      }
+    >
+      <FaUserCircle /> <span> {userState.username}</span>
     </Link>
   );
 }

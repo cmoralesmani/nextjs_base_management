@@ -264,10 +264,13 @@ function AddEditProfile(props) {
   const itemsTopRightComponents = [];
   if (hasPermissionListProfile) {
     itemsTopRightComponents.push(
-      <Link key="listProfile" href={`/accessibility/profiles`}>
-        <a className="btn btn-link" title="Lista de perfiles">
-          <FaListAlt />
-        </a>
+      <Link
+        key="listProfile"
+        href={`/accessibility/profiles`}
+        className="btn btn-link"
+        title="Lista de perfiles"
+      >
+        <FaListAlt />
       </Link>
     );
   }
@@ -276,10 +279,10 @@ function AddEditProfile(props) {
       <Link
         key="detailsProfile"
         href={`/accessibility/profiles/details/${profile?.id_perfil}`}
+        className="btn btn-link"
+        title="Detalle del perfil"
       >
-        <a className="btn btn-link" title="Detalle del perfil">
-          <FaRegFileAlt />
-        </a>
+        <FaRegFileAlt />
       </Link>
     );
   }

@@ -1,4 +1,4 @@
-// pages/settings/parameters/edit/[id_parameter].jsx
+// pages/maintenance/parameters/edit/[id_parameter].jsx
 
 import { useState } from "react";
 

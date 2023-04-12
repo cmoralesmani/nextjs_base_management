@@ -57,10 +57,11 @@ function UserListTable({ users, urlDownload, deleteUserCallback }) {
                 <Row className="row-cols-auto">
                   {hasPermissionCreateUser && (
                     <Col>
-                      <Link href="/accessibility/accounts/register">
-                        <a className="btn btn-primary btn-sm">
-                          <FaPlus /> Nuevo
-                        </a>
+                      <Link
+                        href="/accessibility/accounts/register"
+                        className="btn btn-primary btn-sm"
+                      >
+                        <FaPlus /> Nuevo
                       </Link>
                     </Col>
                   )}
@@ -101,7 +102,7 @@ function UserListTable({ users, urlDownload, deleteUserCallback }) {
                           <Link
                             href={`/accessibility/accounts/details/${user.id_user}`}
                           >
-                            <a>{user.username}</a>
+                            {user.username}
                           </Link>
                         ) : (
                           user.username
@@ -123,19 +124,17 @@ function UserListTable({ users, urlDownload, deleteUserCallback }) {
                           {hasPermissionSeeUser && (
                             <Link
                               href={`/accessibility/accounts/details/${user.id_user}`}
+                              className="mx-1"
                             >
-                              <a className="mx-1">
-                                <FaFolderOpen />
-                              </a>
+                              <FaFolderOpen />
                             </Link>
                           )}
                           {hasPermissionEditUser && (
                             <Link
                               href={`/accessibility/accounts/edit/${user.id_user}`}
+                              className="mx-1"
                             >
-                              <a className="mx-1">
-                                <FaRegEdit />
-                              </a>
+                              <FaRegEdit />
                             </Link>
                           )}
                           {hasPermissionDeleteUser && (

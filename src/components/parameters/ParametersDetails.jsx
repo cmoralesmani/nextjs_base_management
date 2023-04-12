@@ -28,23 +28,19 @@ export function ParametersDetails(props) {
                 {hasPermissionEditParameters && (
                   <Link
                     href={`/maintenance/parameters/edit/${parameter.id_definicion_m}`}
+                    className="btn btn-link float-end"
+                    title="Editar el parametro"
                   >
-                    <a
-                      className="btn btn-link float-end"
-                      title="Editar el parametro"
-                    >
-                      <FaRegEdit />
-                    </a>
+                    <FaRegEdit />
                   </Link>
                 )}
                 {hasPermissionListParameters && (
-                  <Link href={`/settings/parameters`}>
-                    <a
-                      className="btn btn-link float-end"
-                      title="Lista de parametros"
-                    >
-                      <FaListAlt />
-                    </a>
+                  <Link
+                    href={`/maintenance/parameters`}
+                    className="btn btn-link float-end"
+                    title="Lista de parametros"
+                  >
+                    <FaListAlt />
                   </Link>
                 )}
                 <h3>

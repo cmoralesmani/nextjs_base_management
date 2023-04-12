@@ -1,4 +1,4 @@
-// pages/settings/parameters/details/[id_parameter].jsx
+// pages/maintenance/parameters/details/[id_parameter].jsx
 
 import { PageLayout } from "src/layouts";
 import { ParametersDetails } from "src/components/parameters";

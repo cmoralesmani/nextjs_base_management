@@ -15,7 +15,7 @@ function ParametersListForm({ updateParametersCallback, setUrlDownload }) {
   return (
     <SearchForm
       updateCallback={updateParametersCallback}
-      urlBaseDownload={`/settings/parameters/export`}
+      urlBaseDownload={`/maintenance/parameters/export`}
       setUrlDownload={setUrlDownload}
     />
   );

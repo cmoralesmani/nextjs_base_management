@@ -36,10 +36,8 @@ function FormAddEditLayout({
               </div>
             )}
             {urlShow && (
-              <Link href={`${urlShow}`}>
-                <a className="btn btn-link float-end p-0">
-                  <FaRegFileAlt />
-                </a>
+              <Link href={`${urlShow}`} className="btn btn-link float-end p-0">
+                <FaRegFileAlt />
               </Link>
             )}
 

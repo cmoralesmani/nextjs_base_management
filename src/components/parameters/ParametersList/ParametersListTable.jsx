@@ -70,7 +70,7 @@ function ParametersListTable({ parameters, urlDownload }) {
                           <Link
                             href={`/maintenance/parameters/details/${p.id_definicion_m}`}
                           >
-                            <a>{p.de_definicion_m}</a>
+                            {p.de_definicion_m}
                           </Link>
                         ) : (
                           p.de_definicion_m
@@ -82,19 +82,17 @@ function ParametersListTable({ parameters, urlDownload }) {
                           {hasPermissionSeeParameters && (
                             <Link
                               href={`/maintenance/parameters/details/${p.id_definicion_m}`}
+                              className="mx-1"
                             >
-                              <a className="mx-1">
-                                <FaFolderOpen />
-                              </a>
+                              <FaFolderOpen />
                             </Link>
                           )}
                           {hasPermissionEditParameters && (
                             <Link
                               href={`/maintenance/parameters/edit/${p.id_definicion_m}`}
+                              className="mx-1"
                             >
-                              <a className="mx-1">
-                                <FaRegEdit />
-                              </a>
+                              <FaRegEdit />
                             </Link>
                           )}
                         </td>
