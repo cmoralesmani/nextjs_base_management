@@ -35,12 +35,7 @@ const accountsAsJSON = async (req, res) => {
           return db.sequelize.where(
             db.sequelize.fn(
               "lower",
-              db.sequelize.fn(
-                "concat",
-                db.sequelize.col("USERNAME"),
-                db.sequelize.col("NAME_USER"),
-                db.sequelize.col("LASTNAME_USER")
-              )
+              db.sequelize.literal("USERNAME || NAME_USER || LASTNAME_USER")
             ),
             {
               [Op.substring]: w,

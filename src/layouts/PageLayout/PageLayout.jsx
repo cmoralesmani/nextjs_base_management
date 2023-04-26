@@ -76,7 +76,7 @@ function PageLayout({
         )
         .catch(() => isMounted() && setPageStatus(STATUS_PAGE.NOT_FOUND));
     }
-  }, [isMounted, userState, pageStatus, hasPermission]);
+  }, [isMounted, userState, pageStatus, hasPermission, callbackHasPermission]);
 
   return pageStatus?.isLoading ? (
     <LottieLoading />

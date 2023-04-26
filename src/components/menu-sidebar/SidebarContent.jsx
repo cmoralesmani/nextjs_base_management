@@ -1,7 +1,7 @@
 // src/components/menu-sidebar/SidebarContent.jsx
 
 import { useRouter } from "next/router";
-import Link from "next/link";
+
 import React, { useState, useEffect } from "react";
 import {
   FaHome,
@@ -12,10 +12,12 @@ import {
   FaCubes,
   FaBox,
 } from "react-icons/fa";
-import { Menu, SubMenu, MenuItem } from "react-pro-sidebar";
+import { Menu } from "react-pro-sidebar";
 
 import { useHasPermissionStatus } from "src/hooks/auth";
 import { useTheme } from "src/hooks/themes";
+
+import { MemoizedRenderItemsMenu } from "./RenderItemsMenu";
 
 import stylesMenuSidebar from "styles/MenuSidebar.module.scss";
 
@@ -37,6 +39,7 @@ export const SidebarContent = () => {
   const router = useRouter();
 
   useEffect(() => {
+    console.log(">>> router.asPath", router.asPath);
     setItemsMenu([
       {
         key: "home",
@@ -60,11 +63,11 @@ export const SidebarContent = () => {
           {
             key: "users",
             label: "Usuarios",
-            href: "/accessibility/accounts/",
+            href: "/accessibility/accounts",
             icon: <FaUsers />,
             hasPermission: hasPermissionSeeUsers,
             children: [],
-            active: router.asPath.includes("/accessibility/accounts"),
+            active: router.asPath == "/accessibility/accounts",
           },
           {
             key: "new_user",
@@ -73,7 +76,7 @@ export const SidebarContent = () => {
             icon: <FaUserPlus />,
             hasPermission: hasPermissionCreateUser,
             children: [],
-            active: router.asPath.includes("/accessibility/accounts/create"),
+            active: router.asPath == "/accessibility/accounts/create",
           },
           {
             key: "profiles",
@@ -82,7 +85,7 @@ export const SidebarContent = () => {
             icon: <FaIdCard />,
             hasPermission: hasPermissionSeeProfiles,
             children: [],
-            active: router.asPath.includes("/accessibility/profiles"),
+            active: router.asPath == "/accessibility/profiles",
           },
         ],
       },
@@ -96,11 +99,11 @@ export const SidebarContent = () => {
           {
             key: "parameters",
             label: "Parametros",
-            href: "/maintenance/parameters/",
+            href: "/maintenance/parameters",
             icon: <FaCubes />,
             hasPermission: hasPermissionSeeParameters,
             children: [],
-            active: router.asPath.includes("/maintenance/parameters/"),
+            active: router.asPath == "/maintenance/parameters",
           },
         ],
       },
@@ -113,39 +116,12 @@ export const SidebarContent = () => {
     router.asPath,
   ]);
 
-  const RenderItemsMenu = ({ itemsMenu }) => {
-    return itemsMenu.map(
-      (im) =>
-        im.hasPermission &&
-        (!!im.children.length ? (
-          <SubMenu
-            key={im.key}
-            label={im.label}
-            defaultOpen={im.active}
-            active={im.active}
-          >
-            <RenderItemsMenu itemsMenu={im.children} />
-          </SubMenu>
-        ) : (
-          <MenuItem
-            key={im.key}
-            icon={im.icon}
-            active={!!im.active}
-            // href={im.href}
-            component={im.href && <Link href={im.href} />}
-            // children={<Link href={im.href}>{im.label}</Link>}
-            // component={<CustomItem to={im.href} label="hol" />}
-          >
-            {/* <Link href={im.href}>{im.label}</Link> */}
-            {im.label}
-          </MenuItem>
-        ))
-    );
-  };
   return (
     <div className={stylesMenuSidebar.sidebarContent}>
       <Menu menuItemStyles={menuItemStyles}>
-        {!!itemsMenu.length && <RenderItemsMenu itemsMenu={itemsMenu} />}
+        {!!itemsMenu.length && (
+          <MemoizedRenderItemsMenu itemsMenu={itemsMenu} />
+        )}
       </Menu>
     </div>
   );

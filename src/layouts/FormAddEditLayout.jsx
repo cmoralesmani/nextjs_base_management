@@ -1,4 +1,4 @@
-// src/components/layouts/FormAddEditLayout.jsx
+// src/layouts/FormAddEditLayout.jsx
 
 import Link from "next/link";
 import PropTypes from "prop-types";
