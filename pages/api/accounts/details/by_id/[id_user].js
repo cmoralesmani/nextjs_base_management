@@ -29,7 +29,6 @@ function handler(req, res) {
         await hasPermissionsTo(req.user.username, ["see_single_user"]),
         "see_single_user"
       );
-      // console.log(">>>>> 9d ", hasPermissionToSeeDetailUser);
       if (!hasPermissionToSeeDetailUser) {
         return res.status(403).json({
           message: "No tiene permisos para ver el detalle del usuario",
