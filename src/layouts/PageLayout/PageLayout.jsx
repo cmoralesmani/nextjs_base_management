@@ -1,6 +1,6 @@
 // src/layouts/PageLayout/PageLayout.jsx
 
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Error from "next/error";
 
@@ -12,7 +12,14 @@ import { titleService } from "src/services";
 
 import { selectUserState } from "src/redux/slices/user-slice";
 
-export default PageLayout;
+const STATUS_PAGE = {
+  WAITING: { text: "WAITING", isLoading: true },
+  OK: { text: "OK", isLoading: false },
+  NOT_FOUND: { text: "NOT_FOUND", isLoading: false },
+  WITHOUT_PERMISSION: { text: "WITHOUT_PERMISSION", isLoading: false },
+};
+
+export default memo(PageLayout);
 
 /**
  * callbackHasPermission se ejecuta en caso de que no se tenga el permiso correspondiente a codenamePermission.
@@ -22,56 +29,60 @@ function PageLayout({
   children,
   codenamePermission,
   titlePage = "",
-  isLoading = false,
+  isLoading,
   callbackHasPermission,
 }) {
-  const [pageStatus, setPageStatus] = useState("waiting");
+  // const [isPageLoading, setIsPageLoading] = useState(true);
+  const [pageStatus, setPageStatus] = useState(STATUS_PAGE.WAITING);
+
   const isMounted = useIsMounted();
   const hasPermission = useHasPermissionStatus({ codenamePermission });
   const userState = useSelector(selectUserState);
 
   useEffect(() => {
-    if (isMounted()) setPageStatus(hasPermission ? "ok" : "without_permission");
-  }, [isMounted, hasPermission]);
+    titleService.setTitle(titlePage);
+  }, [titlePage]);
 
   useEffect(() => {
-    titleService.setTitle(titlePage);
-
-    if (isMounted()) {
-      // setPageStatus(hasPermission ? "ok" : "without_permission");
-      if (
-        !!callbackHasPermission &&
-        !!userState &&
-        !isLoading &&
-        !hasPermission
-      ) {
-        const { id_user } = userState;
-        if (!id_user) console.warn("No id_user defined for user on page");
-        callbackHasPermission({ id_user })
-          .then(
-            (hasSpecialPermission) =>
-              isMounted() &&
-              setPageStatus(hasSpecialPermission ? "ok" : "without_permission")
-          )
-          .catch(() => isMounted() && setPageStatus("not_found"));
+    if (hasPermission != null) {
+      if (!isLoading) {
+        // El componente externo no esta cargando nada y tiene permiso
+        setPageStatus(
+          !!hasPermission ? STATUS_PAGE.OK : STATUS_PAGE.WITHOUT_PERMISSION
+        );
       }
     }
-  }, [
-    titlePage,
-    isMounted,
-    callbackHasPermission,
-    isLoading,
-    userState,
-    hasPermission,
-  ]);
+  }, [isLoading, hasPermission]);
 
-  if (hasPermission === null) return null;
+  useEffect(() => {
+    if (
+      isMounted() && // Esta montado
+      !!callbackHasPermission && // Hay un funcion callback que indica si tiene o no tiene permiso
+      !!userState && // Hay datos del usuario en cuestion que inicio sesion
+      pageStatus !== STATUS_PAGE.WAITING && // No se esta esperando (Es decir, ya se establecio un estado final para la pagina)
+      !hasPermission // No tiene el permiso convencional para acceder a la página
+    ) {
+      const { id_user } = userState;
+      if (!id_user) console.warn("No id_user defined for user on page");
+      callbackHasPermission({ id_user })
+        .then(
+          (hasSpecialPermission) =>
+            isMounted() &&
+            setPageStatus(
+              hasSpecialPermission
+                ? STATUS_PAGE.OK
+                : STATUS_PAGE.WITHOUT_PERMISSION
+            )
+        )
+        .catch(() => isMounted() && setPageStatus(STATUS_PAGE.NOT_FOUND));
+    }
+  }, [isMounted, userState, pageStatus, hasPermission]);
 
-  return !!isLoading ? (
+  return pageStatus?.isLoading ? (
     <LottieLoading />
-  ) : pageStatus === "without_permission" ? (
+  ) : pageStatus === STATUS_PAGE.WITHOUT_PERMISSION ? (
     <Error statusCode={403} />
-  ) : pageStatus === "not_found" ? (
+  ) : pageStatus === STATUS_PAGE.NOT_FOUND ? (
     <Error statusCode={404} />
   ) : (
     <>

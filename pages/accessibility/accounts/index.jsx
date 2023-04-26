@@ -4,8 +4,9 @@ import { PageLayout } from "src/layouts";
 import { UserList } from "src/components/accounts";
 import { userService, toastService } from "src/services";
 import { useUsers } from "src/hooks/user/useUsers";
+import { memo } from "react";
 
-export default AccountsPage;
+export default memo(AccountsPage);
 
 function AccountsPage() {
   const { users, isLoading, setUsersCallback } = useUsers();
@@ -26,11 +27,12 @@ function AccountsPage() {
         toastService.warn(error.message);
       });
   }
+
   return (
     <PageLayout
       codenamePermission={"see_users"}
       titlePage="Lista de Usuarios"
-      // isLoading={false}
+      isLoading={isLoading}
     >
       <UserList
         users={users}

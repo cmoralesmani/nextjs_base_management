@@ -6,9 +6,9 @@ import { toastService } from "src/services";
 import { useIsMounted } from ".";
 
 export function useDataList({ dataCallback }) {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
 
   const isMounted = useIsMounted();
 
@@ -18,20 +18,17 @@ export function useDataList({ dataCallback }) {
     }
   }, [error]);
 
-  const getData = useCallback(
-    (filters = undefined) => {
-      setIsLoading(true);
-      return dataCallback(filters)
-        .then((response) => isMounted() && setData(response))
-        .catch((error) => isMounted() && setError(error))
-        .finally(() => isMounted() && setIsLoading(false));
-    },
-    [dataCallback, isMounted]
-  );
-
   useEffect(() => {
     getData();
-  }, [getData]);
+  }, []);
+
+  const getData = useCallback((filters = undefined) => {
+    setIsLoading(true);
+    return dataCallback(filters)
+      .then((response) => isMounted() && setData(response))
+      .catch((error) => isMounted() && setError(error))
+      .finally(() => isMounted() && setIsLoading(false));
+  }, []);
 
   function setDataCallback(filters) {
     return getData(filters);

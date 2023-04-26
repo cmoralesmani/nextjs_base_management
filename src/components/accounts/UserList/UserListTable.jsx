@@ -81,7 +81,7 @@ function UserListTable({ users, urlDownload, deleteUserCallback }) {
             <Table bordered hover responsive size="sm">
               <thead className="table-secondary">
                 <tr>
-                  <th>Nombre de Usuario</th>
+                  <th>Nombre de usuario</th>
                   <th>Nombre</th>
                   <th>Apellido</th>
                   <th>Estado</th>

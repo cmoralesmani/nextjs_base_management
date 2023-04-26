@@ -15,7 +15,6 @@ function apiHandler(handler) {
     try {
       // global middleware
       await jwtMiddleware(req, res);
-      console.log(">>>> b4 ", res);
 
       // Se establece el objeto user con la informacion del usuario
       // autenticado que ha enviado su token
