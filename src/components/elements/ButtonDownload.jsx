@@ -2,7 +2,7 @@
 
 const { map } = require("lodash");
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, ButtonGroup, Col, Dropdown } from "react-bootstrap";
 import { FaFileDownload } from "react-icons/fa";
 
@@ -43,7 +43,7 @@ ButtonDownload.defaultProps = {
 
 function ButtonDownload({
   url,
-  idPermission,
+  codenamePermission,
   buttonLabel,
   buttonIcon,
   buttonVariant,
@@ -67,9 +67,15 @@ function ButtonDownload({
    * Seccion del api http://xxxxx/api
    * Tendrian que agregarme el slash (/) y la direccion de la ruta
    */
-  const hasPermissionIt = idPermission
-    ? useHasPermissionStatus({ codenamePermission: idPermission })
-    : true;
+  const hasPermission = useHasPermissionStatus({
+    codenamePermission: codenamePermission,
+  });
+  const [hasPermissionIt, setHasPermissionIt] = useState(false);
+
+  useEffect(() => {
+    setHasPermissionIt(codenamePermission ? hasPermission : true);
+  }, [codenamePermission, hasPermission]);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   function onClickButton(button) {
