@@ -1,4 +1,4 @@
-// pages/profiles/details/[id_profile].jsx
+// pages/accessibility/profiles/details/[id_profile].jsx
 
 import { ProfileDetails } from "src/components/profiles";
 import { useProfile } from "src/hooks/profile/useProfile";

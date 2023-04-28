@@ -1,4 +1,4 @@
-// pages/profiles/create/index.jsx
+// pages/accessibility/profiles/create/index.jsx
 
 import React from "react";
 

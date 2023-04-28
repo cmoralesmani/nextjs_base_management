@@ -6,8 +6,8 @@ export const fetchWrapper = {
   put,
 };
 
-function get(url) {
-  return api.get(url);
+function get(url, config) {
+  return api.get(url, config);
 }
 
 function post(url, body) {

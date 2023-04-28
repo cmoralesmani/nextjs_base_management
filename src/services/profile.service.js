@@ -13,23 +13,31 @@ export const profileService = {
 };
 
 function getProfileById(id_profile) {
-  return fetchWrapper.get(`${baseUrl}/details/${id_profile}`);
+  return fetchWrapper
+    .get(`${baseUrl}/details/${id_profile}`)
+    .then((response) => response.data);
 }
 
 function getProfiles(filters = {}) {
-  return fetchWrapper.get(
-    `${baseUrl}?filters=${encodeURIComponent(JSON.stringify(filters))}`
-  );
+  return fetchWrapper
+    .get(`${baseUrl}?filters=${encodeURIComponent(JSON.stringify(filters))}`)
+    .then((response) => response.data);
 }
 
 function createProfile(profile) {
-  return fetchWrapper.post(`${baseUrl}/create`, profile);
+  return fetchWrapper
+    .post(`${baseUrl}/create`, profile)
+    .then((response) => response.data);
 }
 
 function updateProfile(id_profile, params) {
-  return fetchWrapper.put(`${baseUrl}/edit/${id_profile}`, params);
+  return fetchWrapper
+    .put(`${baseUrl}/edit/${id_profile}`, params)
+    .then((response) => response.data);
 }
 
 function deleteProfile(id_profile) {
-  return fetchWrapper.delete(`${baseUrl}/delete/${id_profile}`);
+  return fetchWrapper
+    .delete(`${baseUrl}/delete/${id_profile}`)
+    .then((response) => response.data);
 }

@@ -1,4 +1,4 @@
-// pages/profiles/edit/[id_profile].jsx
+// pages/accessibility/profiles/edit/[id_profile].jsx
 
 import { useRouter } from "next/router";
 

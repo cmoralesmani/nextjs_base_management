@@ -1,4 +1,4 @@
-// pages/api/accounts/details/[username].js
+// pages/api/accounts/details/by_username/[username].js
 
 import { apiHandler, hasPermissionsTo } from "src/helpers/api";
 import { hasPermission } from "src/helpers/utils";

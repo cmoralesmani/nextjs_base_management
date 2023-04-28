@@ -11,15 +11,19 @@ export const parametersService = {
 };
 
 function getById(id_parameter) {
-  return fetchWrapper.get(`${baseUrl}/details/${id_parameter}`);
+  return fetchWrapper
+    .get(`${baseUrl}/details/${id_parameter}`)
+    .then((response) => response.data);
 }
 
 function updateParameters(id_parameter, params) {
-  return fetchWrapper.put(`${baseUrl}/edit/${id_parameter}`, params);
+  return fetchWrapper
+    .put(`${baseUrl}/edit/${id_parameter}`, params)
+    .then((response) => response.data);
 }
 
 function getParameters(filters = {}) {
-  return fetchWrapper.get(
-    `${baseUrl}?filters=${encodeURIComponent(JSON.stringify(filters))}`
-  );
+  return fetchWrapper
+    .get(`${baseUrl}?filters=${encodeURIComponent(JSON.stringify(filters))}`)
+    .then((response) => response.data);
 }

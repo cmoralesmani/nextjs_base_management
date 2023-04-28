@@ -1,6 +1,7 @@
 // src/helpers/api/util.js
 
 import { Parser } from "json2csv";
+import fs from "fs";
 
 export { isJsonString, downloadResource, hasLetter, hasNumber };
 
@@ -38,7 +39,7 @@ const downloadResource = (
 ) => {
   const csv = getCsvFromJson(fields, data, options);
   res.setHeader("Content-Type", options.contentType);
-  res.setHeader("Content-disposition", `attachment; filename=${fileName}`);
+  res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
   return res.send(csv);
 };
 

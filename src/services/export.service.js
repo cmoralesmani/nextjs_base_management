@@ -1,6 +1,6 @@
 // src/services/export.service.js
 
-import { fetchWrapper } from "src/helpers";
+import { fetchWrapper } from "src/utilities";
 
 const baseUrl = `/api`;
 
@@ -14,42 +14,50 @@ function exportFile(url, isUrlExternal) {
     urlDownload = `${baseUrl}${url}`;
   }
 
-  return fetchWrapper.getWithoutHandleResponse(urlDownload).then((response) => {
-    if (!response.ok) {
-      throw new Error(response);
-    }
+  return fetchWrapper.get(urlDownload).then((response) => {
+    const blob = new Blob([response.data], { type: "text/csv" });
 
+    // const headerval = response.headers["content-disposition"];
     const contentDisposition = response.headers.get("content-disposition");
-    // Extraccion de filename en el header de la respuesta
-    // https://medium.com/@nerdyman/prompt-a-file-download-with-the-content-disposition-header-using-fetch-and-filesaver-8683faf565d0
-    const fileName = contentDisposition
+    const filename = contentDisposition
       ? contentDisposition
           .split(";")
           .find((n) => n.includes("filename="))
           .replace("filename=", "")
           .trim()
       : null;
-    response.blob().then((blob) => {
-      // https://github.com/kennethjiang/js-file-download/blob/master/file-download.js
-      const urlBlob =
-        window.URL && window.URL.createObjectURL
-          ? window.URL.createObjectURL(blob)
-          : window.webkitURL.createObjectURL(blob);
-      const aTag = document.createElement("a");
-      aTag.href = urlBlob;
-      if (fileName) aTag.download = fileName;
 
-      /**
-       * Safari cree que _blank anchor son ventanas emergentes.
-       * Solo queremos establecer el destino _blank si el navegador
-       * no admite el atributo de descarga HTML5.
-       * Esto le permite descargar archivos en Safari de escritorio
-       * si el bloqueo de ventanas emergentes está habilitado.
-       */
-      if (typeof aTag.download === "undefined") {
-        aTag.target = "_blank";
-      }
-      aTag.click();
-    });
+    // Creando un objeto para descargar url
+    // const url = window.URL.createObjectURL(blob);
+    // https://github.com/kennethjiang/js-file-download/blob/master/file-download.js
+    const urlBlob =
+      window.URL && window.URL.createObjectURL
+        ? window.URL.createObjectURL(blob)
+        : window.webkitURL.createObjectURL(blob);
+
+    // Crear una etiqueta anchor(a) de HTML
+    // const a = document.createElement("a");
+    const aTag = document.createElement("a");
+
+    // Pasando la url de descarga de blob
+    aTag.setAttribute("href", urlBlob);
+
+    // Configuración del atributo de la etiqueta anchor para descargar
+    // y pasar el nombre del archivo de descarga
+    if (filename) aTag.setAttribute("download", filename);
+
+    /**
+     * Safari cree que _blank anchor son ventanas emergentes.
+     * Solo queremos establecer el destino _blank si el navegador
+     * no admite el atributo de descarga HTML5.
+     * Esto le permite descargar archivos en Safari de escritorio
+     * si el bloqueo de ventanas emergentes está habilitado.
+     */
+    if (typeof aTag.download === "undefined") {
+      aTag.target = "_blank";
+    }
+
+    // Realizar descarga con un clic
+    aTag.click();
   });
 }

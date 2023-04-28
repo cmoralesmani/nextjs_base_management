@@ -40,7 +40,8 @@ export function processDataLogin({ data, storageToSave }) {
 function login(username, password, keepSessionActive = false) {
   return fetchWrapper
     .post(AUTH_API_URLS.CREATE_TOKEN, { username, password })
-    .then((data) => {
+    .then((response) => {
+      const { data } = response;
       const storageToSave = keepSessionActive ? localStorage : sessionStorage;
       const newData = { ...data, username };
       processDataLogin({

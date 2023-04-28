@@ -58,7 +58,7 @@ function UserListTable({ users, urlDownload, deleteUserCallback }) {
                   {hasPermissionCreateUser && (
                     <Col>
                       <Link
-                        href="/accessibility/accounts/register"
+                        href="/accessibility/accounts/create"
                         className="btn btn-primary btn-sm"
                       >
                         <FaPlus /> Nuevo

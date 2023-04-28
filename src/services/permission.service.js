@@ -9,5 +9,7 @@ export const permissionService = {
 };
 
 function getPermissions({ search }) {
-  return fetchWrapper.get(`${baseUrl}?search=${search ? search : ""}`);
+  return fetchWrapper
+    .get(`${baseUrl}?search=${search ? search : ""}`)
+    .then((response) => response.data);
 }
