@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { Col, Form, InputGroup, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import {
   FaRegEye,
@@ -14,15 +14,15 @@ import {
   FaRegFileAlt,
   FaListAlt,
 } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import * as Yup from "yup";
 
 import { SpinnerCustom, ResetCancelSave } from "src/components/elements";
-import { FormAddEditLayout } from "src/layouts";
+import { Button } from "src/components/miscellaneous";
 import { useHasPermissionStatus } from "src/hooks/auth";
-import { userService, profileService, toastService } from "src/services";
-
+import { FormAddEditLayout } from "src/layouts";
 import { selectUserState } from "src/redux/slices/user-slice";
-import { useSelector } from "react-redux";
+import { userService, profileService, toastService } from "src/services";
 
 export { UserAddEdit };
 
@@ -299,9 +299,8 @@ function UserAddEdit(props) {
                   id="button-addon1"
                   onClick={handleShowHide}
                   size="sm"
-                >
-                  {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
-                </Button>
+                  icon={showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+                />
               </InputGroup>
               {!isAddMode && (
                 <Form.Text id="passwordHelpBlock" muted>
@@ -326,9 +325,8 @@ function UserAddEdit(props) {
                   id="button-addon2"
                   onClick={handleShowHideCP}
                   size="sm"
-                >
-                  {showCPassword ? <FaRegEye /> : <FaRegEyeSlash />}
-                </Button>
+                  icon={showCPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+                />
               </InputGroup>
               <Form.Control.Feedback type="invalid">
                 {errors.password2?.message}
@@ -436,9 +434,8 @@ function UserAddEdit(props) {
                       }}
                       size="sm"
                       disabled={!isAddMode && !hasPermissionEditUser}
-                    >
-                      <FaEraser />
-                    </Button>
+                      icon={<FaEraser />}
+                    />
                     <h4>Perfiles</h4>
                   </Col>
                 </Row>

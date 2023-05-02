@@ -4,10 +4,7 @@ import Link from "next/link";
 import { Alert, Badge, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { FaIdCard, FaRegEdit, FaListAlt } from "react-icons/fa";
 
-import { hasPermission } from "src/helpers/utils";
 import { useHasPermissionStatus } from "src/hooks/auth";
-import { userService } from "src/services";
-
 import { selectUserState } from "src/redux/slices/user-slice";
 import { useSelector } from "react-redux";
 

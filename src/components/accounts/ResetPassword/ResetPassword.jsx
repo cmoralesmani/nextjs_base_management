@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import {
   Badge,
-  Button,
   Col,
   Container,
   Form,
@@ -25,6 +24,7 @@ import { useSelector } from "react-redux";
 
 import { selectUserState } from "src/redux/slices/user-slice";
 import { userService, toastService } from "src/services";
+import { Button } from "src/components/miscellaneous";
 
 export { ResetPassword };
 
@@ -126,8 +126,12 @@ function ResetPassword({ user }) {
       <Container className="text-end g-0">
         <Row>
           <Col>
-            <Button variant="secondary" onClick={handleShow} size="sm">
-              <FaLock className="me-1" />
+            <Button
+              variant="secondary"
+              onClick={handleShow}
+              size="sm"
+              icon={<FaLock className="me-1" />}
+            >
               Cambiar contraseña
             </Button>
           </Col>
@@ -184,9 +188,10 @@ function ResetPassword({ user }) {
                         id="button-password-old"
                         onClick={() => handleShowHide("button-password-old")}
                         size="sm"
-                      >
-                        {showPasswordOld ? <FaRegEye /> : <FaRegEyeSlash />}
-                      </Button>
+                        icon={
+                          showPasswordOld ? <FaRegEye /> : <FaRegEyeSlash />
+                        }
+                      />
                     </InputGroup>
                     <Form.Control.Feedback type="invalid">
                       {errors.oldPassword?.message}
@@ -207,9 +212,8 @@ function ResetPassword({ user }) {
                       id="button-password"
                       onClick={() => handleShowHide("button-password")}
                       size="sm"
-                    >
-                      {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
-                    </Button>
+                      icon={showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+                    />
                   </InputGroup>
                   <Form.Control.Feedback type="invalid">
                     {errors.newPassword?.message}
@@ -229,9 +233,8 @@ function ResetPassword({ user }) {
                       id="button-password2"
                       onClick={() => handleShowHide("button-password2")}
                       size="sm"
-                    >
-                      {showPassword2 ? <FaRegEye /> : <FaRegEyeSlash />}
-                    </Button>
+                      icon={showPassword2 ? <FaRegEye /> : <FaRegEyeSlash />}
+                    />
                   </InputGroup>
                   <Form.Control.Feedback type="invalid">
                     {errors.password2?.message}
@@ -243,16 +246,11 @@ function ResetPassword({ user }) {
               <Col className="text-end">
                 <Button
                   className="me-1"
-                  variant="primary"
                   type="submit"
-                  disabled={formState.isSubmitting}
+                  isSubmitting={formState.isSubmitting}
                   size="sm"
+                  icon={<FaSave className="me-1" />}
                 >
-                  {formState.isSubmitting ? (
-                    <span className="spinner-border spinner-border-sm me-1"></span>
-                  ) : (
-                    <FaSave className="me-1" />
-                  )}
                   Cambiar
                 </Button>
                 <Button
@@ -260,8 +258,8 @@ function ResetPassword({ user }) {
                   variant="secondary"
                   onClick={handleClose}
                   size="sm"
+                  icon={<FaTimesCircle className="me-1" />}
                 >
-                  <FaTimesCircle className="me-1" />
                   Cancelar
                 </Button>
               </Col>

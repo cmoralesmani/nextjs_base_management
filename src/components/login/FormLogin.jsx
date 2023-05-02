@@ -1,8 +1,10 @@
 // src/components/login/FormLogin.jsx
 
 import React, { useState } from "react";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { Col, Form, InputGroup, Row } from "react-bootstrap";
 import { FaRegEye, FaRegEyeSlash, FaSignInAlt } from "react-icons/fa";
+
+import { Button } from "src/components/miscellaneous";
 
 export function FormLogin({
   values,
@@ -53,9 +55,8 @@ export function FormLogin({
               id="button-addon1"
               onClick={handleShowHide}
               size="sm"
-            >
-              {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
-            </Button>
+              icon={showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+            />
           </InputGroup>
           <Form.Control.Feedback type="invalid">
             {errors.password && touched.password && errors.password}
@@ -78,12 +79,11 @@ export function FormLogin({
         </Form.Group>
       </Row>
       <div className="text-center mt-3 mb-3">
-        <Button variant="primary" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? (
-            <span className="spinner-border spinner-border-sm me-1"></span>
-          ) : (
-            <FaSignInAlt className="me-1" />
-          )}
+        <Button
+          type="submit"
+          isSubmitting={isSubmitting}
+          icon={<FaSignInAlt className="me-1" />}
+        >
           Ingresar
         </Button>
       </div>

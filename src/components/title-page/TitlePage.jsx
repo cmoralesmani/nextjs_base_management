@@ -4,11 +4,12 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { Container, Nav, Navbar, Button } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { FaArrowCircleLeft } from "react-icons/fa";
 
 import { useAuth } from "src/hooks/auth";
 import { titleService } from "src/services";
+import { Button } from "src/components/miscellaneous";
 
 import logo from "public/assets/images/logo.svg";
 import Head from "next/head";
@@ -45,9 +46,8 @@ function TitlePage() {
                 className="me-2 p-0"
                 variant="link"
                 onClick={() => router.back()}
-              >
-                <FaArrowCircleLeft className="me-1" />
-              </Button>
+                icon={<FaArrowCircleLeft className="me-1" />}
+              />
               {title}
             </h1>
           </Navbar.Brand>

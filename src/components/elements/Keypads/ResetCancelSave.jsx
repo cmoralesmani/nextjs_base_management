@@ -1,8 +1,10 @@
 // src/components/elements/Keypads/ResetCancelSave.jsx
 
 import PropTypes from "prop-types";
-import { Container, Col, Row, Button } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import { FaUndo, FaSave, FaTimesCircle } from "react-icons/fa";
+
+import { Button } from "src/components/miscellaneous";
 
 export { ResetCancelSave };
 
@@ -51,11 +53,10 @@ function ResetCancelSave({
               variant="light"
               type="button"
               onClick={handleReset}
-              disabled={isSubmitting}
+              isSubmitting={isSubmitting}
               size="sm"
-            >
-              <FaUndo className="me-1" />
-            </Button>
+              icon={<FaUndo className="me-1" />}
+            />
           </Col>
         )}
         {(showButtonPrimary || showButtonSecondary) && (
@@ -68,14 +69,10 @@ function ResetCancelSave({
                       className="me-1"
                       variant="primary"
                       type="submit"
-                      disabled={isSubmitting}
+                      isSubmitting={isSubmitting}
                       size="sm"
+                      icon={<FaSave className="me-1" />}
                     >
-                      {isSubmitting ? (
-                        <span className="spinner-border spinner-border-sm me-1"></span>
-                      ) : (
-                        <FaSave className="me-1" />
-                      )}
                       {buttonPrimaryLabel}
                     </Button>
                   )}
@@ -87,8 +84,8 @@ function ResetCancelSave({
                       variant="secondary"
                       onClick={handleCancel}
                       size="sm"
+                      icon={<FaTimesCircle className="me-1" />}
                     >
-                      <FaTimesCircle className="me-1" />
                       {buttonSecondaryLabel}
                     </Button>
                   )}

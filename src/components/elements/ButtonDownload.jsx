@@ -3,9 +3,10 @@
 const { map } = require("lodash");
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { Button, ButtonGroup, Col, Dropdown } from "react-bootstrap";
+import { ButtonGroup, Col, Dropdown } from "react-bootstrap";
 import { FaFileDownload } from "react-icons/fa";
 
+import { Button } from "src/components/miscellaneous";
 import { useHasPermissionStatus } from "src/hooks/auth";
 import { exportService, toastService } from "src/services";
 
@@ -103,14 +104,10 @@ function ButtonDownload({
             onClick={() => {
               onClickButton();
             }}
-            disabled={isSubmitting}
+            isSubmitting={isSubmitting}
             size="sm"
+            icon={buttonIcon}
           >
-            {isSubmitting ? (
-              <span className="spinner-border spinner-border-sm"></span>
-            ) : (
-              <>{buttonIcon}</>
-            )}
             {buttonLabel && <span className="ms-1">{buttonLabel}</span>}
           </Button>
 

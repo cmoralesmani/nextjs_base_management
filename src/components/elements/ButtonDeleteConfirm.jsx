@@ -2,9 +2,11 @@
 
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { BsXCircleFill } from "react-icons/bs";
 import { FaRegTrashAlt } from "react-icons/fa";
+
+import { Button } from "src/components/miscellaneous";
 
 export { ButtonDeleteConfirm };
 
@@ -46,15 +48,10 @@ function ButtonDeleteConfirm({ message, callbackDelete }) {
         variant="danger"
         className="p-0 m-0"
         onClick={handleShow}
-        disabled={isSubmitting}
+        isSubmitting={isSubmitting}
         size="sm"
-      >
-        {isSubmitting ? (
-          <span className="spinner-border spinner-border-sm"></span>
-        ) : (
-          <FaRegTrashAlt />
-        )}
-      </Button>
+        icon={<FaRegTrashAlt />}
+      />
 
       <Modal
         size="md"
@@ -72,8 +69,12 @@ function ButtonDeleteConfirm({ message, callbackDelete }) {
           <p>{message}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose} size="sm">
-            <BsXCircleFill className="me-1" />
+          <Button
+            variant="primary"
+            onClick={handleClose}
+            size="sm"
+            icon={<BsXCircleFill className="me-1" />}
+          >
             Cancelar
           </Button>
           <Button
@@ -82,8 +83,8 @@ function ButtonDeleteConfirm({ message, callbackDelete }) {
             type="submit"
             onClick={onClickDelete}
             size="sm"
+            icon={<FaRegTrashAlt className="me-1" />}
           >
-            <FaRegTrashAlt className="me-1" />
             Eliminar
           </Button>
         </Modal.Footer>

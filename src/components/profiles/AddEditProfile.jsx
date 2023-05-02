@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import {
   Accordion,
-  Button,
   ButtonGroup,
   Col,
   Container,
@@ -23,9 +22,9 @@ import {
 } from "react-icons/fa";
 import * as Yup from "yup";
 
+import { Button } from "src/components/miscellaneous";
 import { SpinnerCustom, ResetCancelSave } from "src/components/elements";
 import { FormAddEditLayout } from "src/layouts";
-import { hasPermission } from "src/helpers/utils";
 import { useHasPermissionStatus } from "src/hooks/auth";
 import {
   userService,
@@ -41,18 +40,13 @@ function AddEditProfile(props) {
   const isAddMode = !profile;
   const router = useRouter();
 
-  const permissionsSec = useHasPermissionStatus([
-    "see_single_profile",
-    "see_profiles",
-  ]);
-  const hasPermissionSeeProfile = hasPermission(
-    permissionsSec,
-    "see_single_profile"
-  );
-  const hasPermissionListProfile = hasPermission(
-    permissionsSec,
-    "see_profiles"
-  );
+  const hasPermissionSeeProfile = useHasPermissionStatus({
+    codenamePermission: "see_single_profile",
+  });
+
+  const hasPermissionListProfile = useHasPermissionStatus({
+    codenamePermission: "see_profiles",
+  });
 
   const [users, setUsers] = useState([]);
   const [statusFetchUsers, setStatusFetchUsers] = useState("waiting");
@@ -354,9 +348,8 @@ function AddEditProfile(props) {
                         setValue("usuarios_seleccionados", []);
                       }}
                       size="sm"
-                    >
-                      <FaEraser />
-                    </Button>
+                      icon={<FaEraser />}
+                    />
                     <h4>Usuarios</h4>
                   </Col>
                 </Row>
@@ -403,8 +396,8 @@ function AddEditProfile(props) {
                                 );
                               });
                             }}
+                            icon={<FaRegCheckSquare className="me-1" />}
                           >
-                            <FaRegCheckSquare className="me-1" />
                             Todos
                           </Button>
                           <Button
@@ -418,8 +411,8 @@ function AddEditProfile(props) {
                                 );
                               });
                             }}
+                            icon={<FaRegSquare className="me-1" />}
                           >
-                            <FaRegSquare className="me-1" />
                             Ninguno
                           </Button>
                         </ButtonGroup>

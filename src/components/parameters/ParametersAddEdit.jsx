@@ -19,7 +19,6 @@ import * as Yup from "yup";
 
 import { ResetCancelSave } from "src/components/elements";
 import { FormAddEditLayout } from "src/layouts";
-import { hasPermission } from "src/helpers/utils";
 import { useHasPermissionStatus } from "src/hooks/auth";
 import { parametersService, toastService } from "src/services";
 
@@ -30,18 +29,14 @@ export function ParametersAddEdit(props) {
   const router = useRouter();
 
   const [validated, setValidated] = useState(false);
-  const permissions = useHasPermissionStatus([
-    "see_parameters",
-    "see_single_parameter",
-  ]);
-  const hasPermissionListParameters = hasPermission(
-    permissions,
-    "see_parameters"
-  );
-  const hasPermissionSeeParameters = hasPermission(
-    permissions,
-    "see_single_parameter"
-  );
+
+  const hasPermissionListParameters = useHasPermissionStatus({
+    codenamePermission: "see_parameters",
+  });
+
+  const hasPermissionSeeParameters = useHasPermissionStatus({
+    codenamePermission: "see_single_parameter",
+  });
 
   // Reglas de validacion para el formulario
   const validationSchema = Yup.object().shape({

@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import {
-  Button,
   Col,
   Container,
   Form,
@@ -15,6 +14,7 @@ import {
 import { useForm } from "react-hook-form";
 import { FaTimes, FaSearch } from "react-icons/fa";
 
+import { Button } from "src/components/miscellaneous";
 import { toastService } from "src/services";
 
 export { SearchForm };
@@ -114,22 +114,16 @@ function SearchForm({ updateCallback, urlBaseDownload, setUrlDownload }) {
                     variant="outline-secondary"
                     onClick={onClearSearch}
                     size="sm"
-                  >
-                    <FaTimes />
-                  </Button>
+                    icon={<FaTimes />}
+                  />
                 )}
                 <Button
                   style={{ zIndex: 0 }}
                   type="submit"
-                  disabled={isSubmitting}
+                  isSubmitting={isSubmitting}
                   size="sm"
-                >
-                  {isSubmitting ? (
-                    <span className="spinner-border spinner-border-sm"></span>
-                  ) : (
-                    <FaSearch />
-                  )}
-                </Button>
+                  icon={<FaSearch />}
+                />
               </InputGroup>
             </Form>
           </Col>
