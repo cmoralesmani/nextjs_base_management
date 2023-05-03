@@ -1,4 +1,4 @@
-// src/hooks/profile/useProfiles.js
+// src/hooks/useDataList.jsx
 
 import { useCallback, useEffect, useState } from "react";
 
@@ -19,8 +19,9 @@ export function useDataList({ sourceDataCallback }) {
   }, [error]);
 
   const loadDataCallback = useCallback(
-    (filters) => {
+    async (filters) => {
       setIsLoading(true);
+      setData(null);
       return sourceDataCallback(filters)
         .then((response) => isMounted() && setData(response))
         .catch((error) => isMounted() && setError(error))
@@ -32,6 +33,10 @@ export function useDataList({ sourceDataCallback }) {
   useEffect(() => {
     loadDataCallback();
   }, [loadDataCallback]);
+
+  useEffect(() => {
+    console.log("Loading", isLoading);
+  }, [isLoading]);
 
   return { data, isLoading, error, loadDataCallback };
 }

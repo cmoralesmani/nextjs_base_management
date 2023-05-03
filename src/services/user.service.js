@@ -26,7 +26,7 @@ function getUserById(id_user) {
     .then((response) => response.data);
 }
 
-function getUsers(filters = {}) {
+async function getUsers(filters = {}) {
   return fetchWrapper
     .get(`${baseUrl}?filters=${encodeURIComponent(JSON.stringify(filters))}`)
     .then((response) => response.data);
