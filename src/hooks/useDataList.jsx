@@ -34,9 +34,5 @@ export function useDataList({ sourceDataCallback }) {
     loadDataCallback();
   }, [loadDataCallback]);
 
-  useEffect(() => {
-    console.log("Loading", isLoading);
-  }, [isLoading]);
-
   return { data, isLoading, error, loadDataCallback };
 }
