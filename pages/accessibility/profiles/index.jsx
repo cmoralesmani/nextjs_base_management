@@ -8,7 +8,7 @@ import { useProfiles } from "src/hooks/profile/useProfiles";
 export default ProfilesPage;
 
 function ProfilesPage() {
-  const { profiles, isLoading, error, setProfilesCallback } = useProfiles();
+  const { profiles, isLoading, error, loadProfilesCallback } = useProfiles();
 
   function deleteProfileCallback(id_profile) {
     return profileService
@@ -37,7 +37,7 @@ function ProfilesPage() {
     >
       <ProfileList
         profiles={profiles}
-        updateProfilesCallback={setProfilesCallback}
+        updateProfilesCallback={loadProfilesCallback}
         deleteProfileCallback={deleteProfileCallback}
       />
     </PageLayout>

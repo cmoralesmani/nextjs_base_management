@@ -2,19 +2,19 @@
 
 import PropTypes from "prop-types";
 
-import { SearchForm } from "src/components/elements";
+import { SearchPanelForm } from "src/components/forms";
 
 export { UserListForm };
 
 UserListForm.propTypes = {
-  updateUsersCallback: PropTypes.func.isRequired,
+  loadUsersCallback: PropTypes.func.isRequired,
   setUrlDownload: PropTypes.func.isRequired,
 };
 
-function UserListForm({ updateUsersCallback, setUrlDownload }) {
+function UserListForm({ loadUsersCallback, setUrlDownload }) {
   return (
-    <SearchForm
-      updateCallback={updateUsersCallback}
+    <SearchPanelForm
+      loadDataCallback={loadUsersCallback}
       urlBaseDownload={`/accounts/export`}
       setUrlDownload={setUrlDownload}
     />

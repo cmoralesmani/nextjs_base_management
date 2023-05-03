@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { toastService } from "src/services";
 import { useIsMounted } from ".";
 
-export function useDataList({ dataCallback }) {
+export function useDataList({ sourceDataCallback }) {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -18,21 +18,20 @@ export function useDataList({ dataCallback }) {
     }
   }, [error]);
 
+  const loadDataCallback = useCallback(
+    (filters) => {
+      setIsLoading(true);
+      return sourceDataCallback(filters)
+        .then((response) => isMounted() && setData(response))
+        .catch((error) => isMounted() && setError(error))
+        .finally(() => isMounted() && setIsLoading(false));
+    },
+    [sourceDataCallback, isMounted]
+  );
+
   useEffect(() => {
-    getData();
-  }, []);
+    loadDataCallback();
+  }, [loadDataCallback]);
 
-  const getData = useCallback((filters = undefined) => {
-    setIsLoading(true);
-    return dataCallback(filters)
-      .then((response) => isMounted() && setData(response))
-      .catch((error) => isMounted() && setError(error))
-      .finally(() => isMounted() && setIsLoading(false));
-  }, []);
-
-  function setDataCallback(filters) {
-    return getData(filters);
-  }
-
-  return { data, isLoading, error, setDataCallback };
+  return { data, isLoading, error, loadDataCallback };
 }

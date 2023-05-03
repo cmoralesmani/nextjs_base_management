@@ -9,8 +9,8 @@ export function useProfiles() {
     data: profiles,
     isLoading,
     error,
-    setDataCallback: setProfilesCallback,
-  } = useDataList({ dataCallback: profileService.getProfiles });
+    loadDataCallback: loadProfilesCallback,
+  } = useDataList({ sourceDataCallback: profileService.getProfiles });
 
-  return { profiles, isLoading, error, setProfilesCallback };
+  return { profiles, isLoading, error, loadProfilesCallback };
 }

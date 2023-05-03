@@ -10,17 +10,17 @@ export { UserList };
 
 UserList.propTypes = {
   users: PropTypes.array,
-  updateUsersCallback: PropTypes.func.isRequired,
+  loadUsersCallback: PropTypes.func.isRequired,
   deleteUserCallback: PropTypes.func.isRequired,
 };
 
-function UserList({ users, updateUsersCallback, deleteUserCallback }) {
+function UserList({ users, loadUsersCallback, deleteUserCallback }) {
   const [urlDownload, setUrlDownload] = useState();
 
   return (
     <>
       <UserListForm
-        updateUsersCallback={updateUsersCallback}
+        loadUsersCallback={loadUsersCallback}
         setUrlDownload={setUrlDownload}
       />
       <UserListTable

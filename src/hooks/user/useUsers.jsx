@@ -9,8 +9,8 @@ export function useUsers() {
     data: users,
     isLoading,
     error,
-    setDataCallback: setUsersCallback,
-  } = useDataList({ dataCallback: userService.getUsers });
+    loadDataCallback: loadUsersCallback,
+  } = useDataList({ sourceDataCallback: userService.getUsers });
 
-  return { users, isLoading, error, setUsersCallback };
+  return { users, isLoading, error, loadUsersCallback };
 }

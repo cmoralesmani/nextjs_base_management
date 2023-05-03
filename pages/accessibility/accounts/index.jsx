@@ -1,15 +1,12 @@
 // pages/accessibility/accounts/index.jsx
 
-import { PageLayout } from "src/layouts";
 import { UserList } from "src/components/accounts";
-import { userService, toastService } from "src/services";
 import { useUsers } from "src/hooks/user/useUsers";
-import { memo } from "react";
+import { PageLayout } from "src/layouts";
+import { userService, toastService } from "src/services";
 
-export default memo(AccountsPage);
-
-function AccountsPage() {
-  const { users, isLoading, setUsersCallback } = useUsers();
+export default function AccountsPage() {
+  const { users, isLoading, loadUsersCallback } = useUsers();
 
   function deleteUserCallback(id_user) {
     return userService
@@ -36,7 +33,7 @@ function AccountsPage() {
     >
       <UserList
         users={users}
-        updateUsersCallback={setUsersCallback}
+        loadUsersCallback={loadUsersCallback}
         deleteUserCallback={deleteUserCallback}
       />
     </PageLayout>

@@ -9,7 +9,7 @@ import { useParameters } from "src/hooks/parameter/useParameters";
 export default ParametersPage;
 
 function ParametersPage() {
-  const { parameters, isLoading, error, setParametersCallback } =
+  const { parameters, isLoading, error, loadParametersCallback } =
     useParameters();
 
   return (
@@ -19,7 +19,7 @@ function ParametersPage() {
     >
       <ParametersList
         parameters={parameters}
-        updateParametersCallback={setParametersCallback}
+        updateParametersCallback={loadParametersCallback}
       />
     </PageLayout>
   );

@@ -9,8 +9,8 @@ export function useParameters() {
     data: parameters,
     isLoading,
     error,
-    setDataCallback: setParametersCallback,
-  } = useDataList({ dataCallback: parametersService.getParameters });
+    loadDataCallback: loadParametersCallback,
+  } = useDataList({ sourceDataCallback: parametersService.getParameters });
 
-  return { parameters, isLoading, error, setParametersCallback };
+  return { parameters, isLoading, error, loadParametersCallback };
 }

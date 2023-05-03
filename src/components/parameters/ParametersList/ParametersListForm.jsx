@@ -2,7 +2,7 @@
 
 import PropTypes from "prop-types";
 
-import { SearchForm } from "src/components/elements";
+import { SearchPanelForm } from "src/components/forms";
 
 export { ParametersListForm };
 
@@ -13,8 +13,8 @@ ParametersListForm.propTypes = {
 
 function ParametersListForm({ updateParametersCallback, setUrlDownload }) {
   return (
-    <SearchForm
-      updateCallback={updateParametersCallback}
+    <SearchPanelForm
+      loadDataCallback={updateParametersCallback}
       urlBaseDownload={`/maintenance/parameters/export`}
       setUrlDownload={setUrlDownload}
     />
