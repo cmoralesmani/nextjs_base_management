@@ -42,7 +42,7 @@ function ProfileDetails(props) {
                     <FaRegEdit />
                   </Link>
                 )}
-                {hasPermissionListProfile && (
+                {hasPermissionListProfile && ( // TODO: BAD
                   <Link
                     href={`/accessibility/accounts`}
                     className="btn btn-link float-end"

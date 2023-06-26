@@ -1,13 +1,13 @@
-// src/components/forms/search/SearchForm.jsx
+// src/components/search/Search/Search.jsx
 
 import { Formik } from "formik";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { useRef, useEffect, useMemo } from "react";
 
-import { PanelFormLayout } from "src/layouts/forms";
+import { PanelFormLayout } from "src/layouts/PanelFormLayout";
 import { toastService } from "src/services";
-import { utilitiesForms } from "src/utilities";
+import { utilitiesForms } from "src/utilities/forms";
 
 import { SearchForm } from "./SearchForm";
 
@@ -15,19 +15,15 @@ import { FORM_SEARCH_EMPTY_VALUES } from "src/utilities/forms/types.d";
 
 const { formSearchSchema } = utilitiesForms;
 
-export { SearchPanelForm };
+export { Search };
 
-SearchPanelForm.propTypes = {
+Search.propTypes = {
   loadDataCallback: PropTypes.func.isRequired,
   urlBaseDownload: PropTypes.string.isRequired,
   setUrlDownload: PropTypes.func.isRequired,
 };
 
-function SearchPanelForm({
-  loadDataCallback,
-  urlBaseDownload,
-  setUrlDownload,
-}) {
+function Search({ loadDataCallback, urlBaseDownload, setUrlDownload }) {
   /**
    * Ya que hay varias vista que comparten esta forma de consultar datos
    * se hizo este componente para reutilizarlo en los sitios donde

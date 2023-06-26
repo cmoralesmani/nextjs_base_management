@@ -2,7 +2,7 @@
 
 import PropTypes from "prop-types";
 
-import { SearchPanelForm } from "src/components/forms";
+import { Search } from "src/components/search";
 
 export { UserListForm };
 
@@ -13,7 +13,7 @@ UserListForm.propTypes = {
 
 function UserListForm({ loadUsersCallback, setUrlDownload }) {
   return (
-    <SearchPanelForm
+    <Search
       loadDataCallback={loadUsersCallback}
       urlBaseDownload={`/accounts/export`}
       setUrlDownload={setUrlDownload}
