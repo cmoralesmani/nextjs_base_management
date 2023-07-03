@@ -52,6 +52,7 @@ export function Login() {
             <Image
               src={logo}
               alt="Logo"
+              priority={true}
               height={100}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
@@ -65,15 +66,15 @@ export function Login() {
             </Card.Text>
             <hr className="mb-3" />
             <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
+              initialValues={initialValues()}
+              validationSchema={validationSchema()}
               onSubmit={async (values, formikHelpers) => {
                 await handleSubmitLogin(values, formikHelpers);
               }}
               validateOnChange={false}
               validateOnBlur={false}
               component={FormLogin}
-            ></Formik>
+            />
           </Card.Body>
         </Col>
       </Row>

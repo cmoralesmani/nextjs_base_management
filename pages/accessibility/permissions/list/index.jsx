@@ -6,13 +6,12 @@ import { PageLayout } from "src/layouts";
 
 export default function ListPermissionsPage() {
   const controllerRequestAPI = new AbortController();
+  useEffect(() => () => controllerRequestAPI.abort(), []);
 
   const { permissions, loadPermissionsCallback } = usePermissions({
     loadInitialData: false,
     controllerRequestAPI: controllerRequestAPI,
   });
-
-  useEffect(() => () => controllerRequestAPI.abort(), []);
 
   return (
     <PageLayout codenamePermission="see_permissions">

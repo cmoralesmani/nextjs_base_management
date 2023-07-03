@@ -6,13 +6,12 @@ import { PageLayout } from "src/layouts";
 
 export default function ListUsersPage() {
   const controllerRequestAPI = new AbortController();
+  useEffect(() => () => controllerRequestAPI.abort(), []);
 
   const { users, loadUsersCallback, deleteUserCallback } = useUsers({
     loadInitialData: false,
     controllerRequestAPI: controllerRequestAPI,
   });
-
-  useEffect(() => () => controllerRequestAPI.abort(), []);
 
   return (
     <PageLayout codenamePermission={"see_users"}>

@@ -3,14 +3,14 @@ import { fetchWrapper } from "src/utilities";
 const baseUrl = `/api/accessibility/profiles`;
 
 export const profileService = {
-  getProfileById,
+  getById,
   getProfiles,
   create,
   update,
   delete: _delete,
 };
 
-async function getProfileById(id, options) {
+async function getById(id, options) {
   return fetchWrapper
     .get(`${baseUrl}/details/${id}`, options)
     .then((response) => response.data);

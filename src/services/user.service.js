@@ -3,8 +3,8 @@ import { fetchWrapper } from "src/utilities";
 const baseUrl = `/api/accessibility/users`;
 
 export const userService = {
-  getUserByUsername,
-  getUserById,
+  getByUsername,
+  getById,
   getUsers,
   create,
   update,
@@ -12,13 +12,13 @@ export const userService = {
   changePassword,
 };
 
-async function getUserByUsername(username) {
+async function getByUsername(username) {
   return fetchWrapper
     .get(`${baseUrl}/details/by_username/${username}/`)
     .then((response) => response.data);
 }
 
-async function getUserById(id, options) {
+async function getById(id, options) {
   return fetchWrapper
     .get(`${baseUrl}/details/by_id/${id}/`, options)
     .then((response) => response.data);

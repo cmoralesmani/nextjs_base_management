@@ -14,7 +14,7 @@ export function useUserAuth() {
   useEffect(() => {
     if (!!auth) {
       userService
-        .getUserByUsername(auth.username)
+        .getByUsername(auth.username)
         .then((user) => setUser(user))
         .catch((error) => setError(error));
     }

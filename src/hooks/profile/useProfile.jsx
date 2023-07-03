@@ -20,7 +20,7 @@ export function useProfile({ id, controllerRequestAPI }) {
       };
 
       profileService
-        .getProfileById(id, options)
+        .getById(id, options)
         .then((response) => isMounted() && setProfile(response))
         .catch((error) => isMounted() && setError(error))
         .finally(() => isMounted() && setIsLoading(false));

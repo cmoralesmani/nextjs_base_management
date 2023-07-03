@@ -12,7 +12,13 @@ export default function Footer() {
       <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">
         © 2023 hecho por - Desarrollador
         <span className={styles.logo}>
-          <Image src={logo} alt="Vercel Logo" width={72} height={16} />
+          <Image
+            src={logo}
+            alt="Vercel Logo"
+            width={72}
+            height={16}
+            priority={true}
+          />
         </span>
       </a>
     </footer>

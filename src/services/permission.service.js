@@ -16,8 +16,8 @@ async function getPermissions({ filters = {}, options = {} }) {
     .then((response) => response.data);
 }
 
-async function getById(id) {
+async function getById(id, options) {
   return fetchWrapper
-    .get(`${baseUrl}/details/${id}`)
+    .get(`${baseUrl}/details/${id}`, options)
     .then((response) => response.data);
 }

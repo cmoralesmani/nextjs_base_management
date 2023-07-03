@@ -31,7 +31,7 @@ export function useUser({ id, controllerRequestAPI }) {
         signal: controllerRequestAPI?.signal,
       };
       userService
-        .getUserById(id, options)
+        .getById(id, options)
         .then((response) => isMounted() && setUser(response))
         .catch((error) => isMounted() && setError(error))
         .finally(() => isMounted() && setIsLoading(false));

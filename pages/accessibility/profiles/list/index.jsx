@@ -6,6 +6,7 @@ import { PageLayout } from "src/layouts";
 
 export default function ListProfilesPage() {
   const controllerRequestAPI = new AbortController();
+  useEffect(() => () => controllerRequestAPI.abort(), []);
 
   const { profiles, loadProfilesCallback, deleteProfileCallback } = useProfiles(
     {
@@ -13,8 +14,6 @@ export default function ListProfilesPage() {
       controllerRequestAPI: controllerRequestAPI,
     }
   );
-
-  useEffect(() => () => controllerRequestAPI.abort(), []);
 
   return (
     <PageLayout codenamePermission="see_profiles">
