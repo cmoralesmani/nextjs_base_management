@@ -20,9 +20,14 @@ function ListTable({ permissions }) {
   const hasPermissionViewPermission = useHasPermissionStatus({
     codenamePermission: "see_single_permission",
   });
+  const hasPermissionChangePermission = useHasPermissionStatus({
+    codenamePermission: "alter_permission",
+  });
 
   const hasActionButtons =
-    hasPermissionViewPermission && permissions && permissions.length;
+    (hasPermissionViewPermission || hasPermissionChangePermission) &&
+    permissions &&
+    permissions.length;
 
   return (
     <>

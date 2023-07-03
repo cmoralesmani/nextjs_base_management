@@ -100,8 +100,8 @@ function handler(req, res) {
       }
 
       // Se establecen los nuevos valores
-      (profile.MODIFIED_AT = moment().format("YYYY-MM-DD HH:mm:ss")),
-        (profile.MODIFIED_BY = req.user.username);
+      profile.MODIFIED_AT = moment().format("YYYY-MM-DD HH:mm:ss");
+      profile.MODIFIED_BY = req.user.username;
       profile.MODIFIED_IN = "API_WEB_TP";
       profile.DE_PROFILE = data.de_profile;
       profile.STATUS_PROFILE_ID = data.status_profile_id;

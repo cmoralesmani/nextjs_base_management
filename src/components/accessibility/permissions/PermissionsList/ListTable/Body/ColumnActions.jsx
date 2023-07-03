@@ -11,13 +11,13 @@ export function ColumnActions({ keyRow }) {
       >
         <FaFolderOpen />
       </ColumnLink>
-      {/* <ColumnLink
-        href={`/accessibility/users/edit/${keyRow}`}
-        codenamePermission="alter_user"
+      <ColumnLink
+        href={`/accessibility/permissions/edit/${keyRow}`}
+        codenamePermission="alter_permission"
         className="mx-1"
       >
         <FaRegEdit />
-      </ColumnLink> */}
+      </ColumnLink>
     </>
   );
 }

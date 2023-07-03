@@ -206,6 +206,16 @@
     "MODIFIED_AT": "2021-10-01 00:00:00",
     "MODIFIED_BY": "NINGUNO",
     "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "SUADM",
+    "PERMISSION_ID": "alter_permission"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
     "PROFILE_ID": "ADMIN",
     "PERMISSION_ID": "see_single_user"
   },
@@ -398,5 +408,15 @@
     "MODIFIED_IN": "NINGUNO",
     "PROFILE_ID": "ADMIN",
     "PERMISSION_ID": "see_single_permission"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "PROFILE_ID": "ADMIN",
+    "PERMISSION_ID": "alter_permission"
   }
 ]

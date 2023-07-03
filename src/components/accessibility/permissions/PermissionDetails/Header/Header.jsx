@@ -5,24 +5,24 @@ import { FaRegHandshake, FaListAlt, FaRegEdit } from "react-icons/fa";
 import { useHasPermissionStatus } from "src/hooks/auth";
 
 export function Header({ permission }) {
-  // const hasPermissionChangeProfile = useHasPermissionStatus({
-  //   codenamePermission: "alter_profile",
-  // });
+  const hasPermissionChangePermission = useHasPermissionStatus({
+    codenamePermission: "alter_permission",
+  });
   const hasPermissionViewPermissions = useHasPermissionStatus({
     codenamePermission: "see_permissions",
   });
   return (
     <Row>
       <Col className="text-center">
-        {/* {hasPermissionChangeProfile && (
+        {hasPermissionChangePermission && (
           <Link
-            href={`/accessibility/profiles/edit/${permission.id_profile}`}
+            href={`/accessibility/permissions/edit/${permission.id_permission}`}
             className="btn btn-link float-end"
-            title="Editar perfil"
+            title="Editar permiso"
           >
             <FaRegEdit />
           </Link>
-        )} */}
+        )}
         {hasPermissionViewPermissions && (
           <Link
             href={`/accessibility/permissions/list`}

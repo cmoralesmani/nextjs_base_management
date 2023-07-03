@@ -198,5 +198,15 @@
     "MODIFIED_IN": "NINGUNO",
     "ID_PERMISSION": "see_single_permission",
     "DE_PERMISSION": "Puede ver permiso individual"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "alter_permission",
+    "DE_PERMISSION": "Puede editar permiso"
   }
 ]
