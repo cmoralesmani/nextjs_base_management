@@ -6,7 +6,7 @@ import { themes } from "src/utilities/themes/types.d";
  * Obtiene el tema utilizado
  */
 export function useTheme(data) {
-  const theme = themes["dark"];
+  const theme = themes["light"];
 
   const menuItemStyles = {
     icon: {
@@ -24,7 +24,10 @@ export function useTheme(data) {
       },
     },
     SubMenuExpandIcon: {
-      color: "var(--gray)",
+      color: theme.subMenuExpandIcon.color,
+      [`&.${menuClasses.active}`]: {
+        color: theme.subMenuExpandIcon.active.color,
+      },
     },
     subMenuContent: ({ level }) => ({
       backgroundColor: level === 0 ? theme.menu.menuContent : "transparent",
@@ -33,7 +36,6 @@ export function useTheme(data) {
       [`&.${menuClasses.active}`]: {
         backgroundColor: theme.menu.active.backgroundColor,
         color: theme.menu.active.color,
-        fontWeight: 600,
       },
       [`&.${menuClasses.disabled}`]: {
         color: theme.menu.disabled.color,

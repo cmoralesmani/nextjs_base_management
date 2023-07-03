@@ -1,5 +1,3 @@
-// src/helpers/api/util.js
-
 import { Parser } from "json2csv";
 import fs from "fs";
 

@@ -1,5 +1,3 @@
-// src/api/helpers/auth/index.js
-
 import jwt from "jsonwebtoken";
 import getConfig from "next/config";
 
@@ -42,7 +40,7 @@ export async function tokenRefresh(refreshtoken, res) {
         refresh: refreshToken,
       };
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 }

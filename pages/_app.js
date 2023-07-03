@@ -1,23 +1,24 @@
-// pages/_app.js
-
 import { Provider } from "react-redux";
 
-import { ToastCustom } from "src/components/miscellaneous/toast";
+import { ToastCustom } from "src/components/miscellaneous";
 import { SiteLayout } from "src/layouts";
 import { wrapper } from "src/redux/store";
 
-import "../styles/App.scss";
+import "styles/App.scss";
 
 function MyApp({ Component, pageProps }) {
   const { store, props } = wrapper.useWrappedStore(pageProps);
+  const { _pageProps } = props;
 
   return (
-    <Provider store={store}>
-      <SiteLayout>
-        <Component {...props} />
-        <ToastCustom />
-      </SiteLayout>
-    </Provider>
+    <>
+      <Provider store={store}>
+        <SiteLayout>
+          <Component {..._pageProps} />
+        </SiteLayout>
+      </Provider>
+      <ToastCustom />
+    </>
   );
 }
 

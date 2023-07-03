@@ -1,5 +1,3 @@
-// src/layouts/forms/panel/PanelFormLayout.jsx
-
 import { Col, Container, Row } from "react-bootstrap";
 
 export function PanelFormLayout({ children }) {

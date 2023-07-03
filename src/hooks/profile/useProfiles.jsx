@@ -1,16 +1,39 @@
-// src/hooks/profile/useProfiles.js
+import PropTypes from "prop-types";
 
-import { profileService } from "src/services";
+import { useDataList } from "src/hooks/resources";
+import { profileService, toastService } from "src/services";
 
-import { useDataList } from "../useDataList";
-
-export function useProfiles() {
+export function useProfiles({ loadInitialData = true, controllerRequestAPI }) {
   const {
     data: profiles,
+    setData: setProfiles,
     isLoading,
     error,
     loadDataCallback: loadProfilesCallback,
-  } = useDataList({ sourceDataCallback: profileService.getProfiles });
+  } = useDataList({
+    loadInitialData: loadInitialData,
+    sourceDataCallback: profileService.getProfiles,
+    controllerRequestAPI: controllerRequestAPI,
+  });
 
-  return { profiles, isLoading, error, loadProfilesCallback };
+  function deleteProfileCallback(id) {
+    return profileService.delete(id).then(() => {
+      const timer = setTimeout(() => {
+        setProfiles((profiles) => profiles.filter((x) => x.id_profile !== id));
+      });
+
+      toastService.success("Se eliminó correctamente el perfil");
+      return () => {
+        clearTimeout(timer);
+      };
+    });
+  }
+
+  return {
+    profiles,
+    isLoading,
+    error,
+    loadProfilesCallback,
+    deleteProfileCallback,
+  };
 }

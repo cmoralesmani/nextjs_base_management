@@ -17,8 +17,8 @@ const elementsSavedInStorage = getElementsSavedInStorage();
 authSubject.setValue(elementsSavedInStorage);
 
 export const AUTH_API_URLS = {
-  CREATE_TOKEN: `/api/accounts/authenticate/`,
-  REFRESH_TOKEN: `/api/accounts/refresh/`,
+  CREATE_TOKEN: `/api/accessibility/users/authenticate/`,
+  REFRESH_TOKEN: `/api/accessibility/users/refresh/`,
 };
 
 export const authService = {

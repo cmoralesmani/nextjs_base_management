@@ -1,3 +1,2 @@
-// src/components/login/index.js
-
+export * from "./FormLogin";
 export * from "./Login";

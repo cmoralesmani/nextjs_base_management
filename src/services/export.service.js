@@ -1,5 +1,3 @@
-// src/services/export.service.js
-
 import { fetchWrapper } from "src/utilities";
 
 const baseUrl = `/api`;

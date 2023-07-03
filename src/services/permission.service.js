@@ -1,15 +1,23 @@
-// src/services/permission.service.js
-
 import { fetchWrapper } from "src/utilities";
 
-const baseUrl = `/api/permission`;
+const baseUrl = `/api/accessibility/permissions`;
 
 export const permissionService = {
   getPermissions,
+  getById,
 };
 
-function getPermissions({ search }) {
+async function getPermissions({ filters = {}, options = {} }) {
   return fetchWrapper
-    .get(`${baseUrl}?search=${search ? search : ""}`)
+    .get(
+      `${baseUrl}?filters=${encodeURIComponent(JSON.stringify(filters))}`,
+      options
+    )
+    .then((response) => response.data);
+}
+
+async function getById(id) {
+  return fetchWrapper
+    .get(`${baseUrl}/details/${id}`)
     .then((response) => response.data);
 }

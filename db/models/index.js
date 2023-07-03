@@ -1,5 +1,3 @@
-// db/models/index.js
-
 require("dotenv").config();
 import getConfig from "next/config";
 const { Sequelize, DataTypes } = require("sequelize");

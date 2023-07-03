@@ -1,12 +1,10 @@
-// src/hooks/user/useUser.jsx
-
 import { useEffect, useState } from "react";
 
 import { userService, toastService } from "src/services";
 
-import { useIsMounted } from "..";
+import { useIsMounted } from "src/hooks/resources";
 
-export function useUser({ id_user }) {
+export function useUser({ id, controllerRequestAPI }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
@@ -28,12 +26,17 @@ export function useUser({ id_user }) {
 
   useEffect(() => {
     setIsLoading(true);
-    userService
-      .getUserById(id_user)
-      .then((response) => isMounted() && setUser(response))
-      .catch((error) => isMounted() && setError(error))
-      .finally(() => isMounted() && setIsLoading(false));
-  }, [isMounted, id_user]);
+    if (!!id) {
+      const options = {
+        signal: controllerRequestAPI?.signal,
+      };
+      userService
+        .getUserById(id, options)
+        .then((response) => isMounted() && setUser(response))
+        .catch((error) => isMounted() && setError(error))
+        .finally(() => isMounted() && setIsLoading(false));
+    }
+  }, [id]);
 
   return { user, isLoading, error };
 }

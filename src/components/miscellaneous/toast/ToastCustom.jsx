@@ -1,5 +1,3 @@
-// src/components/miscellaneous/toast/ToastCustom.jsx
-
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";

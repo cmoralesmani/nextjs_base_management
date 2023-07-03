@@ -1,5 +1,3 @@
-// src/redux/store.js
-
 import { createWrapper } from "next-redux-wrapper";
 
 const { configureStore } = require("@reduxjs/toolkit");

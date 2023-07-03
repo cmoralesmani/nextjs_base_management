@@ -1,5 +1,3 @@
-// src/components/miscellaneous/lotties/LottieLoading.jsx
-
 import Lottie from "lottie-react";
 import React from "react";
 

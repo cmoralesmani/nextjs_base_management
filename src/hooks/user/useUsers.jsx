@@ -1,16 +1,40 @@
-// src/hooks/user/useUsers.jsx
+import PropTypes from "prop-types";
 
-import { userService } from "src/services";
+import { useDataList } from "src/hooks/resources";
+import { userService, toastService } from "src/services";
 
-import { useDataList } from "../useDataList";
-
-export function useUsers() {
+function useUsers({ loadInitialData, controllerRequestAPI }) {
   const {
     data: users,
+    setData: setUsers,
     isLoading,
     error,
     loadDataCallback: loadUsersCallback,
-  } = useDataList({ sourceDataCallback: userService.getUsers });
+  } = useDataList({
+    loadInitialData: loadInitialData,
+    sourceDataCallback: userService.getUsers,
+    controllerRequestAPI: controllerRequestAPI,
+  });
 
-  return { users, isLoading, error, loadUsersCallback };
+  function deleteUserCallback(id) {
+    return userService.delete(id).then(() => {
+      const timer = setTimeout(() => {
+        setUsers((users) => users.filter((x) => x.id_user !== id));
+      });
+      toastService.success("Se eliminó correctamente el usuario");
+      return () => {
+        clearTimeout(timer);
+      };
+    });
+  }
+
+  return {
+    users,
+    isLoading,
+    error,
+    loadUsersCallback,
+    deleteUserCallback,
+  };
 }
+
+export { useUsers };

@@ -1,5 +1,3 @@
-// src/layouts/SiteLayout/HeadSEO.jsx
-
 import React from "react";
 import Head from "next/head";
 

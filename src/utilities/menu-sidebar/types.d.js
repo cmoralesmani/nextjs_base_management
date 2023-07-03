@@ -1,5 +1,3 @@
-// src/utilites/menu-sidebar/types.d.js
-
 /**
  * Authentication configuration
  */

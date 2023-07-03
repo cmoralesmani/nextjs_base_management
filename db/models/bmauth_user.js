@@ -1,5 +1,3 @@
-// db/models/bmauth_user.js
-
 var bcrypt = require("bcryptjs");
 const moment = require("moment");
 const { Model } = require("sequelize");

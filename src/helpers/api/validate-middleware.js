@@ -1,5 +1,3 @@
-// src/helpers/api/validate-middleware.js
-
 export { validateMiddleware };
 
 function validateMiddleware(validations, validationResult) {

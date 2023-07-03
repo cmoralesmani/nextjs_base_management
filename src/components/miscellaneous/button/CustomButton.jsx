@@ -1,5 +1,3 @@
-// src/components/miscellaneous/button/CustomButton.jsx
-
 import { Button } from "react-bootstrap";
 
 export { CustomButton };

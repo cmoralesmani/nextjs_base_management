@@ -1,5 +1,3 @@
-// src/helpers/api/error-handler.js
-
 const logger = require("src/services/logger.service");
 
 export { errorHandler };

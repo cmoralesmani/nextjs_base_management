@@ -1,29 +1,30 @@
-// src/services/parameters.service.js
-
 import { fetchWrapper } from "src/utilities";
 
-const baseUrl = `/api/settings/parameters`;
+const baseUrl = `/api/maintenance/parameters`;
 
 export const parametersService = {
   getById,
-  updateParameters,
   getParameters,
+  update,
 };
 
-function getById(id_parameter) {
+async function getById(id, options) {
   return fetchWrapper
-    .get(`${baseUrl}/details/${id_parameter}`)
+    .get(`${baseUrl}/details/${id}`, options)
     .then((response) => response.data);
 }
 
-function updateParameters(id_parameter, params) {
+async function getParameters({ filters = {}, options = {} }) {
   return fetchWrapper
-    .put(`${baseUrl}/edit/${id_parameter}`, params)
-    .then((response) => response.data);
+    .get(
+      `${baseUrl}?filters=${encodeURIComponent(JSON.stringify(filters))}`,
+      options
+    )
+    .then((response) => response?.data || []);
 }
 
-function getParameters(filters = {}) {
+async function update(id, params) {
   return fetchWrapper
-    .get(`${baseUrl}?filters=${encodeURIComponent(JSON.stringify(filters))}`)
+    .put(`${baseUrl}/edit/${id}`, params)
     .then((response) => response.data);
 }

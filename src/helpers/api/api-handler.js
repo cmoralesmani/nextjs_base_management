@@ -1,5 +1,3 @@
-// src/helpers/api/api-handler.js
-
 const pinoHttp = require("pino-http");
 
 import { verifyToken } from "src/api/helpers/auth";

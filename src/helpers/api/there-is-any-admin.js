@@ -1,5 +1,3 @@
-// src/helpers/api/there-is-any-admin.js
-
 const db = require("@db/models/index");
 
 export { thereIsAnyAdmin };

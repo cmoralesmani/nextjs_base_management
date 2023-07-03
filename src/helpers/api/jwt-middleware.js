@@ -1,5 +1,3 @@
-// src/helpers/api/jwt-middleware.js
-
 import getConfig from "next/config";
 
 const expressJwt = require("express-jwt");
@@ -19,8 +17,8 @@ function jwtMiddleware(req, res) {
     .unless({
       path: [
         // public routes that don't require authentication
-        `/api/accounts/authenticate`,
-        `/api/accounts/refresh`,
+        `/api/accessibility/users/authenticate`,
+        `/api/accessibility/users/refresh`,
       ],
     });
 

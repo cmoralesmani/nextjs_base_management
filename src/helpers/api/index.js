@@ -1,5 +1,3 @@
-// src/helpers/api/index.js
-
 export * from "./api-handler";
 export * from "./error-handler";
 export * from "./init-middleware";

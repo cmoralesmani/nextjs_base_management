@@ -1,57 +1,58 @@
-// src/services/user.service.js
-
 import { fetchWrapper } from "src/utilities";
 
-const baseUrl = `/api/accounts`;
+const baseUrl = `/api/accessibility/users`;
 
 export const userService = {
   getUserByUsername,
   getUserById,
   getUsers,
-  register,
+  create,
   update,
   delete: _delete,
   changePassword,
 };
 
-function getUserByUsername(username) {
+async function getUserByUsername(username) {
   return fetchWrapper
     .get(`${baseUrl}/details/by_username/${username}/`)
     .then((response) => response.data);
 }
 
-function getUserById(id_user) {
+async function getUserById(id, options) {
   return fetchWrapper
-    .get(`${baseUrl}/details/by_id/${id_user}/`)
+    .get(`${baseUrl}/details/by_id/${id}/`, options)
     .then((response) => response.data);
 }
 
-async function getUsers(filters = {}) {
+async function getUsers({ filters = {}, options = {} }) {
   return fetchWrapper
-    .get(`${baseUrl}?filters=${encodeURIComponent(JSON.stringify(filters))}`)
-    .then((response) => response.data);
+    .get(
+      `${baseUrl}?filters=${encodeURIComponent(JSON.stringify(filters))}`,
+      options
+    )
+    .then((response) => response?.data || []);
 }
 
-function register(user) {
+async function create(user) {
   return fetchWrapper
     .post(`${baseUrl}/register`, user)
     .then((response) => response.data);
 }
 
-function update(id_user, params) {
+async function update(id, params) {
   return fetchWrapper
-    .put(`${baseUrl}/edit/${id_user}`, params)
+    .put(`${baseUrl}/edit/${id}`, params)
     .then((response) => response.data);
 }
 
-function _delete(id_user) {
+async function _delete(id) {
   return fetchWrapper
-    .delete(`${baseUrl}/delete/${id_user}`)
+    .delete(`${baseUrl}/delete/${id}`)
     .then((response) => response.data);
 }
 
-function changePassword(data) {
+async function changePassword(id, data) {
   return fetchWrapper
-    .post(`${baseUrl}/change-password/${data.id_user}`, data)
+    .post(`${baseUrl}/change-password/${id}`, data)
     .then((response) => response.data);
 }

@@ -1,5 +1,3 @@
-// src/components/search/Search/SearchForm.jsx
-
 import { Form, InputGroup, FormControl } from "react-bootstrap";
 import { FaTimes, FaSearch } from "react-icons/fa";
 

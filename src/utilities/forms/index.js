@@ -1,3 +1,2 @@
-// src/utilites/forms/index.js
-
 export * from "./forms";
+export * from "./manage_errors";

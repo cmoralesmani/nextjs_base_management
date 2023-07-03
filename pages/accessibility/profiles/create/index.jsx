@@ -1,16 +1,14 @@
-// pages/accessibility/profiles/create/index.jsx
-
-import React from "react";
-
+import { useEffect } from "react";
+import { ProfileAddEdit } from "src/components/accessibility/profiles";
 import { PageLayout } from "src/layouts";
-import { AddEditProfile } from "src/components/profiles";
 
-export default CreateProfile;
+export default function CreateProfilePage() {
+  const controllerRequestAPI = new AbortController();
+  useEffect(() => () => controllerRequestAPI.abort(), []);
 
-function CreateProfile() {
   return (
-    <PageLayout titlePage="Nuevo perfil" codenamePermission="create_profile">
-      <AddEditProfile />
+    <PageLayout codenamePermission="create_profile">
+      <ProfileAddEdit controllerRequestAPI={controllerRequestAPI} />
     </PageLayout>
   );
 }

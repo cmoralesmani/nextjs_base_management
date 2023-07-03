@@ -1,5 +1,3 @@
-// src/helpers/api/has-permissions-to.js
-
 const { Op } = require("sequelize");
 
 const logger = require("src/services/logger.service");

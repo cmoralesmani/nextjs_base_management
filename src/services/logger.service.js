@@ -1,5 +1,3 @@
-// src/services/logger.service.js
-
 require("dotenv").config();
 var pinoms = require("pino-multi-stream");
 const pretty = require("pino-pretty");

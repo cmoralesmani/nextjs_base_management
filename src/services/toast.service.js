@@ -1,5 +1,3 @@
-// src/services/toast.service.js
-
 import { Subject } from "rxjs";
 import { filter } from "rxjs/operators";
 

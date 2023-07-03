@@ -1,5 +1,3 @@
-// db/config/config.js
-
 require("dotenv").config();
 
 const url_db = process.env.DB_URL.replace("\\$", "$");

@@ -1,5 +1,3 @@
-// src/layouts/FormAddEditLayout/FormAddEditLayout.jsx
-
 import Link from "next/link";
 import PropTypes from "prop-types";
 import { Card, Col, Container, Row } from "react-bootstrap";

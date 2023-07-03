@@ -1,22 +1,48 @@
 export const themes = {
   dark: {
     sidebar: {
-      backgroundColor: "var(--primary)",
-      color: "var(--white)",
+      backgroundColor: "var(--white)",
+      // color: "var(--white)",
     },
     menu: {
-      menuContent: "var(--primary)",
-      icon: "var(--white)",
+      // menuContent: "var(--blue)",
+      // icon: "var(--white)",
       active: {
-        backgroundColor: "var(--blue-600)",
-        color: "var(--yellow-100)",
+        // backgroundColor: "var(--blue-secondary)",
+        color: "var(--blue)",
+        fontWeight: "bold !important",
       },
       hover: {
-        backgroundColor: "var(--gray-light-transparent)",
-        color: "var(--gray-300)",
+        // backgroundColor: "var(--gray-light-transparent)",
+        // color: "var(--gray-light)",
       },
       disabled: {
-        color: "var(--gray-900)",
+        color: "var(--gray-dark)",
+      },
+    },
+  },
+  light: {
+    sidebar: {
+      backgroundColor: "var(--white)",
+    },
+    menu: {
+      menuContent: "var(--gray-light)",
+      active: {
+        backgroundColor: "var(--blue)",
+        color: "var(--white)",
+      },
+      hover: {
+        // backgroundColor: "var(--gray-light-transparent)",
+        // color: "var(--gray-light)",
+      },
+      disabled: {
+        color: "var(--gray-dark)",
+      },
+    },
+    subMenuExpandIcon: {
+      color: "var(--blue)",
+      active: {
+        color: "var(--white)",
       },
     },
   },

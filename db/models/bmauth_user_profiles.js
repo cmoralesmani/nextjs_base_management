@@ -1,5 +1,3 @@
-// db/models/bmauth_user_profiles.js
-
 const moment = require("moment");
 const { Model } = require("sequelize");
 

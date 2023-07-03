@@ -178,5 +178,25 @@
     "MODIFIED_IN": "NINGUNO",
     "ID_PERMISSION": "see_permissions",
     "DE_PERMISSION": "Puede ver permisos"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "export_permissions",
+    "DE_PERMISSION": "Puede exportar permisos"
+  },
+  {
+    "CREATED_AT": "2021-10-01 00:00:00",
+    "CREATED_BY": "NINGUNO",
+    "CREATED_IN": "NINGUNO",
+    "MODIFIED_AT": "2021-10-01 00:00:00",
+    "MODIFIED_BY": "NINGUNO",
+    "MODIFIED_IN": "NINGUNO",
+    "ID_PERMISSION": "see_single_permission",
+    "DE_PERMISSION": "Puede ver permiso individual"
   }
 ]

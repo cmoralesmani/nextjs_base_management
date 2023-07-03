@@ -1,16 +1,25 @@
-// src/hooks/profile/useProfiles.js
-
+import { useDataList } from "src/hooks/resources";
 import { parametersService } from "src/services";
 
-import { useDataList } from "../useDataList";
-
-export function useParameters() {
+export function useParameters({
+  loadInitialData = true,
+  controllerRequestAPI,
+}) {
   const {
     data: parameters,
     isLoading,
     error,
     loadDataCallback: loadParametersCallback,
-  } = useDataList({ sourceDataCallback: parametersService.getParameters });
+  } = useDataList({
+    loadInitialData: loadInitialData,
+    sourceDataCallback: parametersService.getParameters,
+    controllerRequestAPI: controllerRequestAPI,
+  });
 
-  return { parameters, isLoading, error, loadParametersCallback };
+  return {
+    parameters,
+    isLoading,
+    error,
+    loadParametersCallback,
+  };
 }

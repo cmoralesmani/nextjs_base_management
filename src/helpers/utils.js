@@ -1,5 +1,3 @@
-// src/helpers/utils.js
-
 export { hasPermission };
 
 /**

@@ -1,39 +1,31 @@
-// src/hooks/user/useUser.jsx
-
 import { useEffect, useState } from "react";
 
-import { profileService, toastService } from "src/services";
+import { useError } from "src/hooks/error";
+import { useIsMounted } from "src/hooks/resources";
+import { profileService } from "src/services";
 
-import { useIsMounted } from "..";
-
-export function useProfile({ id_profile }) {
+export function useProfile({ id, controllerRequestAPI }) {
   const [profile, setProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useError();
 
   const isMounted = useIsMounted();
 
   useEffect(() => {
-    if (error) {
-      if (error.message == "Forbidden") {
-        toastService.info(
-          "No se puede cargar el detalle del perfil por falta de permiso",
-          { keepAfterRouteChange: true }
-        );
-      } else {
-        toastService.error(error?.message, { keepAfterRouteChange: true });
-      }
-    }
-  }, [error]);
-
-  useEffect(() => {
     setIsLoading(true);
-    profileService
-      .getProfileById(id_profile)
-      .then((response) => isMounted() && setProfile(response))
-      .catch((error) => isMounted() && setError(error))
-      .finally(() => isMounted() && setIsLoading(false));
-  }, [isMounted, id_profile]);
+
+    if (!!id) {
+      const options = {
+        signal: controllerRequestAPI?.signal,
+      };
+
+      profileService
+        .getProfileById(id, options)
+        .then((response) => isMounted() && setProfile(response))
+        .catch((error) => isMounted() && setError(error))
+        .finally(() => isMounted() && setIsLoading(false));
+    }
+  }, [isMounted, id]);
 
   return { profile, isLoading, error };
 }

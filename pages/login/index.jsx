@@ -1,5 +1,3 @@
-// pages/login/index.jsx
-
 import React from "react";
 
 import { Login } from "src/components/login";

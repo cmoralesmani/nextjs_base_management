@@ -1,43 +1,44 @@
-// src/services/profile.service.js
-
 import { fetchWrapper } from "src/utilities";
 
-const baseUrl = `/api/profiles`;
+const baseUrl = `/api/accessibility/profiles`;
 
 export const profileService = {
   getProfileById,
   getProfiles,
-  createProfile,
-  updateProfile,
-  deleteProfile,
+  create,
+  update,
+  delete: _delete,
 };
 
-function getProfileById(id_profile) {
+async function getProfileById(id, options) {
   return fetchWrapper
-    .get(`${baseUrl}/details/${id_profile}`)
+    .get(`${baseUrl}/details/${id}`, options)
     .then((response) => response.data);
 }
 
-function getProfiles(filters = {}) {
+async function getProfiles({ filters = {}, options = {} }) {
   return fetchWrapper
-    .get(`${baseUrl}?filters=${encodeURIComponent(JSON.stringify(filters))}`)
-    .then((response) => response.data);
+    .get(
+      `${baseUrl}?filters=${encodeURIComponent(JSON.stringify(filters))}`,
+      options
+    )
+    .then((response) => response?.data || []);
 }
 
-function createProfile(profile) {
+async function create(profile) {
   return fetchWrapper
     .post(`${baseUrl}/create`, profile)
     .then((response) => response.data);
 }
 
-function updateProfile(id_profile, params) {
+async function update(id, params) {
   return fetchWrapper
-    .put(`${baseUrl}/edit/${id_profile}`, params)
+    .put(`${baseUrl}/edit/${id}`, params)
     .then((response) => response.data);
 }
 
-function deleteProfile(id_profile) {
+async function _delete(id) {
   return fetchWrapper
-    .delete(`${baseUrl}/delete/${id_profile}`)
+    .delete(`${baseUrl}/delete/${id}`)
     .then((response) => response.data);
 }

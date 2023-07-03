@@ -1,4 +1,5 @@
-// src/components/miscellaneous/index.js
-
-export * from "./button";
-export * from "./loader";
+export * from "./Button";
+export * from "./Loader";
+export * from "./Toast";
+export * from "./Title";
+export * from "./NickProfile";

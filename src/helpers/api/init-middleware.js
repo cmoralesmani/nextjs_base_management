@@ -1,5 +1,3 @@
-// src/helpers/api/init-middleware.js
-
 // https://dev.to/meddlesome/nextjs-apis-validator-with-middleware-3njl
 export { initMiddleware };
 

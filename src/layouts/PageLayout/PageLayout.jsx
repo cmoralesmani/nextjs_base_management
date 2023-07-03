@@ -1,93 +1,48 @@
-// src/layouts/PageLayout/PageLayout.jsx
-
-import { memo, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import Error from "next/error";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 
-import { LottieLoading } from "src/components/miscellaneous/lotties";
-import { TitlePage } from "src/components/title-page";
-import { useIsMounted } from "src/hooks";
 import { useHasPermissionStatus } from "src/hooks/auth";
-import { titleService } from "src/services";
 
-import { selectUserState } from "src/redux/slices/user-slice";
+export { PageLayout };
 
-const STATUS_PAGE = {
-  WAITING: { text: "WAITING", isLoading: true },
-  OK: { text: "OK", isLoading: false },
-  NOT_FOUND: { text: "NOT_FOUND", isLoading: false },
-  WITHOUT_PERMISSION: { text: "WITHOUT_PERMISSION", isLoading: false },
+PageLayout.propTypes = {
+  /**
+   * Codigo del permiso
+   */
+  codenamePermission: PropTypes.string.isRequired,
+  /**
+   * Callback a ejecutarse despues de obtener el indicador para saber si tiene permiso o no.
+   * El callback debe devolver un booleano que indica el permiso que se establecerá, obviando el resultante del código especificado.
+   */
+  callbackPosPermission: PropTypes.func,
 };
 
-export default memo(PageLayout);
-
-/**
- * callbackHasPermission se ejecuta en caso de que no se tenga el permiso correspondiente a codenamePermission.
- * Esto es porque se puede querer que tenga permiso mas concreto.
- */
-function PageLayout({
-  children,
-  codenamePermission,
-  titlePage = "",
-  isLoading,
-  callbackHasPermission,
-}) {
-  // const [isPageLoading, setIsPageLoading] = useState(true);
-  const [pageStatus, setPageStatus] = useState(STATUS_PAGE.WAITING);
-
-  const isMounted = useIsMounted();
-  const hasPermission = useHasPermissionStatus({ codenamePermission });
-  const userState = useSelector(selectUserState);
+function PageLayout({ children, codenamePermission, callbackPosPermission }) {
+  const [hasPermission, setHasPermission] = useState();
+  const _hasPermission = useHasPermissionStatus({ codenamePermission });
 
   useEffect(() => {
-    titleService.setTitle(titlePage);
-  }, [titlePage]);
-
-  useEffect(() => {
-    if (hasPermission != null) {
-      if (!isLoading) {
-        // El componente externo no esta cargando nada y tiene permiso
-        setPageStatus(
-          !!hasPermission ? STATUS_PAGE.OK : STATUS_PAGE.WITHOUT_PERMISSION
-        );
+    if (_hasPermission != null) {
+      if (!callbackPosPermission) {
+        // No especificaron callback a ejecutarse
+        setHasPermission(_hasPermission);
+      } else {
+        // Especificaron callback para ejecutarse
+        const _posHasPermission = callbackPosPermission({
+          hasPermission: _hasPermission,
+        });
+        if (_posHasPermission != undefined && _posHasPermission != null)
+          setHasPermission(_posHasPermission);
+        else {
+          console.error("El callback no devolvió el estado del permiso");
+          setHasPermission(_hasPermission);
+        }
       }
     }
-  }, [isLoading, hasPermission]);
+  }, [_hasPermission]);
 
-  useEffect(() => {
-    if (
-      isMounted() && // Esta montado
-      !!callbackHasPermission && // Hay un funcion callback que indica si tiene o no tiene permiso
-      !!userState && // Hay datos del usuario en cuestion que inicio sesion
-      pageStatus !== STATUS_PAGE.WAITING && // No se esta esperando (Es decir, ya se establecio un estado final para la pagina)
-      !hasPermission // No tiene el permiso convencional para acceder a la página
-    ) {
-      const { id_user } = userState;
-      if (!id_user) console.warn("No id_user defined for user on page");
-      callbackHasPermission({ id_user })
-        .then(
-          (hasSpecialPermission) =>
-            isMounted() &&
-            setPageStatus(
-              hasSpecialPermission
-                ? STATUS_PAGE.OK
-                : STATUS_PAGE.WITHOUT_PERMISSION
-            )
-        )
-        .catch(() => isMounted() && setPageStatus(STATUS_PAGE.NOT_FOUND));
-    }
-  }, [isMounted, userState, pageStatus, hasPermission, callbackHasPermission]);
+  if (hasPermission === undefined) return null;
 
-  return pageStatus?.isLoading ? (
-    <LottieLoading />
-  ) : pageStatus === STATUS_PAGE.WITHOUT_PERMISSION ? (
-    <Error statusCode={403} />
-  ) : pageStatus === STATUS_PAGE.NOT_FOUND ? (
-    <Error statusCode={404} />
-  ) : (
-    <>
-      <TitlePage />
-      {children}
-    </>
-  );
+  return !!hasPermission ? children : <Error statusCode={403} />;
 }
