@@ -20,7 +20,10 @@ export default function EditPermissionPage() {
       {!!isLoading ? (
         <LottieLoading />
       ) : (
-        <PermissionAddEdit permission={permission} />
+        <PermissionAddEdit
+          permission={permission}
+          controllerRequestAPI={controllerRequestAPI}
+        />
       )}
     </PageLayout>
   );

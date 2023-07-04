@@ -4,7 +4,7 @@ import { usePermissions } from "src/hooks/permission";
 
 export function PermissionsField({
   id,
-  label = "Permisos",
+  label = "Permisos individuales",
   text,
   controllerRequestAPI,
 }) {

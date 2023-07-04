@@ -16,10 +16,19 @@ import { useEffect } from "react";
 
 export { PermissionAddEdit };
 
-function PermissionAddEdit({ permission }) {
+function PermissionAddEdit({ permission, controllerRequestAPI }) {
   const isAddMode = !permission;
   const router = useRouter();
   const id = !!permission ? permission.id_permission : undefined;
+
+  useEffect(
+    () => () => {
+      if (!isAddMode) {
+        controllerRequestAPI.abort();
+      }
+    },
+    []
+  );
 
   const hasPermissionViewPermission = useHasPermissionStatus({
     codenamePermission: "see_single_permission",
@@ -124,7 +133,13 @@ function PermissionAddEdit({ permission }) {
           validateOnBlur={false}
         >
           {(props) => {
-            return <AddEditForm isAddMode={isAddMode} {...props} />;
+            return (
+              <AddEditForm
+                isAddMode={isAddMode}
+                controllerRequestAPI={controllerRequestAPI}
+                {...props}
+              />
+            );
           }}
         </Formik>
       </FormAddEditLayout>

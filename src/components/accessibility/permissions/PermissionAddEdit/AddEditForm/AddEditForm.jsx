@@ -8,6 +8,7 @@ import * as fields from "./fields";
 
 export function AddEditForm({
   isAddMode,
+  controllerRequestAPI,
   values,
   handleChange,
   handleSubmit,
@@ -36,6 +37,18 @@ export function AddEditForm({
           readOnly={!isAddMode}
         />
         <fields.NameField id="de_permission" />
+      </Row>
+      <Row>
+        <fields.ProfilesField
+          id="profiles_selected"
+          controllerRequestAPI={controllerRequestAPI}
+        />
+      </Row>
+      <Row>
+        <fields.UsersField
+          id="users_selected"
+          controllerRequestAPI={controllerRequestAPI}
+        />
       </Row>
       <Row>
         <Col>

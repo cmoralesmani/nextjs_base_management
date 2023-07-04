@@ -83,6 +83,7 @@ export function Body({ user }) {
       <sections.TimestampSection user={user} />
       <sections.ProfilesSection profiles={user.profiles} />
       <sections.PermissionsSection permissions={user.permissions} />
+      <sections.PermissionsTotalSection permissions={user.user_permissions} />
       <sections.ChangePasswordSection user={user} />
     </>
   );

@@ -156,6 +156,7 @@ function handler(req, res) {
     const permissionsJSON = JSON.parse(JSON.stringify(permissionsDBFlat));
     const permissionsAll = permissionsJSON.map((p) => ({
       codename: p.ID_PERMISSION,
+      de_permission: p.DE_PERMISSION,
     }));
     const permissionsUniqueOfUser = permissionsAll.filter((obj, index) => {
       return (

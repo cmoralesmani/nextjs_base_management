@@ -14,7 +14,7 @@ function CustomButton({
       {isSubmitting ? (
         <span className="spinner-border spinner-border-sm me-1"></span>
       ) : (
-        <>{icon}</>
+        <>{icon} </>
       )}
       {children}
     </Button>

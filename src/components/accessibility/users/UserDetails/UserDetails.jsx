@@ -8,6 +8,7 @@ import { Header } from "./Header";
 
 export function UserDetails({ user }) {
   if (!user) return null;
+  console.log(user);
   return (
     <>
       <Title text="Detalle del usuario" />

@@ -19,6 +19,7 @@ export { ProfileAddEdit };
 function ProfileAddEdit({ profile, controllerRequestAPI }) {
   const isAddMode = !profile;
   const router = useRouter();
+  const id = !!profile ? profile.id_profile : undefined;
 
   useEffect(
     () => () => {
@@ -54,7 +55,7 @@ function ProfileAddEdit({ profile, controllerRequestAPI }) {
     itemsTopRightComponents.push(
       <Link
         key="view_profile"
-        href={`/accessibility/profiles/details/${profile?.id_profile}`}
+        href={`/accessibility/profiles/details/${id}`}
         className="btn btn-link"
         title="Detalle del perfil"
       >
@@ -65,7 +66,7 @@ function ProfileAddEdit({ profile, controllerRequestAPI }) {
 
   const handleSubmitProfile = (values, formikHelpers) =>
     !isAddMode && !!profile // Se esta actualizando
-      ? updateProfile(profile.id_profile, values, formikHelpers)
+      ? updateProfile(id, values, formikHelpers)
       : createProfile(values, formikHelpers);
 
   function createProfile(values, formikHelpers) {

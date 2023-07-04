@@ -40,6 +40,8 @@ function handler(req, res) {
 
     const hasPermissions = await hasPermissionsTo(req.user.username, [
       "alter_permission",
+      "see_users",
+      "see_profiles",
     ]);
     // Tiene permiso para editar permiso?
     const hasPermissionToEditPermission = hasPermission(
@@ -51,6 +53,12 @@ function handler(req, res) {
         .status(403)
         .json({ message: "No tiene permiso para editar permiso" });
     }
+
+    const hasPermissionToShowUsers = hasPermission(hasPermissions, "see_users");
+    const hasPermissionToShowProfiles = hasPermission(
+      hasPermissions,
+      "see_profiles"
+    );
 
     // Verificacion de que haya especificado el permiso que quiere editar
     if (!id) {
@@ -86,6 +94,107 @@ function handler(req, res) {
       permission.MODIFIED_IN = "API_WEB_TP";
       permission.DE_PERMISSION = data.de_permission;
       await permission.save({ transaction });
+
+      if (hasPermissionToShowProfiles) {
+        await db.bmauth_profile_permissions.destroy({
+          where: {
+            PERMISSION_ID: permission.ID_PERMISSION,
+            PROFILE_ID: {
+              [Op.notIn]: data.profiles_selected,
+            },
+          },
+          transaction,
+        });
+
+        const upCurrent = JSON.parse(
+          JSON.stringify(
+            await db.bmauth_profile_permissions.findAll(
+              {
+                attributes: ["PROFILE_ID"],
+                where: {
+                  PERMISSION_ID: permission.ID_PERMISSION,
+                },
+              },
+              { transaction }
+            )
+          )
+        ).map((x) => {
+          return x.PROFILE_ID;
+        });
+
+        const filtered = data.profiles_selected.filter((x) => {
+          return !upCurrent.includes(x);
+        });
+
+        if (filtered.length) {
+          const list_profile_permissions = filtered.map((p) => ({
+            CREATED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+            CREATED_BY: req.user.username,
+            CREATED_IN: "API_WEB_TP",
+            MODIFIED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+            MODIFIED_BY: req.user.username,
+            MODIFIED_IN: "API_WEB_TP",
+            PERMISSION_ID: permission.ID_PERMISSION,
+            PROFILE_ID: p,
+          }));
+          await db.bmauth_profile_permissions.bulkCreate(
+            list_profile_permissions,
+            {
+              transaction,
+            }
+          );
+        }
+      }
+
+      if (hasPermissionToShowUsers) {
+        await db.bmauth_user_permissions.destroy({
+          where: {
+            PERMISSION_ID: permission.ID_PERMISSION,
+            USER_ID: {
+              [Op.notIn]: data.users_selected,
+            },
+          },
+          transaction,
+        });
+
+        const userPermissionCurrent = JSON.parse(
+          JSON.stringify(
+            await db.bmauth_user_permissions.findAll(
+              {
+                attributes: ["USER_ID"],
+                where: {
+                  PERMISSION_ID: permission.ID_PERMISSION,
+                },
+              },
+              {
+                transaction,
+              }
+            )
+          )
+        ).map((x) => {
+          return x.USER_ID;
+        });
+
+        const filtered = data.users_selected.filter((x) => {
+          return !userPermissionCurrent.includes(x);
+        });
+
+        if (filtered.length) {
+          const list_user_permission = filtered.map((u) => ({
+            CREATED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+            CREATED_BY: req.user.username,
+            CREATED_IN: "API_WEB_TP",
+            MODIFIED_AT: moment().format("YYYY-MM-DD HH:mm:ss"),
+            MODIFIED_BY: req.user.username,
+            MODIFIED_IN: "API_WEB_TP",
+            USER_ID: u,
+            PERMISSION_ID: permission.ID_PERMISSION,
+          }));
+          await db.bmauth_user_permissions.bulkCreate(list_user_permission, {
+            transaction,
+          });
+        }
+      }
 
       await transaction.commit();
       return res.status(200).json({
