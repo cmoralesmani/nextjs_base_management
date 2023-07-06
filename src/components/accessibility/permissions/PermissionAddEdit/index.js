@@ -1,1 +1,1 @@
-export * from "./PermissionAddEdit";
+export * from './PermissionAddEdit'

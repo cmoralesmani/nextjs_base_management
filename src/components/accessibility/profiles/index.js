@@ -1,3 +1,3 @@
-export * from "./ProfilesList";
-export * from "./ProfileDetails";
-export * from "./ProfileAddEdit";
+export * from './ProfileAddEdit'
+export * from './ProfileDetails'
+export * from './ProfilesList'

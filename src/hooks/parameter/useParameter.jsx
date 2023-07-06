@@ -1,35 +1,35 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
-import { parametersService, toastService } from "src/services";
+import { parametersService, toastService } from 'src/services'
 
-import { useIsMounted } from "src/hooks/resources";
+import { useIsMounted } from 'src/hooks/resources'
 
-export function useParameter({ id, controllerRequestAPI }) {
-  const [parameter, setParameter] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+export function useParameter ({ id, controllerRequestAPI }) {
+  const [parameter, setParameter] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState()
 
-  const isMounted = useIsMounted();
+  const isMounted = useIsMounted()
 
   useEffect(() => {
     if (error) {
-      toastService.error(error?.message, { keepAfterRouteChange: true });
+      toastService.error(error?.message, { keepAfterRouteChange: true })
     }
-  }, [error]);
+  }, [error])
 
   useEffect(() => {
-    setIsLoading(true);
-    if (!!id) {
+    setIsLoading(true)
+    if (id) {
       const options = {
-        signal: controllerRequestAPI?.signal,
-      };
+        signal: controllerRequestAPI?.signal
+      }
       parametersService
         .getById(id, options)
         .then((response) => isMounted() && setParameter(response))
         .catch((error) => isMounted() && setError(error))
-        .finally(() => isMounted() && setIsLoading(false));
+        .finally(() => isMounted() && setIsLoading(false))
     }
-  }, [isMounted, id]);
+  }, [isMounted, id])
 
-  return { parameter, isLoading, error };
+  return { parameter, isLoading, error }
 }

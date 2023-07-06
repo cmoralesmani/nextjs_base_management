@@ -1,14 +1,13 @@
-import { Col, Container, Row } from "react-bootstrap";
-import { FaUserTie } from "react-icons/fa";
+import { Col, Container, Row } from 'react-bootstrap'
+import { FaUserTie } from 'react-icons/fa'
 
-import { Title } from "src/components/miscellaneous";
+import { Title } from 'src/components/miscellaneous'
 
-import { Body } from "./Body";
-import { Header } from "./Header";
+import { Body } from './Body'
+import { Header } from './Header'
 
-export function UserDetails({ user }) {
-  if (!user) return null;
-  console.log(user);
+export function UserDetails ({ user }) {
+  if (!user) return null
   return (
     <>
       <Title text="Detalle del usuario" />
@@ -33,5 +32,5 @@ export function UserDetails({ user }) {
         </Row>
       </Container>
     </>
-  );
+  )
 }

@@ -1,42 +1,43 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
-import { userService, toastService } from "src/services";
+import { userService, toastService } from 'src/services'
 
-import { useIsMounted } from "src/hooks/resources";
+import { useIsMounted } from 'src/hooks/resources'
 
-export function useUser({ id, controllerRequestAPI }) {
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+export function useUser ({ id, controllerRequestAPI }) {
+  const [user, setUser] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState()
+  const signal = controllerRequestAPI?.signal
 
-  const isMounted = useIsMounted();
+  const isMounted = useIsMounted()
 
   useEffect(() => {
     if (error) {
-      if (error.message == "Forbidden") {
+      if (error.message === 'Forbidden') {
         toastService.info(
-          "No se puede cargar el detalle del usuario por falta de permiso",
+          'No se puede cargar el detalle del usuario por falta de permiso',
           { keepAfterRouteChange: true }
-        );
+        )
       } else {
-        toastService.error(error?.message, { keepAfterRouteChange: true });
+        toastService.error(error?.message, { keepAfterRouteChange: true })
       }
     }
-  }, [error]);
+  }, [error])
 
   useEffect(() => {
-    setIsLoading(true);
-    if (!!id) {
+    setIsLoading(true)
+    if (id) {
       const options = {
-        signal: controllerRequestAPI?.signal,
-      };
+        signal
+      }
       userService
         .getById(id, options)
         .then((response) => isMounted() && setUser(response))
         .catch((error) => isMounted() && setError(error))
-        .finally(() => isMounted() && setIsLoading(false));
+        .finally(() => isMounted() && setIsLoading(false))
     }
-  }, [id]);
+  }, [id])
 
-  return { user, isLoading, error };
+  return { user, isLoading, error }
 }

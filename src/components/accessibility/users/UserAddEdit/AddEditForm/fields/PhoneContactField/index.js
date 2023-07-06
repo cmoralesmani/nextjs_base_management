@@ -1,1 +1,1 @@
-export * from "./PhoneContactField";
+export * from './PhoneContactField'

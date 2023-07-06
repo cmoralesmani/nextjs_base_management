@@ -1,9 +1,9 @@
-import { Badge, Col, Container, Row } from "react-bootstrap";
-import { FaFileCsv } from "react-icons/fa";
+import { Badge, Col, Container, Row } from 'react-bootstrap'
+import { FaFileCsv } from 'react-icons/fa'
 
-import { ButtonDownload } from "src/components/buttons";
+import { ButtonDownload } from 'src/components/buttons'
 
-export function ActionButtons({ lengthInfo, urlDownload }) {
+export function ActionButtons ({ lengthInfo, urlDownload }) {
   return (
     <Container className="g-0 mb-3">
       <Row className="row-cols-auto justify-content-between">
@@ -26,5 +26,5 @@ export function ActionButtons({ lengthInfo, urlDownload }) {
         </Col>
       </Row>
     </Container>
-  );
+  )
 }

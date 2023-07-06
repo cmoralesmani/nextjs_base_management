@@ -1,39 +1,39 @@
-import PropTypes from "prop-types";
-import { Alert, Table } from "react-bootstrap";
-import { FaBan } from "react-icons/fa";
+import PropTypes from 'prop-types'
+import { Alert, Table } from 'react-bootstrap'
+import { FaBan } from 'react-icons/fa'
 
-import { Spinner } from "src/components/spinner";
-import { useHasPermissionStatus } from "src/hooks/auth";
+import { Spinner } from 'src/components/spinner'
+import { useHasPermissionStatus } from 'src/hooks/auth'
 
-import { Head } from "./Head";
-import { Body } from "./Body";
+import { Head } from './Head'
+import { Body } from './Body'
 
-import styles from "styles/TableFixedHeader.module.scss";
+import styles from 'styles/TableFixedHeader.module.scss'
 
-export { ListTable };
+export { ListTable }
 
 ListTable.propTypes = {
   users: PropTypes.array,
-  deleteUserCallback: PropTypes.func.isRequired,
-};
+  deleteUserCallback: PropTypes.func.isRequired
+}
 
-function ListTable({ users, deleteUserCallback }) {
+function ListTable ({ users, deleteUserCallback }) {
   const hasPermissionSeeUser = useHasPermissionStatus({
-    codenamePermission: "see_single_user",
-  });
+    codenamePermission: 'see_single_user'
+  })
   const hasPermissionEditUser = useHasPermissionStatus({
-    codenamePermission: "alter_user",
-  });
+    codenamePermission: 'alter_user'
+  })
   const hasPermissionDeleteUser = useHasPermissionStatus({
-    codenamePermission: "delete_user",
-  });
+    codenamePermission: 'delete_user'
+  })
 
   const hasActionButtons =
     (hasPermissionSeeUser ||
       hasPermissionEditUser ||
       hasPermissionDeleteUser) &&
     users &&
-    users.length;
+    users.length
 
   return (
     <>
@@ -55,5 +55,5 @@ function ListTable({ users, deleteUserCallback }) {
         </Alert>
       )}
     </>
-  );
+  )
 }

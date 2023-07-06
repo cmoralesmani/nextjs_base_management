@@ -1,3 +1,3 @@
-export * from "./ParametersList";
-export * from "./ParametersDetails";
-export * from "./ParameterAddEdit";
+export * from './ParameterAddEdit'
+export * from './ParametersDetails'
+export * from './ParametersList'

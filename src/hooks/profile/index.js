@@ -1,2 +1,2 @@
-export * from "./useProfile";
-export * from "./useProfiles";
+export * from './useProfile'
+export * from './useProfiles'

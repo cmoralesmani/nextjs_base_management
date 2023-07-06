@@ -1,2 +1,2 @@
-export * from "./ProfilesSection";
-export * from "./UsersSection";
+export * from './ProfilesSection'
+export * from './UsersSection'

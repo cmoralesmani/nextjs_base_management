@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
-function TableHead({ labels, hasActionButtons }) {
+function TableHead ({ labels, hasActionButtons }) {
   return (
     <thead className="table-secondary">
       <tr>
@@ -10,18 +10,18 @@ function TableHead({ labels, hasActionButtons }) {
         {!!hasActionButtons && <th></th>}
       </tr>
     </thead>
-  );
+  )
 }
 
 TableHead.propTypes = {
   // Lista de etiquetas para las columnas
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
   // Indicador para saber si lleva un campo especial para las acciones
-  hasActionButtons: PropTypes.bool.isRequired,
-};
+  hasActionButtons: PropTypes.bool.isRequired
+}
 
 TableHead.defaultProps = {
-  hasActionButtons: false,
-};
+  hasActionButtons: false
+}
 
-export { TableHead };
+export { TableHead }

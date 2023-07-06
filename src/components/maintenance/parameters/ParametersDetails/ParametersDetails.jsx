@@ -1,12 +1,12 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from 'react-bootstrap'
 
-import { Title } from "src/components/miscellaneous";
+import { Title } from 'src/components/miscellaneous'
 
-import { Header } from "./Header";
-import { Body } from "./Body";
+import { Header } from './Header'
+import { Body } from './Body'
 
-export function ParametersDetails({ parameter }) {
-  if (!parameter) return null;
+export function ParametersDetails ({ parameter }) {
+  if (!parameter) return null
   return (
     <>
       <Title text="Detalle del parametro" />
@@ -21,5 +21,5 @@ export function ParametersDetails({ parameter }) {
         </Row>
       </Container>
     </>
-  );
+  )
 }

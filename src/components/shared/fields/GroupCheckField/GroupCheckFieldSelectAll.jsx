@@ -1,11 +1,11 @@
-import { ButtonGroup, Container } from "react-bootstrap";
-import { FaRegCheckSquare, FaRegSquare } from "react-icons/fa";
+import { ButtonGroup, Container } from 'react-bootstrap'
+import { FaRegCheckSquare, FaRegSquare } from 'react-icons/fa'
 
-import { Button } from "src/components/miscellaneous";
+import { Button } from 'src/components/miscellaneous'
 
-export function GroupCheckFieldSelectAll({ allOptions, setValue }) {
-  const handleSelectAll = () => setValue(allOptions);
-  const handleUnselectAll = () => setValue([]);
+export function GroupCheckFieldSelectAll ({ allOptions, setValue }) {
+  const handleSelectAll = () => setValue(allOptions)
+  const handleUnselectAll = () => setValue([])
 
   return (
     <Container className="g-0 mb-3 d-flex justify-content-end">
@@ -26,5 +26,5 @@ export function GroupCheckFieldSelectAll({ allOptions, setValue }) {
         </Button>
       </ButtonGroup>
     </Container>
-  );
+  )
 }

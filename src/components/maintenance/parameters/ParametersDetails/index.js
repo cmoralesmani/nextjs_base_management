@@ -1,1 +1,1 @@
-export * from "./ParametersDetails";
+export * from './ParametersDetails'

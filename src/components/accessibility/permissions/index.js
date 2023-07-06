@@ -1,2 +1,3 @@
-export * from "./PermissionsList";
-export * from "./PermissionDetails";
+export * from './PermissionAddEdit'
+export * from './PermissionDetails'
+export * from './PermissionsList'

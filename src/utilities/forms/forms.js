@@ -1,3 +1,3 @@
-import { formSearchSchema } from "./form-search-schema";
+import { formSearchSchema } from './form-search-schema'
 
-export const utilitiesForms = { formSearchSchema };
+export const utilitiesForms = { formSearchSchema }

@@ -1,12 +1,12 @@
 const initialValues = (profile) =>
-  !!profile
+  profile
     ? { ...profile }
     : {
-        id_profile: "",
-        de_profile: "",
-        status_profile_id: "",
+        id_profile: '',
+        de_profile: '',
+        status_profile_id: '',
         users_selected: [],
-        permissions_selected: [],
-      };
+        permissions_selected: []
+      }
 
-export default initialValues;
+export default initialValues

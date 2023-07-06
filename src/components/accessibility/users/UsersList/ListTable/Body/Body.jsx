@@ -1,22 +1,21 @@
-import { Badge } from "react-bootstrap";
+import { Badge } from 'react-bootstrap'
 
-import { ButtonDeleteWithConfirm } from "src/components/buttons";
-import { ColumnData, ColumnLink } from "src/components/shared/columns";
-import { useHasPermissionStatus } from "src/hooks/auth";
+import { ButtonDeleteWithConfirm } from 'src/components/buttons'
+import { ColumnData, ColumnLink } from 'src/components/shared/columns'
+import { useHasPermissionStatus } from 'src/hooks/auth'
 
-import { ColumnActions } from "./ColumnActions";
-import { useEffect } from "react";
+import { ColumnActions } from './ColumnActions'
 
-export function Body({ users, hasActionButtons, deleteUserCallback }) {
+export function Body ({ users, hasActionButtons, deleteUserCallback }) {
   const hasPermissionDeleteUser = useHasPermissionStatus({
-    codenamePermission: "delete_user",
-  });
+    codenamePermission: 'delete_user'
+  })
 
   return (
     <tbody>
       {users &&
         users.map((user) => {
-          const dataRow = { ...user, id: user.id_user };
+          const dataRow = { ...user, id: user.id_user }
           return (
             <tr key={user.id_user}>
               <td>
@@ -29,7 +28,7 @@ export function Body({ users, hasActionButtons, deleteUserCallback }) {
                       >
                         {value}
                       </ColumnLink>
-                    );
+                    )
                   }}
                 </ColumnData>
               </td>
@@ -45,14 +44,14 @@ export function Body({ users, hasActionButtons, deleteUserCallback }) {
                     return (
                       <Badge
                         bg={
-                          dataRow.status_user_id == "ESCUS-ACTIV"
-                            ? "success"
-                            : "danger"
+                          dataRow.status_user_id === 'ESCUS-ACTIV'
+                            ? 'success'
+                            : 'danger'
                         }
                       >
                         {value}
                       </Badge>
-                    );
+                    )
                   }}
                 </ColumnData>
               </td>
@@ -63,15 +62,15 @@ export function Body({ users, hasActionButtons, deleteUserCallback }) {
                     <ButtonDeleteWithConfirm
                       message={`Esta seguro que desea eliminar el usuario ${dataRow.username}?`}
                       callbackDelete={() => {
-                        return deleteUserCallback(dataRow.id);
+                        return deleteUserCallback(dataRow.id)
                       }}
                     />
                   )}
                 </td>
               )}
             </tr>
-          );
+          )
         })}
     </tbody>
-  );
+  )
 }

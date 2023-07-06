@@ -1,11 +1,11 @@
-import { PATHS_TO_IGNORE_SHOW_MENU_SIDEBAR } from "./types.d";
+import { PATHS_TO_IGNORE_SHOW_MENU_SIDEBAR } from './types.d'
 
-export function showMenuSidebarCheckUrl(url) {
-  const path = url.split("?")[0];
+export function showMenuSidebarCheckUrl (url) {
+  const path = url.split('?')[0]
 
   if (PATHS_TO_IGNORE_SHOW_MENU_SIDEBAR.includes(path)) {
-    return false;
+    return false
   } else {
-    return true;
+    return true
   }
 }

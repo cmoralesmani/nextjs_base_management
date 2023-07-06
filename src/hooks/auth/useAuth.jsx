@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
-import { authService } from "src/services";
+import { authService } from 'src/services'
 
-const { authSubject } = authService;
+const { authSubject } = authService
 
 /**
  * Devuelve el objeto auth.
@@ -11,16 +11,16 @@ const { authSubject } = authService;
  * A la vez esta observando cuando la autenticación se modifica
  * y asi el estado auth siempre estara actualizado.
  */
-export function useAuth() {
-  const [auth, setAuth] = useState(null);
+export function useAuth () {
+  const [auth, setAuth] = useState(null)
 
   useEffect(() => {
     const subscription = authSubject
       .getObservable()
-      .subscribe((x) => setAuth(x));
+      .subscribe((x) => setAuth(x))
 
-    return () => subscription.unsubscribe();
-  }, []);
+    return () => subscription.unsubscribe()
+  }, [])
 
-  return { auth };
+  return { auth }
 }

@@ -1,14 +1,14 @@
-const { map } = require("lodash");
-import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
-import { ButtonGroup, Col, Dropdown } from "react-bootstrap";
-import { FaFileDownload } from "react-icons/fa";
+import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react'
+import { ButtonGroup, Col, Dropdown } from 'react-bootstrap'
+import { FaFileDownload } from 'react-icons/fa'
 
-import { Button } from "src/components/miscellaneous";
-import { useHasPermissionStatus } from "src/hooks/auth";
-import { exportService, toastService } from "src/services";
+import { Button } from 'src/components/miscellaneous'
+import { useHasPermissionStatus } from 'src/hooks/auth'
+import { exportService, toastService } from 'src/services'
+const { map } = require('lodash')
 
-export { ButtonDownload };
+export { ButtonDownload }
 
 ButtonDownload.propTypes = {
   url: PropTypes.string.isRequired,
@@ -26,21 +26,21 @@ ButtonDownload.propTypes = {
       buttonIcon: PropTypes.object,
       buttonVariant: PropTypes.string,
       isUrlExternal: PropTypes.bool,
-      inCol: PropTypes.bool,
+      inCol: PropTypes.bool
     })
-  ),
-};
+  )
+}
 
 ButtonDownload.defaultProps = {
-  buttonLabel: "Descargar",
+  buttonLabel: 'Descargar',
   buttonIcon: <FaFileDownload />,
-  buttonVariant: "success",
+  buttonVariant: 'success',
   isUrlExternal: false,
   inCol: true,
-  actions: [],
-};
+  actions: []
+}
 
-function ButtonDownload({
+function ButtonDownload ({
   url,
   codenamePermission,
   buttonLabel,
@@ -48,18 +48,18 @@ function ButtonDownload({
   buttonVariant,
   isUrlExternal,
   inCol,
-  actions,
+  actions
 }) {
   const buttons = map(actions, (action) => {
     return {
       url: action?.url,
-      buttonLabel: action?.buttonLabel || "Descargar",
+      buttonLabel: action?.buttonLabel || 'Descargar',
       buttonIcon: action?.buttonIcon || <FaFileDownload />,
-      buttonVariant: action?.buttonVariant || "success",
+      buttonVariant: action?.buttonVariant || 'success',
       isUrlExternal: action?.isUrlExternal || false,
-      inCol: action?.inCol || true,
-    };
-  });
+      inCol: action?.inCol || true
+    }
+  })
 
   /**
    * La url que manden debe ser apartir de la seccion del api.
@@ -67,40 +67,41 @@ function ButtonDownload({
    * Tendrian que agregarme el slash (/) y la direccion de la ruta
    */
   const hasPermission = useHasPermissionStatus({
-    codenamePermission: codenamePermission,
-  });
-  const [hasPermissionIt, setHasPermissionIt] = useState(false);
+    codenamePermission
+  })
+  const [hasPermissionIt, setHasPermissionIt] = useState(false)
 
   useEffect(() => {
-    setHasPermissionIt(codenamePermission ? hasPermission : true);
-  }, [codenamePermission, hasPermission]);
+    setHasPermissionIt(codenamePermission ? hasPermission : true)
+  }, [codenamePermission, hasPermission])
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  function onClickButton(button) {
-    setIsSubmitting(true);
+  function onClickButton (button) {
+    setIsSubmitting(true)
     exportService
       .exportFile(
         button ? button.url : url,
         button ? button.isUrlExternal : isUrlExternal
       )
       .then(() => {
-        setIsSubmitting(false);
+        setIsSubmitting(false)
       })
       .catch((error) => {
-        setIsSubmitting(false);
-        toastService.error("La descarga falló");
-      });
+        console.error(error)
+        setIsSubmitting(false)
+        toastService.error('La descarga falló')
+      })
   }
 
-  function getButton() {
+  function getButton () {
     return (
       <>
         <Dropdown as={ButtonGroup} size="sm">
           <Button
             variant={buttonVariant}
             onClick={() => {
-              onClickButton();
+              onClickButton()
             }}
             isSubmitting={isSubmitting}
             size="sm"
@@ -123,32 +124,34 @@ function ButtonDownload({
                     <Dropdown.Item
                       key={index}
                       onClick={() => {
-                        onClickButton(button);
+                        onClickButton(button)
                       }}
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? (
+                      {isSubmitting
+                        ? (
                         <span className="spinner-border spinner-border-sm"></span>
-                      ) : (
+                          )
+                        : (
                         <>{button.buttonIcon}</>
-                      )}
+                          )}
                       {button?.buttonLabel && (
                         <span className="ms-1">{button?.buttonLabel}</span>
                       )}
                     </Dropdown.Item>
-                  );
+                  )
                 })}
               </Dropdown.Menu>
             </>
           )}
         </Dropdown>
       </>
-    );
+    )
   }
 
   return (
     <>
       {hasPermissionIt && <>{inCol ? <Col>{getButton()}</Col> : getButton()}</>}
     </>
-  );
+  )
 }

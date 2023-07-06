@@ -1,9 +1,9 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
-function ColumnData({ dataRow, columnName, children }) {
-  return !!children
+function ColumnData ({ dataRow, columnName, children }) {
+  return children
     ? children({ value: dataRow[columnName] })
-    : dataRow[columnName];
+    : dataRow[columnName]
 }
 
 ColumnData.propTypes = {
@@ -14,7 +14,7 @@ ColumnData.propTypes = {
   /**
    * Nombre de la columna concerniente
    */
-  columnName: PropTypes.string.isRequired,
-};
+  columnName: PropTypes.string.isRequired
+}
 
-export { ColumnData };
+export { ColumnData }

@@ -1,48 +1,49 @@
-import { Formik } from "formik";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import React, { useEffect } from "react";
-import { Container, Col, Row, Card } from "react-bootstrap";
+import { Formik } from 'formik'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
+import { Container, Col, Row, Card } from 'react-bootstrap'
 
-import { FormLogin } from "src/components/login";
-import { authService } from "src/services";
-import { setErrorsReturnedByDjango } from "src/utilities/forms";
+import { FormLogin } from 'src/components/login'
+import { authService } from 'src/services'
+import { setErrorsReturnedByDjango } from 'src/utilities/forms'
 
-import initialValues from "./InitialValues";
-import validationSchema from "./ValidationSchema";
+import initialValues from './InitialValues'
+import validationSchema from './ValidationSchema'
 
-import logo from "public/assets/images/logo.svg";
+import logo from 'public/assets/images/logo.svg'
 
-const { authSubject } = authService;
+const { authSubject } = authService
 
-export function Login() {
-  const router = useRouter();
+export function Login () {
+  const router = useRouter()
 
   useEffect(() => {
     if (authSubject.value) {
-      router.push("/");
+      router.push('/')
     }
-  }, []);
+  }, [])
 
   const handleSubmitLogin = (values, formikHelpers) => {
-    const { setSubmitting, setFieldError } = formikHelpers;
-    const { username, password, keepSessionActive } = values;
+    const { setSubmitting, setFieldError } = formikHelpers
+    const { username, password, keepSessionActive } = values
 
     return authService
       .login(username, password, keepSessionActive)
       .then(() => {
         // Se obtiene la URL de retorno de los parámetros de query o por defecto a '/'
-        const returnUrl = router.query.returnUrl || "/";
-        router.push(returnUrl);
+        const returnUrl = router.query.returnUrl || '/'
+        router.push(returnUrl)
       })
       .catch((errors) => {
+        console.log(errors)
         /* Se establecen los errores en los campos devueltos por el api. */
-        setErrorsReturnedByDjango(errors.errors, setFieldError);
+        setErrorsReturnedByDjango(errors.errors, setFieldError)
       })
       .finally(() => {
-        setSubmitting(false);
-      });
-  };
+        setSubmitting(false)
+      })
+  }
 
   return (
     <Container className="mt-5 mb-4">
@@ -69,7 +70,7 @@ export function Login() {
               initialValues={initialValues()}
               validationSchema={validationSchema()}
               onSubmit={async (values, formikHelpers) => {
-                await handleSubmitLogin(values, formikHelpers);
+                await handleSubmitLogin(values, formikHelpers)
               }}
               validateOnChange={false}
               validateOnBlur={false}
@@ -79,5 +80,5 @@ export function Login() {
         </Col>
       </Row>
     </Container>
-  );
+  )
 }

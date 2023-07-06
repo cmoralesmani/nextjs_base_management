@@ -1,1 +1,1 @@
-export * from "./ToastCustom";
+export * from './ToastCustom'

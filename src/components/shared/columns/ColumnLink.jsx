@@ -1,9 +1,9 @@
-import PropTypes from "prop-types";
-import Link from "next/link";
+import PropTypes from 'prop-types'
+import Link from 'next/link'
 
-import { useHasPermissionStatus } from "src/hooks/auth";
+import { useHasPermissionStatus } from 'src/hooks/auth'
 
-export { ColumnLink };
+export { ColumnLink }
 
 ColumnLink.propTypes = {
   /**
@@ -13,21 +13,23 @@ ColumnLink.propTypes = {
   /**
    * Dirección url a referenciar. Si no lo indica el contenido no será referenciado.
    */
-  href: PropTypes.string,
-};
+  href: PropTypes.string
+}
 
-function ColumnLink({ children, href, codenamePermission, ...rest }) {
+function ColumnLink ({ children, href, codenamePermission, ...rest }) {
   const hasPermissionToLink = useHasPermissionStatus({
-    codenamePermission: codenamePermission,
-  });
+    codenamePermission
+  })
 
   return (
     <span {...rest}>
-      {!!hasPermissionToLink && !!href ? (
+      {!!hasPermissionToLink && !!href
+        ? (
         <Link href={href}>{children}</Link>
-      ) : (
-        children
-      )}
+          )
+        : (
+            children
+          )}
     </span>
-  );
+  )
 }

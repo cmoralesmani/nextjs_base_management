@@ -38,3 +38,8 @@ Instala globalmente la libreria sequelize para su utilización para migrar y sem
 npm i -g sequelize-cli
 sequelize db:migrate
 sequelize db:seed:all
+
+## Bloqueo del motor
+
+Se realiza una operacion de bloqueo para las versiones de node y npm a utilizar para el proyecto. Esto es por medio de los archivos: *.npmrc* y *.nvmrc*.
+Ademas se especifica particularidades del motor en el archivo package.json.

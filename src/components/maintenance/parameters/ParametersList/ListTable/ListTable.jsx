@@ -1,33 +1,33 @@
-import PropTypes from "prop-types";
-import { Alert, Table } from "react-bootstrap";
-import { FaBan } from "react-icons/fa";
+import PropTypes from 'prop-types'
+import { Alert, Table } from 'react-bootstrap'
+import { FaBan } from 'react-icons/fa'
 
-import { Spinner } from "src/components/spinner";
-import { useHasPermissionStatus } from "src/hooks/auth";
+import { Spinner } from 'src/components/spinner'
+import { useHasPermissionStatus } from 'src/hooks/auth'
 
-import { Head } from "./Head";
-import { Body } from "./Body";
+import { Head } from './Head'
+import { Body } from './Body'
 
-import styles from "styles/TableFixedHeader.module.scss";
+import styles from 'styles/TableFixedHeader.module.scss'
 
-export { ListTable };
+export { ListTable }
 
 ListTable.propTypes = {
-  parameters: PropTypes.array,
-};
+  parameters: PropTypes.array
+}
 
-function ListTable({ parameters }) {
+function ListTable ({ parameters }) {
   const hasPermissionViewProfile = useHasPermissionStatus({
-    codenamePermission: "see_single_parameter",
-  });
+    codenamePermission: 'see_single_parameter'
+  })
   const hasPermissionChangeProfile = useHasPermissionStatus({
-    codenamePermission: "alter_parameter",
-  });
+    codenamePermission: 'alter_parameter'
+  })
 
   const hasActionButtons =
     (hasPermissionViewProfile || hasPermissionChangeProfile) &&
     !!parameters &&
-    !!parameters.length;
+    !!parameters.length
 
   return (
     <>
@@ -45,5 +45,5 @@ function ListTable({ parameters }) {
         </Alert>
       )}
     </>
-  );
+  )
 }

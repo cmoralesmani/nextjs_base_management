@@ -1,16 +1,16 @@
-import { SelectSingleField } from "src/components/shared/fields";
+import { SelectSingleField } from 'src/components/shared/fields'
 
-export function GenderField({ id, label = "Sexo", text }) {
+export function GenderField ({ id, label = 'Sexo', text }) {
   const optionsSource = [
     {
-      id: "SEX-M",
-      description: "Masculino",
+      id: 'SEX-M',
+      description: 'Masculino'
     },
     {
-      id: "SEX-F",
-      description: "Femenino",
-    },
-  ];
+      id: 'SEX-F',
+      description: 'Femenino'
+    }
+  ]
   return (
     <SelectSingleField
       id={id}
@@ -18,5 +18,5 @@ export function GenderField({ id, label = "Sexo", text }) {
       text={text}
       optionsSource={optionsSource}
     />
-  );
+  )
 }

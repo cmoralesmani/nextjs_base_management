@@ -1,1 +1,1 @@
-export * from "./useError";
+export * from './useError'

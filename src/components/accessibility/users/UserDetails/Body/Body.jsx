@@ -1,16 +1,16 @@
-import Link from "next/link";
-import { Badge, Col, Row } from "react-bootstrap";
+import Link from 'next/link'
+import { Badge, Col, Row } from 'react-bootstrap'
 
-import * as sections from "./sections";
+import * as sections from './sections'
 
-export function Body({ user }) {
+export function Body ({ user }) {
   return (
     <>
       <Row>
         <Col>
           <Row as="dl">
             <Col as="dt" xs={12}>
-              Nombre:
+              <span className="badge">Nombre:</span>
             </Col>
             <Col as="dd" xs={12}>
               {user.name_user}
@@ -71,11 +71,13 @@ export function Body({ user }) {
               Estado:
             </Col>
             <Col as="dd" xs={12}>
-              {user.status_user_id == "ESCUS-ACTIV" ? (
+              {user.status_user_id === 'ESCUS-ACTIV'
+                ? (
                 <Badge bg="success">{user.de_status_user}</Badge>
-              ) : (
+                  )
+                : (
                 <Badge bg="danger">{user.de_status_user}</Badge>
-              )}
+                  )}
             </Col>
           </Row>
         </Col>
@@ -86,5 +88,5 @@ export function Body({ user }) {
       <sections.PermissionsTotalSection permissions={user.user_permissions} />
       <sections.ChangePasswordSection user={user} />
     </>
-  );
+  )
 }

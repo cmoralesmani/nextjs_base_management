@@ -1,4 +1,4 @@
 /**
  * Authentication configuration
  */
-export const PUBLIC_PATHS = ["/login"];
+export const PUBLIC_PATHS = ['/login']

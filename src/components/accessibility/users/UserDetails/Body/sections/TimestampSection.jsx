@@ -1,13 +1,13 @@
-import Link from "next/link";
-import { Card, Col, Row } from "react-bootstrap";
-import { useHasPermissionStatus } from "src/hooks/auth";
+import Link from 'next/link'
+import { Card, Col, Row } from 'react-bootstrap'
+import { useHasPermissionStatus } from 'src/hooks/auth'
 
-const moment = require("moment");
+const moment = require('moment')
 
-export function TimestampSection({ user }) {
+export function TimestampSection ({ user }) {
   const hasPermissionSeeUsers = useHasPermissionStatus({
-    codenamePermission: "see_single_user",
-  });
+    codenamePermission: 'see_single_user'
+  })
   return (
     <Row>
       <Col>
@@ -21,7 +21,7 @@ export function TimestampSection({ user }) {
                     F. Creación:
                   </Col>
                   <Col as="dd" xs={12}>
-                    {moment(user.created_at).format("DD/MM/YYYY h:mm:ss a")}
+                    {moment(user.created_at).format('DD/MM/YYYY h:mm:ss a')}
                   </Col>
                 </Row>
               </Col>
@@ -31,15 +31,17 @@ export function TimestampSection({ user }) {
                     Usuario:
                   </Col>
                   <Col as="dd" xs={12}>
-                    {hasPermissionSeeUsers ? (
+                    {hasPermissionSeeUsers
+                      ? (
                       <Link
                         href={`/accessibility/users/details/${user.id_user_creacion}`}
                       >
                         {user.CREATED_BY}
                       </Link>
-                    ) : (
-                      user.CREATED_BY
-                    )}
+                        )
+                      : (
+                          user.CREATED_BY
+                        )}
                     <span className="ms-2">
                       ({user.name_user_creacion} {user.lastname_user_creacion})
                     </span>
@@ -51,5 +53,5 @@ export function TimestampSection({ user }) {
         </Card>
       </Col>
     </Row>
-  );
+  )
 }

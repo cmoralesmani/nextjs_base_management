@@ -1,16 +1,16 @@
-import Link from "next/link";
-import { Col, Row } from "react-bootstrap";
-import { FaIdCard, FaListAlt, FaRegEdit } from "react-icons/fa";
+import Link from 'next/link'
+import { Col, Row } from 'react-bootstrap'
+import { FaIdCard, FaListAlt, FaRegEdit } from 'react-icons/fa'
 
-import { useHasPermissionStatus } from "src/hooks/auth";
+import { useHasPermissionStatus } from 'src/hooks/auth'
 
-export function Header({ profile }) {
+export function Header ({ profile }) {
   const hasPermissionChangeProfile = useHasPermissionStatus({
-    codenamePermission: "alter_profile",
-  });
+    codenamePermission: 'alter_profile'
+  })
   const hasPermissionViewProfiles = useHasPermissionStatus({
-    codenamePermission: "see_profiles",
-  });
+    codenamePermission: 'see_profiles'
+  })
   return (
     <Row>
       <Col className="text-center">
@@ -25,7 +25,7 @@ export function Header({ profile }) {
         )}
         {hasPermissionViewProfiles && (
           <Link
-            href={`/accessibility/profiles/list`}
+            href={'/accessibility/profiles/list'}
             className="btn btn-link float-end"
             title="Lista de perfiles"
           >
@@ -38,5 +38,5 @@ export function Header({ profile }) {
         <hr className="mb-3" />
       </Col>
     </Row>
-  );
+  )
 }

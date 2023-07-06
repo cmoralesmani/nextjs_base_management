@@ -1,31 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
-import { useError } from "src/hooks/error";
-import { useIsMounted } from "src/hooks/resources";
-import { profileService } from "src/services";
+import { useError } from 'src/hooks/error'
+import { useIsMounted } from 'src/hooks/resources'
+import { profileService } from 'src/services'
 
-export function useProfile({ id, controllerRequestAPI }) {
-  const [profile, setProfile] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useError();
+export function useProfile ({ id, controllerRequestAPI }) {
+  const [profile, setProfile] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useError()
 
-  const isMounted = useIsMounted();
+  const isMounted = useIsMounted()
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(true)
 
-    if (!!id) {
+    if (id) {
       const options = {
-        signal: controllerRequestAPI?.signal,
-      };
+        signal: controllerRequestAPI?.signal
+      }
 
       profileService
         .getById(id, options)
         .then((response) => isMounted() && setProfile(response))
         .catch((error) => isMounted() && setError(error))
-        .finally(() => isMounted() && setIsLoading(false));
+        .finally(() => isMounted() && setIsLoading(false))
     }
-  }, [isMounted, id]);
+  }, [isMounted, id])
 
-  return { profile, isLoading, error };
+  return { profile, isLoading, error }
 }

@@ -1,1 +1,1 @@
-export * from "./FormAddEditLayout";
+export * from './FormAddEditLayout'

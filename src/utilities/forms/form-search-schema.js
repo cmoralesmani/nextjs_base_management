@@ -1,5 +1,5 @@
-import * as Yup from "yup";
+import * as Yup from 'yup'
 
 export const formSearchSchema = Yup.object().shape({
-  search: Yup.string(),
-});
+  search: Yup.string()
+})

@@ -1,12 +1,12 @@
-import { useRouter } from "next/router";
-import React from "react";
-import { Row, Form, Col } from "react-bootstrap";
+import { useRouter } from 'next/router'
+import React from 'react'
+import { Row, Form, Col } from 'react-bootstrap'
 
-import { ResetCancelSave } from "src/components/keypads";
+import { ResetCancelSave } from 'src/components/keypads'
 
-import * as fields from "./fields";
+import * as fields from './fields'
 
-export function AddEditForm({
+export function AddEditForm ({
   isAddMode,
   controllerRequestAPI,
   values,
@@ -16,17 +16,17 @@ export function AddEditForm({
   touched,
   isSubmitting,
   errors,
-  resetForm,
+  resetForm
 }) {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleReset = () => {
     if (
-      window.confirm("Está seguro de reestablecer los datos del formulario?")
+      window.confirm('Está seguro de reestablecer los datos del formulario?')
     ) {
-      resetForm();
+      resetForm()
     }
-  };
+  }
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -60,5 +60,5 @@ export function AddEditForm({
         </Col>
       </Row>
     </Form>
-  );
+  )
 }

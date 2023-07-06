@@ -1,27 +1,27 @@
-import Link from "next/link";
-import PropTypes from "prop-types";
-import { Card, Col, Container, Row } from "react-bootstrap";
-import { FaFile, FaRegFileAlt } from "react-icons/fa";
+import Link from 'next/link'
+import PropTypes from 'prop-types'
+import { Card, Col, Container, Row } from 'react-bootstrap'
+import { FaFile, FaRegFileAlt } from 'react-icons/fa'
 
-export { FormAddEditLayout };
+export { FormAddEditLayout }
 
 FormAddEditLayout.propTypes = {
   title: PropTypes.string.isRequired,
   iconTitle: PropTypes.element,
   urlShow: PropTypes.string,
-  itemsTopRightComponents: PropTypes.array,
-};
+  itemsTopRightComponents: PropTypes.array
+}
 
 FormAddEditLayout.defaultProps = {
-  iconTitle: <FaFile />,
-};
+  iconTitle: <FaFile />
+}
 
-function FormAddEditLayout({
+function FormAddEditLayout ({
   children,
   title,
   iconTitle,
   urlShow,
-  itemsTopRightComponents,
+  itemsTopRightComponents
 }) {
   return (
     <Container>
@@ -48,5 +48,5 @@ function FormAddEditLayout({
         </Col>
       </Row>
     </Container>
-  );
+  )
 }

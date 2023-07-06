@@ -1,1 +1,1 @@
-export * from "./IdField";
+export * from './IdField'

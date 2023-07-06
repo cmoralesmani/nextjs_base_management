@@ -1,7 +1,7 @@
-import { Field, FieldArray, useField } from "formik";
-import { Col, Container, Form, ListGroup } from "react-bootstrap";
+import { Field, FieldArray, useField } from 'formik'
+import { Col, Container, Form, ListGroup } from 'react-bootstrap'
 
-export function EditArrayField({
+export function EditArrayField ({
   id,
   label,
   text,
@@ -11,8 +11,8 @@ export function EditArrayField({
   columnNameInput,
   ...rest
 }) {
-  const [field, meta] = useField(id);
-  const { value } = field;
+  const [field, meta] = useField(id)
+  const { value } = field
 
   // https://code.pieces.app/blog/react-form-validation-formik-yup
   return (
@@ -33,9 +33,9 @@ export function EditArrayField({
                   <Form.Group>
                     <Field name={`${id}.${index}.${columnNameInput}`}>
                       {({
-                        field, //{ name, value, onChange, onBlur }
+                        field, // { name, value, onChange, onBlur }
                         form, // { touched, errors }
-                        meta,
+                        meta
                       }) => {
                         return (
                           <>
@@ -44,7 +44,7 @@ export function EditArrayField({
                               <small className="error">{meta.error}</small>
                             )}
                           </>
-                        );
+                        )
                       }}
                     </Field>
                   </Form.Group>
@@ -54,10 +54,10 @@ export function EditArrayField({
             <Form.Control.Feedback type="invalid">
               {meta.error && meta.touched && meta.error}
             </Form.Control.Feedback>
-            {!!text && <Form.Text muted>{"text"}</Form.Text>}
+            {!!text && <Form.Text muted>{'text'}</Form.Text>}
           </ListGroup>
         )}
       />
     </>
-  );
+  )
 }

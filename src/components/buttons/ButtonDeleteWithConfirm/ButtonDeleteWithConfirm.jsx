@@ -1,45 +1,44 @@
-import PropTypes from "prop-types";
-import { useState } from "react";
-import { Modal } from "react-bootstrap";
-import { BsXCircleFill } from "react-icons/bs";
-import { FaRegTrashAlt } from "react-icons/fa";
+import PropTypes from 'prop-types'
+import { useState } from 'react'
+import { Modal } from 'react-bootstrap'
+import { BsXCircleFill } from 'react-icons/bs'
+import { FaRegTrashAlt } from 'react-icons/fa'
 
-import { Button } from "src/components/miscellaneous";
+import { Button } from 'src/components/miscellaneous'
 
-export { ButtonDeleteWithConfirm };
+export { ButtonDeleteWithConfirm }
 
 ButtonDeleteWithConfirm.propTypes = {
   message: PropTypes.string.isRequired,
-  callbackDelete: PropTypes.func.isRequired,
-};
+  callbackDelete: PropTypes.func.isRequired
+}
 
-function ButtonDeleteWithConfirm({ message, callbackDelete }) {
+function ButtonDeleteWithConfirm ({ message, callbackDelete }) {
   /**
    * El "mensaje" es un texto que se va a mostrar en el cuerpo del modal.
    * El "callbackDelete" debe retornar una promesa para que este componente sepa cuando termina la eliminacion, para que
    * el boton de eliminar se mantenga bloqueado mientras ejecuta la eliminacion.
    */
-  const [show, setShow] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [show, setShow] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleClose = () => {
-    setShow(false);
-  };
+    setShow(false)
+  }
   const handleShow = () => {
-    setShow(true);
-  };
+    setShow(true)
+  }
 
   const onClickDelete = async () => {
-    setShow(false);
-    setIsSubmitting(true);
+    setShow(false)
+    setIsSubmitting(true)
     try {
-      await callbackDelete();
+      await callbackDelete()
     } finally {
       // Para que auntue la eliminación falle se establesca el estado isSubmit
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-    return;
-  };
+  }
 
   return (
     <>
@@ -89,5 +88,5 @@ function ButtonDeleteWithConfirm({ message, callbackDelete }) {
         </Modal.Footer>
       </Modal>
     </>
-  );
+  )
 }

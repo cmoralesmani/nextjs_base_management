@@ -1,5 +1,5 @@
-import { showMenuSidebarCheckUrl } from "./show-menu-sidebar-check-url";
+import { showMenuSidebarCheckUrl } from './show-menu-sidebar-check-url'
 
 export const utilitiesMenuSidebar = {
-  showMenuSidebarCheckUrl,
-};
+  showMenuSidebarCheckUrl
+}

@@ -1,10 +1,10 @@
-import { useField } from "formik";
-import { Col, Form, Row } from "react-bootstrap";
-import { FaEraser } from "react-icons/fa";
+import { useField } from 'formik'
+import { Col, Form, Row } from 'react-bootstrap'
+import { FaEraser } from 'react-icons/fa'
 
-import { Button } from "src/components/miscellaneous";
+import { Button } from 'src/components/miscellaneous'
 
-export function SelectField({
+export function SelectField ({
   id,
   label,
   text,
@@ -12,9 +12,9 @@ export function SelectField({
   optionsSource = [],
   ...rest
 }) {
-  const [field, meta, helpers] = useField(id);
-  const isInvalid = !!meta.error;
-  const { setValue } = helpers;
+  const [field, meta, helpers] = useField(id)
+  const isInvalid = !!meta.error
+  const { setValue } = helpers
 
   // https://stackoverflow.com/a/65327922
   return (
@@ -51,5 +51,5 @@ export function SelectField({
       </Form.Control.Feedback>
       {!!text && <Form.Text muted>{text}</Form.Text>}
     </Form.Group>
-  );
+  )
 }

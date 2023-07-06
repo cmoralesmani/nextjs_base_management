@@ -1,35 +1,36 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react'
 
-import { useError } from "src/hooks/error";
-import { useIsMounted } from "src/hooks/resources";
+import { useError } from 'src/hooks/error'
+import { useIsMounted } from 'src/hooks/resources'
 
-function useDataList({
+function useDataList ({
   loadInitialData = true,
   sourceDataCallback,
-  controllerRequestAPI,
+  controllerRequestAPI
 }) {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useError(null);
+  const [data, setData] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useError(null)
+  const signal = controllerRequestAPI?.signal
 
-  const isMounted = useIsMounted();
+  const isMounted = useIsMounted()
 
   const loadDataCallback = useCallback(async (filters) => {
-    setIsLoading(true);
-    setData(null);
+    setIsLoading(true)
+    setData(null)
 
     const options = {
-      signal: controllerRequestAPI?.signal,
-    };
+      signal
+    }
     return sourceDataCallback({ filters, options })
       .then((response) => isMounted() && setData(response))
       .catch((error) => isMounted() && setError(error))
-      .finally(() => isMounted() && setIsLoading(false));
-  }, []);
+      .finally(() => isMounted() && setIsLoading(false))
+  }, [])
 
   useEffect(() => {
-    if (loadInitialData) loadDataCallback();
-  }, []);
+    if (loadInitialData) loadDataCallback()
+  }, [])
 
   return {
     data,
@@ -37,8 +38,8 @@ function useDataList({
     isLoading,
     error,
     loadDataCallback,
-    controllerRequestAPI,
-  };
+    controllerRequestAPI
+  }
 }
 
-export { useDataList };
+export { useDataList }

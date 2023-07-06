@@ -1,1 +1,1 @@
-export * from "./EditArrayField";
+export * from './EditArrayField'

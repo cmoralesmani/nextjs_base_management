@@ -1,12 +1,12 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from 'react-bootstrap'
 
-import { Title } from "src/components/miscellaneous";
+import { Title } from 'src/components/miscellaneous'
 
-import { Body } from "./Body";
-import { Header } from "./Header";
+import { Body } from './Body'
+import { Header } from './Header'
 
-export function ProfileDetails({ profile }) {
-  if (!profile) return null;
+export function ProfileDetails ({ profile }) {
+  if (!profile) return null
 
   return (
     <>
@@ -22,5 +22,5 @@ export function ProfileDetails({ profile }) {
         </Row>
       </Container>
     </>
-  );
+  )
 }

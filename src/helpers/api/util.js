@@ -1,7 +1,6 @@
-import { Parser } from "json2csv";
-import fs from "fs";
+import { Parser } from 'json2csv'
 
-export { isJsonString, downloadResource, hasLetter, hasNumber };
+export { isJsonString, downloadResource, hasLetter, hasNumber }
 
 /**
  * Verifica si un string es un Json valido.
@@ -13,43 +12,43 @@ export { isJsonString, downloadResource, hasLetter, hasNumber };
  * @returns {object} Retorna un objeto con la informacion del json
  * Ejemplo: {isJson: boolean, jsonValue: object}
  */
-function isJsonString(str) {
+function isJsonString (str) {
   try {
-    JSON.parse(str);
+    JSON.parse(str)
   } catch (e) {
-    return { isJson: false, jsonValue: null };
+    return { isJson: false, jsonValue: null }
   }
-  return { isJson: true, jsonValue: JSON.parse(str) };
+  return { isJson: true, jsonValue: JSON.parse(str) }
 }
 
-const downloadResource = (
+function downloadResource (
   res,
   fileName,
   fields,
   data,
   options = {
-    delimiter: ";",
+    delimiter: ';',
     quote: '"',
-    contentType: "text/csv",
+    contentType: 'text/csv',
     header: true,
-    withBOM: true,
+    withBOM: true
   }
-) => {
-  const csv = getCsvFromJson(fields, data, options);
-  res.setHeader("Content-Type", options.contentType);
-  res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
-  return res.send(csv);
-};
+) {
+  const csv = getCsvFromJson(fields, data, options)
+  res.setHeader('Content-Type', options.contentType)
+  res.setHeader('Content-Disposition', `attachment; filename=${fileName}`)
+  return res.send(csv)
+}
 
 const getCsvFromJson = (
   fields,
   data,
   options = {
-    delimiter: ";",
+    delimiter: ';',
     quote: '"',
-    contentType: "text/csv",
+    contentType: 'text/csv',
     header: true,
-    withBOM: true,
+    withBOM: true
   }
 ) => {
   const json2csv = new Parser({
@@ -57,31 +56,31 @@ const getCsvFromJson = (
     delimiter: options.delimiter,
     quote: options.quote,
     header: options.header,
-    withBOM: options.withBOM,
-  });
-  const csv = json2csv.parse(data);
-  return csv;
-};
-
-function hasNumber(texto) {
-  var numeros = "0123456789";
-
-  for (let i = 0; i < texto.length; i++) {
-    if (numeros.indexOf(texto.charAt(i), 0) != -1) {
-      return 1;
-    }
-  }
-  return 0;
+    withBOM: options.withBOM
+  })
+  const csv = json2csv.parse(data)
+  return csv
 }
 
-function hasLetter(texto) {
-  var letras = "abcdefghyjklmnñopqrstuvwxyz";
+function hasNumber (texto) {
+  const numeros = '0123456789'
 
-  texto = texto.toLowerCase();
   for (let i = 0; i < texto.length; i++) {
-    if (letras.indexOf(texto.charAt(i), 0) != -1) {
-      return 1;
+    if (numeros.indexOf(texto.charAt(i), 0) !== -1) {
+      return 1
     }
   }
-  return 0;
+  return 0
+}
+
+function hasLetter (texto) {
+  const letras = 'abcdefghyjklmnñopqrstuvwxyz'
+
+  texto = texto.toLowerCase()
+  for (let i = 0; i < texto.length; i++) {
+    if (letras.indexOf(texto.charAt(i), 0) !== -1) {
+      return 1
+    }
+  }
+  return 0
 }

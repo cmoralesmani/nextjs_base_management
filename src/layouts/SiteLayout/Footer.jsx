@@ -1,11 +1,11 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image'
+import React from 'react'
 
-import styles from "styles/SiteLayout.module.scss";
+import styles from 'styles/SiteLayout.module.scss'
 
-import logo from "public/assets/images/logo.svg";
+import logo from 'public/assets/images/logo.svg'
 
-export default function Footer() {
+export default function Footer () {
   return (
     <footer className={styles.footer}>
       Hecho por
@@ -22,5 +22,5 @@ export default function Footer() {
         </span>
       </a>
     </footer>
-  );
+  )
 }

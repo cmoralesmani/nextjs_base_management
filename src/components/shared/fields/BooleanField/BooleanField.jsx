@@ -1,7 +1,7 @@
-import { useField } from "formik";
-import { Col, Form } from "react-bootstrap";
+import { useField } from 'formik'
+import { Col, Form } from 'react-bootstrap'
 
-export function BooleanField({
+export function BooleanField ({
   id,
   label,
   placeholder,
@@ -9,8 +9,8 @@ export function BooleanField({
   wrapperAs = Col,
   ...rest
 }) {
-  const [field, meta] = useField(id);
-  const isInvalid = !!meta.error;
+  const [field, meta] = useField(id)
+  const isInvalid = !!meta.error
 
   return (
     <Form.Group as={wrapperAs} className="mb-3" controlId={id}>
@@ -26,5 +26,5 @@ export function BooleanField({
       </Form.Control.Feedback>
       {!!text && <Form.Text muted>{text}</Form.Text>}
     </Form.Group>
-  );
+  )
 }

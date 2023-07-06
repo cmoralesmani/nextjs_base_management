@@ -1,16 +1,16 @@
-import Link from "next/link";
-import { Col, Row } from "react-bootstrap";
-import { FaRegHandshake, FaListAlt, FaRegEdit } from "react-icons/fa";
+import Link from 'next/link'
+import { Col, Row } from 'react-bootstrap'
+import { FaRegHandshake, FaListAlt, FaRegEdit } from 'react-icons/fa'
 
-import { useHasPermissionStatus } from "src/hooks/auth";
+import { useHasPermissionStatus } from 'src/hooks/auth'
 
-export function Header({ permission }) {
+export function Header ({ permission }) {
   const hasPermissionChangePermission = useHasPermissionStatus({
-    codenamePermission: "alter_permission",
-  });
+    codenamePermission: 'alter_permission'
+  })
   const hasPermissionViewPermissions = useHasPermissionStatus({
-    codenamePermission: "see_permissions",
-  });
+    codenamePermission: 'see_permissions'
+  })
   return (
     <Row>
       <Col className="text-center">
@@ -25,7 +25,7 @@ export function Header({ permission }) {
         )}
         {hasPermissionViewPermissions && (
           <Link
-            href={`/accessibility/permissions/list`}
+            href={'/accessibility/permissions/list'}
             className="btn btn-link float-end"
             title="Lista de permisos"
           >
@@ -38,5 +38,5 @@ export function Header({ permission }) {
         <hr className="mb-3" />
       </Col>
     </Row>
-  );
+  )
 }

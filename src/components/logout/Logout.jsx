@@ -1,6 +1,6 @@
-import { useLogout } from "src/hooks/auth";
+import { useLogout } from 'src/hooks/auth'
 
-export function Logout() {
-  useLogout();
-  return null;
+export function Logout () {
+  useLogout()
+  return null
 }

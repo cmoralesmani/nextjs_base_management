@@ -1,55 +1,55 @@
-import { Formik } from "formik";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { FaRegFileAlt, FaListAlt } from "react-icons/fa";
+import { Formik } from 'formik'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { FaRegFileAlt, FaListAlt } from 'react-icons/fa'
 
-import { Title } from "src/components/miscellaneous";
-import { useHasPermissionStatus } from "src/hooks/auth";
-import { FormAddEditLayout } from "src/layouts";
-import { permissionService, profileService, toastService } from "src/services";
-import { setErrorsReturnedByDjango } from "src/utilities/forms";
+import { Title } from 'src/components/miscellaneous'
+import { useHasPermissionStatus } from 'src/hooks/auth'
+import { FormAddEditLayout } from 'src/layouts'
+import { permissionService, profileService, toastService } from 'src/services'
+import { setErrorsReturnedByDjango } from 'src/utilities/forms'
 
-import { AddEditForm } from "./AddEditForm";
-import initialValues from "./InitialValues";
-import validationSchema from "./ValidationSchema";
-import { useEffect } from "react";
+import { AddEditForm } from './AddEditForm'
+import initialValues from './InitialValues'
+import validationSchema from './ValidationSchema'
+import { useEffect } from 'react'
 
-export { PermissionAddEdit };
+export { PermissionAddEdit }
 
-function PermissionAddEdit({ permission, controllerRequestAPI }) {
-  const isAddMode = !permission;
-  const router = useRouter();
-  const id = !!permission ? permission.id_permission : undefined;
+function PermissionAddEdit ({ permission, controllerRequestAPI }) {
+  const isAddMode = !permission
+  const router = useRouter()
+  const id = permission ? permission.id_permission : undefined
 
   useEffect(
     () => () => {
       if (!isAddMode) {
-        controllerRequestAPI.abort();
+        controllerRequestAPI.abort()
       }
     },
     []
-  );
+  )
 
   const hasPermissionViewPermission = useHasPermissionStatus({
-    codenamePermission: "see_single_permission",
-  });
+    codenamePermission: 'see_single_permission'
+  })
 
   const hasPermissionViewPermissions = useHasPermissionStatus({
-    codenamePermission: "see_permissions",
-  });
+    codenamePermission: 'see_permissions'
+  })
 
-  const itemsTopRightComponents = [];
+  const itemsTopRightComponents = []
   if (hasPermissionViewPermissions) {
     itemsTopRightComponents.push(
       <Link
         key="permissions_page"
-        href={`/accessibility/permissions/list`}
+        href={'/accessibility/permissions/list'}
         className="btn btn-link"
         title="Lista de permisos"
       >
         <FaListAlt />
       </Link>
-    );
+    )
   }
   if (!isAddMode && hasPermissionViewPermission) {
     itemsTopRightComponents.push(
@@ -61,64 +61,60 @@ function PermissionAddEdit({ permission, controllerRequestAPI }) {
       >
         <FaRegFileAlt />
       </Link>
-    );
+    )
   }
 
   const handleSubmitPermission = (values, formikHelpers) =>
     !isAddMode && !!permission // Se esta actualizando
       ? updatePermission(id, values, formikHelpers)
-      : createPermission(values, formikHelpers);
+      : createPermission(values, formikHelpers)
 
-  async function createPermission(values, formikHelpers) {
-    const { setFieldError } = formikHelpers;
+  async function createPermission (values, formikHelpers) {
+    const { setFieldError } = formikHelpers
     return profileService
       .create(values)
       .then((instance) => {
-        toastService.success(`Perfil creado correctamente`, {
-          keepAfterRouteChange: true,
-        });
-        if (hasPermissionViewPermission)
+        toastService.success('Perfil creado correctamente', {
+          keepAfterRouteChange: true
+        })
+        if (hasPermissionViewPermission) {
           router.push({
-            pathname: "/accessibility/profiles/details/[id]",
-            query: { id: instance.id_profile },
-          });
-        else if (hasPermissionViewPermissions)
-          router.push("/accessibility/profiles/list");
-        else router.push("/");
+            pathname: '/accessibility/profiles/details/[id]',
+            query: { id: instance.id_profile }
+          })
+        } else if (hasPermissionViewPermissions) { router.push('/accessibility/profiles/list') } else router.push('/')
       })
       .catch((errors) => {
         /* Se establecen los errores en los campos devueltos por el api. */
-        setErrorsReturnedByDjango(errors.errors, setFieldError);
-      });
+        setErrorsReturnedByDjango(errors.errors, setFieldError)
+      })
   }
 
-  async function updatePermission(id, values, formikHelpers) {
-    const { setFieldError } = formikHelpers;
+  async function updatePermission (id, values, formikHelpers) {
+    const { setFieldError } = formikHelpers
     return permissionService
       .update(id, values)
       .then(() => {
         toastService.success(
           `El permiso "${values.de_permission}" ha sido actualizado correctamente`,
           { keepAfterRouteChange: true }
-        );
-        if (hasPermissionViewPermission)
+        )
+        if (hasPermissionViewPermission) {
           router.push({
-            pathname: "/accessibility/permissions/details/[id]",
-            query: { id },
-          });
-        else if (hasPermissionViewPermissions)
-          router.push("/accessibility/permissions/list");
-        else router.push("/");
+            pathname: '/accessibility/permissions/details/[id]',
+            query: { id }
+          })
+        } else if (hasPermissionViewPermissions) { router.push('/accessibility/permissions/list') } else router.push('/')
       })
       .catch((errors) => {
         /* Se establecen los errores en los campos devueltos por el api. */
-        setErrorsReturnedByDjango(errors.errors, setFieldError);
-      });
+        setErrorsReturnedByDjango(errors.errors, setFieldError)
+      })
   }
 
   return (
     <>
-      <Title text={!!isAddMode ? "Agregar permiso" : "Editar permiso"} />
+      <Title text={isAddMode ? 'Agregar permiso' : 'Editar permiso'} />
       <FormAddEditLayout
         title="Datos del permiso"
         itemsTopRightComponents={itemsTopRightComponents}
@@ -127,7 +123,7 @@ function PermissionAddEdit({ permission, controllerRequestAPI }) {
           initialValues={initialValues(permission)}
           validationSchema={validationSchema()}
           onSubmit={async (values, formikHelpers) => {
-            await handleSubmitPermission(values, formikHelpers);
+            await handleSubmitPermission(values, formikHelpers)
           }}
           validateOnChange={false}
           validateOnBlur={false}
@@ -139,10 +135,10 @@ function PermissionAddEdit({ permission, controllerRequestAPI }) {
                 controllerRequestAPI={controllerRequestAPI}
                 {...props}
               />
-            );
+            )
           }}
         </Formik>
       </FormAddEditLayout>
     </>
-  );
+  )
 }

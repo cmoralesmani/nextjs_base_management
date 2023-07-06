@@ -1,11 +1,11 @@
 const initialValues = (permission) =>
-  !!permission
+  permission
     ? { ...permission }
     : {
-        id_permission: "",
-        de_permission: "",
+        id_permission: '',
+        de_permission: '',
         users_selected: [],
-        profiles_selected: [],
-      };
+        profiles_selected: []
+      }
 
-export default initialValues;
+export default initialValues

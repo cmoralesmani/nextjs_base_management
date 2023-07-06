@@ -1,17 +1,17 @@
-import { Col, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { Col, Row } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 
-import { ChangePassword } from "src/components/accessibility/users";
-import { useHasPermissionStatus } from "src/hooks/auth";
-import { selectUserState } from "src/redux/slices/user-slice";
+import { ChangePassword } from 'src/components/accessibility/users'
+import { useHasPermissionStatus } from 'src/hooks/auth'
+import { selectUserState } from 'src/redux/slices/user-slice'
 
-export function ChangePasswordSection({ user }) {
-  const userState = useSelector(selectUserState);
+export function ChangePasswordSection ({ user }) {
+  const userState = useSelector(selectUserState)
   const _hasPermissionChangePassword = useHasPermissionStatus({
-    codenamePermission: "change_password",
-  });
+    codenamePermission: 'change_password'
+  })
   const hasPermissionChangePassword =
-    user.id_user == userState?.id_user ? true : _hasPermissionChangePassword;
+    user.id_user === userState?.id_user ? true : _hasPermissionChangePassword
 
   return (
     <>
@@ -23,5 +23,5 @@ export function ChangePasswordSection({ user }) {
         </Row>
       )}
     </>
-  );
+  )
 }

@@ -1,1 +1,1 @@
-export * from "./NameField";
+export * from './NameField'

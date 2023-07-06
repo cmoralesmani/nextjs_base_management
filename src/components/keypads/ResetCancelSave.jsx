@@ -1,10 +1,10 @@
-import PropTypes from "prop-types";
-import { Container, Col, Row } from "react-bootstrap";
-import { FaUndo, FaSave, FaTimesCircle } from "react-icons/fa";
+import PropTypes from 'prop-types'
+import { Container, Col, Row } from 'react-bootstrap'
+import { FaUndo, FaSave, FaTimesCircle } from 'react-icons/fa'
 
-import { Button } from "src/components/miscellaneous";
+import { Button } from 'src/components/miscellaneous'
 
-export { ResetCancelSave };
+export { ResetCancelSave }
 
 ResetCancelSave.propTypes = {
   handleReset: PropTypes.func,
@@ -13,19 +13,19 @@ ResetCancelSave.propTypes = {
   showButtonSecondary: PropTypes.bool,
   showButtonReset: PropTypes.bool,
   buttonPrimaryLabel: PropTypes.string,
-  buttonSecondaryLabel: PropTypes.string,
-};
+  buttonSecondaryLabel: PropTypes.string
+}
 
 ResetCancelSave.defaultProps = {
   isSubmitting: false,
-  buttonPrimaryLabel: "Guardar",
-  buttonSecondaryLabel: "Cancelar",
+  buttonPrimaryLabel: 'Guardar',
+  buttonSecondaryLabel: 'Cancelar',
   showButtonPrimary: true,
   showButtonSecondary: true,
-  showButtonReset: true,
-};
+  showButtonReset: true
+}
 
-function ResetCancelSave({
+function ResetCancelSave ({
   handleReset,
   handleCancel,
   isSubmitting,
@@ -33,11 +33,11 @@ function ResetCancelSave({
   showButtonSecondary,
   showButtonReset,
   buttonPrimaryLabel,
-  buttonSecondaryLabel,
+  buttonSecondaryLabel
 }) {
   /* Botonera para disponer de (Restaurar, Guardar y Cancelar)
     En el caso del Restaurar y Cancela necesitan un manejador
-    para saber que es lo que debe hacer indicado desde donde se 
+    para saber que es lo que debe hacer indicado desde donde se
     este ocupando. Pero para Guardar no es necesario, solo que este
     componente este dentro de un Form, porque este es de tipo Submit.
      */
@@ -94,5 +94,5 @@ function ResetCancelSave({
         )}
       </Row>
     </Container>
-  );
+  )
 }

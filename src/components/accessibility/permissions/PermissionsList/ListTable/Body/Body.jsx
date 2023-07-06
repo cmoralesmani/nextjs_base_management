@@ -1,13 +1,13 @@
-import { ColumnData, ColumnLink } from "src/components/shared/columns";
+import { ColumnData, ColumnLink } from 'src/components/shared/columns'
 
-import { ColumnActions } from "./ColumnActions";
+import { ColumnActions } from './ColumnActions'
 
-export function Body({ permissions, hasActionButtons }) {
+export function Body ({ permissions, hasActionButtons }) {
   return (
     <tbody>
       {permissions &&
         permissions?.map((permission) => {
-          const dataRow = { ...permission, id: permission.id_permission };
+          const dataRow = { ...permission, id: permission.id_permission }
           return (
             <tr key={dataRow.id}>
               <td>
@@ -20,7 +20,7 @@ export function Body({ permissions, hasActionButtons }) {
                       >
                         {value}
                       </ColumnLink>
-                    );
+                    )
                   }}
                 </ColumnData>
               </td>
@@ -30,8 +30,8 @@ export function Body({ permissions, hasActionButtons }) {
                 </td>
               )}
             </tr>
-          );
+          )
         })}
     </tbody>
-  );
+  )
 }

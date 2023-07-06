@@ -1,17 +1,17 @@
-import { useEffect } from "react";
+import { useEffect } from 'react'
 
-import { PermissionsList } from "src/components/accessibility/permissions";
-import { usePermissions } from "src/hooks/permission";
-import { PageLayout } from "src/layouts";
+import { PermissionsList } from 'src/components/accessibility/permissions'
+import { usePermissions } from 'src/hooks/permission'
+import { PageLayout } from 'src/layouts'
 
-export default function ListPermissionsPage() {
-  const controllerRequestAPI = new AbortController();
-  useEffect(() => () => controllerRequestAPI.abort(), []);
+export default function ListPermissionsPage () {
+  const controllerRequestAPI = new AbortController()
+  useEffect(() => () => controllerRequestAPI.abort(), [])
 
   const { permissions, loadPermissionsCallback } = usePermissions({
     loadInitialData: false,
-    controllerRequestAPI: controllerRequestAPI,
-  });
+    controllerRequestAPI
+  })
 
   return (
     <PageLayout codenamePermission="see_permissions">
@@ -20,5 +20,5 @@ export default function ListPermissionsPage() {
         loadPermissionsCallback={loadPermissionsCallback}
       />
     </PageLayout>
-  );
+  )
 }

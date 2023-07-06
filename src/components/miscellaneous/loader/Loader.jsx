@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "styles/Loader.module.scss";
+import React from 'react'
+import styles from 'styles/Loader.module.scss'
 
-export function Loader({ show }) {
-  if (!show) return null;
+export function Loader ({ show }) {
+  if (!show) return null
 
   return (
     <div className={styles.loader}>
@@ -19,5 +19,5 @@ export function Loader({ show }) {
       <div></div>
       <div></div>
     </div>
-  );
+  )
 }

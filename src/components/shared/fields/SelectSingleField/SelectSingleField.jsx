@@ -1,7 +1,7 @@
-import { useField } from "formik";
-import { Col, Form } from "react-bootstrap";
+import { useField } from 'formik'
+import { Col, Form } from 'react-bootstrap'
 
-export function SelectSingleField({
+export function SelectSingleField ({
   id,
   label,
   text,
@@ -9,8 +9,8 @@ export function SelectSingleField({
   optionsSource = [],
   ...rest
 }) {
-  const [field, meta, helpers] = useField(id);
-  const isInvalid = !!meta.error;
+  const [field, meta] = useField(id)
+  const isInvalid = !!meta.error
 
   // https://stackoverflow.com/a/65327922
   return (
@@ -35,5 +35,5 @@ export function SelectSingleField({
       </Form.Control.Feedback>
       {!!text && <Form.Text muted>{text}</Form.Text>}
     </Form.Group>
-  );
+  )
 }

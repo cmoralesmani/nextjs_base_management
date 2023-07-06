@@ -1,31 +1,29 @@
-import PropTypes from "prop-types";
+import { useDataList } from 'src/hooks/resources'
+import { userService, toastService } from 'src/services'
 
-import { useDataList } from "src/hooks/resources";
-import { userService, toastService } from "src/services";
-
-function useUsers({ loadInitialData, controllerRequestAPI }) {
+function useUsers ({ loadInitialData, controllerRequestAPI }) {
   const {
     data: users,
     setData: setUsers,
     isLoading,
     error,
-    loadDataCallback: loadUsersCallback,
+    loadDataCallback: loadUsersCallback
   } = useDataList({
-    loadInitialData: loadInitialData,
+    loadInitialData,
     sourceDataCallback: userService.getUsers,
-    controllerRequestAPI: controllerRequestAPI,
-  });
+    controllerRequestAPI
+  })
 
-  function deleteUserCallback(id) {
+  function deleteUserCallback (id) {
     return userService.delete(id).then(() => {
       const timer = setTimeout(() => {
-        setUsers((users) => users.filter((x) => x.id_user !== id));
-      });
-      toastService.success("Se eliminó correctamente el usuario");
+        setUsers((users) => users.filter((x) => x.id_user !== id))
+      })
+      toastService.success('Se eliminó correctamente el usuario')
       return () => {
-        clearTimeout(timer);
-      };
-    });
+        clearTimeout(timer)
+      }
+    })
   }
 
   return {
@@ -33,8 +31,8 @@ function useUsers({ loadInitialData, controllerRequestAPI }) {
     isLoading,
     error,
     loadUsersCallback,
-    deleteUserCallback,
-  };
+    deleteUserCallback
+  }
 }
 
-export { useUsers };
+export { useUsers }

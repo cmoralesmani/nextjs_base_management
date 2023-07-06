@@ -1,19 +1,19 @@
-import { useEffect } from "react";
+import { useEffect } from 'react'
 
-import { ProfilesList } from "src/components/accessibility/profiles";
-import { useProfiles } from "src/hooks/profile";
-import { PageLayout } from "src/layouts";
+import { ProfilesList } from 'src/components/accessibility/profiles'
+import { useProfiles } from 'src/hooks/profile'
+import { PageLayout } from 'src/layouts'
 
-export default function ListProfilesPage() {
-  const controllerRequestAPI = new AbortController();
-  useEffect(() => () => controllerRequestAPI.abort(), []);
+export default function ListProfilesPage () {
+  const controllerRequestAPI = new AbortController()
+  useEffect(() => () => controllerRequestAPI.abort(), [])
 
   const { profiles, loadProfilesCallback, deleteProfileCallback } = useProfiles(
     {
       loadInitialData: false,
-      controllerRequestAPI: controllerRequestAPI,
+      controllerRequestAPI
     }
-  );
+  )
 
   return (
     <PageLayout codenamePermission="see_profiles">
@@ -23,5 +23,5 @@ export default function ListProfilesPage() {
         deleteProfileCallback={deleteProfileCallback}
       />
     </PageLayout>
-  );
+  )
 }

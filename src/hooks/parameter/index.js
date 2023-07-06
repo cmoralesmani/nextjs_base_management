@@ -1,2 +1,2 @@
-export * from "./useParameter";
-export * from "./useParameters";
+export * from './useParameter'
+export * from './useParameters'

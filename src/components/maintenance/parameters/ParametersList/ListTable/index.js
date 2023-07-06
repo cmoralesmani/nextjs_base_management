@@ -1,1 +1,1 @@
-export * from "./ListTable";
+export * from './ListTable'

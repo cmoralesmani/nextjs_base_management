@@ -1,1 +1,1 @@
-export * from "./SecretField";
+export * from './SecretField'

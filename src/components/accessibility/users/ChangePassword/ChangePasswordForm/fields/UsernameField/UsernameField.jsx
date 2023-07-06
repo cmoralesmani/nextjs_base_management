@@ -1,10 +1,10 @@
-import { TextField } from "src/components/shared/fields";
+import { TextField } from 'src/components/shared/fields'
 
-export function UsernameField({
+export function UsernameField ({
   id,
-  label = "Usuario",
-  placeholder = "Usuario",
-  text,
+  label = 'Usuario',
+  placeholder = 'Usuario',
+  text
 }) {
   return (
     <TextField
@@ -15,5 +15,5 @@ export function UsernameField({
       readOnly={true}
       plaintext={true}
     />
-  );
+  )
 }

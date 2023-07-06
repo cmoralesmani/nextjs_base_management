@@ -1,11 +1,11 @@
-import { Form, InputGroup, FormControl } from "react-bootstrap";
-import { FaTimes, FaSearch } from "react-icons/fa";
+import { Form, InputGroup, FormControl } from 'react-bootstrap'
+import { FaTimes, FaSearch } from 'react-icons/fa'
 
-import { Button } from "src/components/miscellaneous";
+import { Button } from 'src/components/miscellaneous'
 
-export { SearchForm };
+export { SearchForm }
 
-function SearchForm({
+function SearchForm ({
   handleSubmit,
   values,
   handleChange,
@@ -13,11 +13,11 @@ function SearchForm({
   errors,
   setFieldValue,
   isSubmitting,
-  submitForm,
+  submitForm
 }) {
-  function onClearSearch() {
-    setFieldValue("search", "");
-    setTimeout(submitForm, 1);
+  function onClearSearch () {
+    setFieldValue('search', '')
+    setTimeout(submitForm, 1)
   }
 
   return (
@@ -49,5 +49,5 @@ function SearchForm({
         />
       </InputGroup>
     </Form>
-  );
+  )
 }

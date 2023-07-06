@@ -1,7 +1,7 @@
 const initialValues = () => ({
-  username: "",
-  password: "",
-  keepSessionActive: false,
-});
+  username: '',
+  password: '',
+  keepSessionActive: false
+})
 
-export default initialValues;
+export default initialValues

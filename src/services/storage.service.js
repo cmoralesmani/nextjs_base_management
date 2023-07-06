@@ -1,19 +1,22 @@
-import { KEYS_TO_STORAGE } from "src/utilities/browser-storage/types.d";
-import { utilitiesBrowserStorage } from "src/utilities/browser-storage";
+import { KEYS_TO_STORAGE } from 'src/utilities/browser-storage/types.d'
+import { utilitiesBrowserStorage } from 'src/utilities/browser-storage'
 
 export const storageService = {
   getElementsSavedInStorage,
   getStorageUsed,
   saveOnStorage,
-  clearStorage,
-};
+  clearStorage
+}
 
-function saveOnStorage(data, storageToSave = sessionStorage) {
+function saveOnStorage (data, storageToSave = sessionStorage) {
   // Los Keys en KEYS_TO_STORAGE deben venir el data devuelto por el API
   const elementsToSave = KEYS_TO_STORAGE.reduce(
-    (acc, key) => ((acc[key] = data[key]), acc),
+    (acc, key) => {
+      acc[key] = data[key]
+      return acc
+    },
     {}
-  );
+  )
 
   /**
    * Almacenamiento de los token en localStorage o sessionStorage
@@ -23,23 +26,23 @@ function saveOnStorage(data, storageToSave = sessionStorage) {
    */
 
   Object.keys(elementsToSave).forEach((key) => {
-    storageToSave.setItem(key, elementsToSave[key]);
-  });
+    storageToSave.setItem(key, elementsToSave[key])
+  })
 
-  return elementsToSave;
+  return elementsToSave
 }
 
-function clearStorage() {
+function clearStorage () {
   KEYS_TO_STORAGE.forEach((key) => {
-    localStorage.removeItem(key);
-    sessionStorage.removeItem(key);
-  });
+    localStorage.removeItem(key)
+    sessionStorage.removeItem(key)
+  })
 }
 
-function getElementsSavedInStorage() {
-  return utilitiesBrowserStorage.elementsSavedInStorage;
+function getElementsSavedInStorage () {
+  return utilitiesBrowserStorage.elementsSavedInStorage
 }
 
-function getStorageUsed() {
-  return utilitiesBrowserStorage.storageUsed;
+function getStorageUsed () {
+  return utilitiesBrowserStorage.storageUsed
 }

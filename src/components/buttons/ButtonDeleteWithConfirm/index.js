@@ -1,1 +1,1 @@
-export * from "./ButtonDeleteWithConfirm";
+export * from './ButtonDeleteWithConfirm'

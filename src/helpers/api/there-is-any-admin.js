@@ -1,14 +1,14 @@
-const db = require("@db/models/index");
+const db = require('@db/models/index')
 
-export { thereIsAnyAdmin };
+export { thereIsAnyAdmin }
 
-async function thereIsAnyAdmin(transaction) {
-  const count_admin = await db.bmauth_user_profiles.count({
+async function thereIsAnyAdmin (transaction) {
+  const countAdmin = await db.bmauth_user_profiles.count({
     where: {
-      PROFILE_ID: "SUADM",
+      PROFILE_ID: 'SUADM'
     },
-    transaction,
-  });
+    transaction
+  })
 
-  return count_admin > 0;
+  return countAdmin > 0
 }

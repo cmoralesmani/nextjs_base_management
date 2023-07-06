@@ -1,20 +1,20 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
-import { Search } from "src/components/search";
+import { Search } from 'src/components/search'
 
-export { ListForm };
+export { ListForm }
 
 ListForm.propTypes = {
   updateUsersCallback: PropTypes.func.isRequired,
-  setUrlDownload: PropTypes.func.isRequired,
-};
+  setUrlDownload: PropTypes.func.isRequired
+}
 
-function ListForm({ updateUsersCallback, setUrlDownload }) {
+function ListForm ({ updateUsersCallback, setUrlDownload }) {
   return (
     <Search
       loadDataCallback={updateUsersCallback}
-      urlBaseDownload={`/accessibility/users/export`}
+      urlBaseDownload={'/accessibility/users/export'}
       setUrlDownload={setUrlDownload}
     />
-  );
+  )
 }

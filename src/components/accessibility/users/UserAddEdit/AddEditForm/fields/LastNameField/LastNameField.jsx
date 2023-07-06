@@ -1,12 +1,12 @@
-import { TextField } from "src/components/shared/fields";
+import { TextField } from 'src/components/shared/fields'
 
-export function LastNameField({
+export function LastNameField ({
   id,
-  label = "Apellidos",
-  placeholder = "Apellidos",
-  text,
+  label = 'Apellidos',
+  placeholder = 'Apellidos',
+  text
 }) {
   return (
     <TextField id={id} label={label} placeholder={placeholder} text={text} />
-  );
+  )
 }

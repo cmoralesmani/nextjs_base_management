@@ -1,2 +1,2 @@
-export * from "./ColumnLink";
-export * from "./ColumnData";
+export * from './ColumnLink'
+export * from './ColumnData'

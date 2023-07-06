@@ -1,16 +1,16 @@
-import { SelectSingleField } from "src/components/shared/fields";
+import { SelectSingleField } from 'src/components/shared/fields'
 
-export function StatusField({ id, label = "Estado", text }) {
+export function StatusField ({ id, label = 'Estado', text }) {
   const optionsSource = [
     {
-      id: "ESPER-ACTIV",
-      description: "Activo",
+      id: 'ESPER-ACTIV',
+      description: 'Activo'
     },
     {
-      id: "ESPER-INACT",
-      description: "Inactivo",
-    },
-  ];
+      id: 'ESPER-INACT',
+      description: 'Inactivo'
+    }
+  ]
   return (
     <SelectSingleField
       id={id}
@@ -18,5 +18,5 @@ export function StatusField({ id, label = "Estado", text }) {
       text={text}
       optionsSource={optionsSource}
     />
-  );
+  )
 }

@@ -1,16 +1,16 @@
-import Link from "next/link";
-import { Col, Row } from "react-bootstrap";
-import { FaIdCard, FaListAlt, FaRegEdit } from "react-icons/fa";
+import Link from 'next/link'
+import { Col, Row } from 'react-bootstrap'
+import { FaIdCard, FaListAlt, FaRegEdit } from 'react-icons/fa'
 
-import { useHasPermissionStatus } from "src/hooks/auth";
+import { useHasPermissionStatus } from 'src/hooks/auth'
 
-export function Header({ parameter }) {
+export function Header ({ parameter }) {
   const hasPermissionChangeParameter = useHasPermissionStatus({
-    codenamePermission: "alter_parameter",
-  });
+    codenamePermission: 'alter_parameter'
+  })
   const hasPermissionViewParameters = useHasPermissionStatus({
-    codenamePermission: "see_parameters",
-  });
+    codenamePermission: 'see_parameters'
+  })
   return (
     <Row>
       <Col className="text-center">
@@ -25,7 +25,7 @@ export function Header({ parameter }) {
         )}
         {hasPermissionViewParameters && (
           <Link
-            href={`/maintenance/parameters/list`}
+            href={'/maintenance/parameters/list'}
             className="btn btn-link float-end"
             title="Lista de parametros"
           >
@@ -38,5 +38,5 @@ export function Header({ parameter }) {
         <hr className="mb-3" />
       </Col>
     </Row>
-  );
+  )
 }

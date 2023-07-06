@@ -1,21 +1,21 @@
-import { Badge } from "react-bootstrap";
+import { Badge } from 'react-bootstrap'
 
-import { ButtonDeleteWithConfirm } from "src/components/buttons";
-import { ColumnData, ColumnLink } from "src/components/shared/columns";
-import { useHasPermissionStatus } from "src/hooks/auth";
+import { ButtonDeleteWithConfirm } from 'src/components/buttons'
+import { ColumnData, ColumnLink } from 'src/components/shared/columns'
+import { useHasPermissionStatus } from 'src/hooks/auth'
 
-import { ColumnActions } from "./ColumnActions";
+import { ColumnActions } from './ColumnActions'
 
-export function Body({ profiles, hasActionButtons, deleteProfileCallback }) {
+export function Body ({ profiles, hasActionButtons, deleteProfileCallback }) {
   const hasPermissionDeleteProfile = useHasPermissionStatus({
-    codenamePermission: "delete_profile",
-  });
+    codenamePermission: 'delete_profile'
+  })
 
   return (
     <tbody>
       {profiles &&
         profiles?.map((profile) => {
-          const dataRow = { ...profile, id: profile.id_profile };
+          const dataRow = { ...profile, id: profile.id_profile }
           return (
             <tr key={profile.id_profile}>
               <td>
@@ -28,7 +28,7 @@ export function Body({ profiles, hasActionButtons, deleteProfileCallback }) {
                       >
                         {value}
                       </ColumnLink>
-                    );
+                    )
                   }}
                 </ColumnData>
               </td>
@@ -38,14 +38,14 @@ export function Body({ profiles, hasActionButtons, deleteProfileCallback }) {
                     return (
                       <Badge
                         bg={
-                          dataRow.status_profile_id == "ESPER-ACTIV"
-                            ? "success"
-                            : "danger"
+                          dataRow.status_profile_id === 'ESPER-ACTIV'
+                            ? 'success'
+                            : 'danger'
                         }
                       >
                         {value}
                       </Badge>
-                    );
+                    )
                   }}
                 </ColumnData>
               </td>
@@ -56,15 +56,15 @@ export function Body({ profiles, hasActionButtons, deleteProfileCallback }) {
                     <ButtonDeleteWithConfirm
                       message={`Esta seguro que desea eliminar el perfil ${dataRow.de_profile}?`}
                       callbackDelete={() => {
-                        return deleteProfileCallback(dataRow.id);
+                        return deleteProfileCallback(dataRow.id)
                       }}
                     />
                   )}
                 </td>
               )}
             </tr>
-          );
+          )
         })}
     </tbody>
-  );
+  )
 }

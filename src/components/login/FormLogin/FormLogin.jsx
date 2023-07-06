@@ -1,19 +1,19 @@
-import React from "react";
-import { Row, Form } from "react-bootstrap";
-import { FaSignInAlt } from "react-icons/fa";
+import React from 'react'
+import { Row, Form } from 'react-bootstrap'
+import { FaSignInAlt } from 'react-icons/fa'
 
-import { Button } from "src/components/miscellaneous";
+import { Button } from 'src/components/miscellaneous'
 
-import * as fields from "./fields";
+import * as fields from './fields'
 
-export function FormLogin({
+export function FormLogin ({
   values,
   handleChange,
   handleSubmit,
   handleBlur,
   touched,
   isSubmitting,
-  errors,
+  errors
 }) {
   return (
     <Form onSubmit={handleSubmit}>
@@ -37,5 +37,5 @@ export function FormLogin({
         </Button>
       </div>
     </Form>
-  );
+  )
 }

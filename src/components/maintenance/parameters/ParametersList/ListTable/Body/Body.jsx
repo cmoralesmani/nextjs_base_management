@@ -1,13 +1,13 @@
-import { ColumnData, ColumnLink } from "src/components/shared/columns";
+import { ColumnData, ColumnLink } from 'src/components/shared/columns'
 
-import { ColumnActions } from "./ColumnActions";
+import { ColumnActions } from './ColumnActions'
 
-export function Body({ parameters, hasActionButtons }) {
+export function Body ({ parameters, hasActionButtons }) {
   return (
     <tbody>
       {parameters &&
         parameters?.map((parameter) => {
-          const dataRow = { ...parameter, id: parameter.id_definicion_m };
+          const dataRow = { ...parameter, id: parameter.id_definicion_m }
           return (
             <tr key={parameter.id_definicion_m}>
               <td>
@@ -20,7 +20,7 @@ export function Body({ parameters, hasActionButtons }) {
                       >
                         {value}
                       </ColumnLink>
-                    );
+                    )
                   }}
                 </ColumnData>
               </td>
@@ -30,8 +30,8 @@ export function Body({ parameters, hasActionButtons }) {
                 </td>
               )}
             </tr>
-          );
+          )
         })}
     </tbody>
-  );
+  )
 }

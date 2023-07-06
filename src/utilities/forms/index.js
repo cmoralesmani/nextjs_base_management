@@ -1,2 +1,2 @@
-export * from "./forms";
-export * from "./manage_errors";
+export * from './forms'
+export * from './manage_errors'

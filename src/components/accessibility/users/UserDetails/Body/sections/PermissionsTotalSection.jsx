@@ -1,21 +1,21 @@
-import { ListSection } from "src/components/shared/sections";
+import { ListSection } from 'src/components/shared/sections'
 
-import { useHasPermissionStatus } from "src/hooks/auth";
+import { useHasPermissionStatus } from 'src/hooks/auth'
 
-export function PermissionsTotalSection({ permissions }) {
+export function PermissionsTotalSection ({ permissions }) {
   const hasPermissionViewPermission = useHasPermissionStatus({
-    codenamePermission: "see_single_permission",
-  });
+    codenamePermission: 'see_single_permission'
+  })
 
   const items = permissions.map((permission) => ({
     key: permission.codename,
     description: permission.de_permission,
-    link: !!hasPermissionViewPermission
+    link: hasPermissionViewPermission
       ? {
-          href: `/accessibility/permissions/details/${permission.codename}`,
+          href: `/accessibility/permissions/details/${permission.codename}`
         }
-      : undefined,
-  }));
+      : undefined
+  }))
 
   return (
     <ListSection
@@ -23,5 +23,5 @@ export function PermissionsTotalSection({ permissions }) {
       items={items}
       textEmpty="No tiene permisos asignados"
     />
-  );
+  )
 }

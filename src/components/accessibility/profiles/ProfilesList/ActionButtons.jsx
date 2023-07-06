@@ -1,14 +1,14 @@
-import Link from "next/link";
-import { Badge, Col, Container, Row } from "react-bootstrap";
-import { FaFileCsv, FaPlus } from "react-icons/fa";
+import Link from 'next/link'
+import { Badge, Col, Container, Row } from 'react-bootstrap'
+import { FaFileCsv, FaPlus } from 'react-icons/fa'
 
-import { ButtonDownload } from "src/components/buttons";
-import { useHasPermissionStatus } from "src/hooks/auth";
+import { ButtonDownload } from 'src/components/buttons'
+import { useHasPermissionStatus } from 'src/hooks/auth'
 
-export function ActionButtons({ lengthInfo, urlDownload }) {
+export function ActionButtons ({ lengthInfo, urlDownload }) {
   const hasPermissionCreateProfile = useHasPermissionStatus({
-    codenamePermission: "create_profile",
-  });
+    codenamePermission: 'create_profile'
+  })
 
   return (
     <Container className="g-0 mb-3">
@@ -42,5 +42,5 @@ export function ActionButtons({ lengthInfo, urlDownload }) {
         </Col>
       </Row>
     </Container>
-  );
+  )
 }

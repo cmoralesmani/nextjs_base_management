@@ -1,6 +1,6 @@
-import { EditArrayField } from "src/components/shared/fields";
+import { EditArrayField } from 'src/components/shared/fields'
 
-export function OptionsField({ id, label = "Opciones", text }) {
+export function OptionsField ({ id, label = 'Opciones', text }) {
   return (
     <EditArrayField
       id={id}
@@ -10,5 +10,5 @@ export function OptionsField({ id, label = "Opciones", text }) {
       label={label}
       text={text}
     />
-  );
+  )
 }

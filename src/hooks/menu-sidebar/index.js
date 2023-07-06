@@ -1,1 +1,1 @@
-export * from "./useShowMenuSidebar";
+export * from './useShowMenuSidebar'

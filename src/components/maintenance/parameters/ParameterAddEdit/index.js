@@ -1,1 +1,1 @@
-export * from "./ParameterAddEdit";
+export * from './ParameterAddEdit'

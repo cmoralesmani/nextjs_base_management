@@ -1,25 +1,25 @@
-import { useDataList } from "src/hooks/resources";
-import { parametersService } from "src/services";
+import { useDataList } from 'src/hooks/resources'
+import { parametersService } from 'src/services'
 
-export function useParameters({
+export function useParameters ({
   loadInitialData = true,
-  controllerRequestAPI,
+  controllerRequestAPI
 }) {
   const {
     data: parameters,
     isLoading,
     error,
-    loadDataCallback: loadParametersCallback,
+    loadDataCallback: loadParametersCallback
   } = useDataList({
-    loadInitialData: loadInitialData,
+    loadInitialData,
     sourceDataCallback: parametersService.getParameters,
-    controllerRequestAPI: controllerRequestAPI,
-  });
+    controllerRequestAPI
+  })
 
   return {
     parameters,
     isLoading,
     error,
-    loadParametersCallback,
-  };
+    loadParametersCallback
+  }
 }

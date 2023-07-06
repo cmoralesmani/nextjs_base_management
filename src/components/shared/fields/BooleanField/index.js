@@ -1,1 +1,1 @@
-export * from "./BooleanField";
+export * from './BooleanField'

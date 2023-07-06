@@ -1,1 +1,1 @@
-export * from "./UserAddEdit";
+export * from './UserAddEdit'

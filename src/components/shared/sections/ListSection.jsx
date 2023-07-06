@@ -1,8 +1,8 @@
-import Link from "next/link";
-import PropTypes from "prop-types";
-import { Alert, Badge, Col, ListGroup, Row } from "react-bootstrap";
+import Link from 'next/link'
+import PropTypes from 'prop-types'
+import { Alert, Badge, Col, ListGroup, Row } from 'react-bootstrap'
 
-export { ListSection };
+export { ListSection }
 
 ListSection.propTypes = {
   /**
@@ -17,17 +17,17 @@ ListSection.propTypes = {
       key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       description: PropTypes.string.isRequired,
       link: PropTypes.shape({
-        href: PropTypes.string.isRequired,
-      }),
+        href: PropTypes.string.isRequired
+      })
     })
-  ),
-};
+  )
+}
 
 ListSection.defaultProps = {
-  textEmpty: "No hay registros para mostrar",
-};
+  textEmpty: 'No hay registros para mostrar'
+}
 
-function ListSection({ title, items, textEmpty }) {
+function ListSection ({ title, items, textEmpty }) {
   return (
     <Row className="mt-3">
       <Col>
@@ -37,31 +37,36 @@ function ListSection({ title, items, textEmpty }) {
             {(items || []).length}
           </Badge>
         </h4>
-        {!items?.length ? (
+        {!items?.length
+          ? (
           <Alert variant="warning">{textEmpty}</Alert>
-        ) : (
+            )
+          : (
           <ListGroup as="ol" numbered>
             {items.map((item) => {
-              const link = item?.link;
-              if (!item.key)
+              const link = item?.link
+              if (!item.key) {
                 throw new Error(
                   `No ha especificado la key para el item ${JSON.stringify(
                     item
                   )}`
-                );
+                )
+              }
               return (
                 <ListGroup.Item key={item.key} as="li" variant="secondary">
-                  {!!link ? (
+                  {link
+                    ? (
                     <Link href={link.href}>{item.description}</Link>
-                  ) : (
+                      )
+                    : (
                     <>{item.description}</>
-                  )}
+                      )}
                 </ListGroup.Item>
-              );
+              )
             })}
           </ListGroup>
-        )}
+            )}
       </Col>
     </Row>
-  );
+  )
 }

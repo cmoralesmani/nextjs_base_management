@@ -1,2 +1,2 @@
-export * from "./usePermission";
-export * from "./usePermissions";
+export * from './usePermission'
+export * from './usePermissions'

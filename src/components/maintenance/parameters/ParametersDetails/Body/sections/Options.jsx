@@ -1,6 +1,6 @@
-import { Alert, Badge, Col, ListGroup, Row } from "react-bootstrap";
+import { Alert, Badge, Col, ListGroup, Row } from 'react-bootstrap'
 
-export function Options({ options }) {
+export function Options ({ options }) {
   return (
     <Row>
       <Col>
@@ -10,9 +10,11 @@ export function Options({ options }) {
             {(options || []).length}
           </Badge>
         </h4>
-        {!options?.length ? (
+        {!options?.length
+          ? (
           <Alert variant="warning">No tiene opciones</Alert>
-        ) : (
+            )
+          : (
           <ListGroup as="ol" numbered>
             {options.map((option) => {
               return (
@@ -29,11 +31,11 @@ export function Options({ options }) {
                     {option.descripcion_definicion_d}
                   </div>
                 </ListGroup.Item>
-              );
+              )
             })}
           </ListGroup>
-        )}
+            )}
       </Col>
     </Row>
-  );
+  )
 }

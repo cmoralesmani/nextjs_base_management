@@ -1,20 +1,20 @@
-import { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { FaLock } from "react-icons/fa";
+import { useState } from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
+import { FaLock } from 'react-icons/fa'
 
-import { Button } from "src/components/miscellaneous";
-import { ChangePasswordModal } from "./ChangePasswordModal";
+import { Button } from 'src/components/miscellaneous'
+import { ChangePasswordModal } from './ChangePasswordModal'
 
-export { ChangePassword };
+export { ChangePassword }
 
-function ChangePassword({ user }) {
-  const [show, setShow] = useState(false);
+function ChangePassword ({ user }) {
+  const [show, setShow] = useState(false)
 
   const handleShow = () => {
-    setShow(true);
-  };
+    setShow(true)
+  }
 
-  if (!user) return null;
+  if (!user) return null
 
   return (
     <>
@@ -35,5 +35,5 @@ function ChangePassword({ user }) {
 
       <ChangePasswordModal show={show} setShow={setShow} user={user} />
     </>
-  );
+  )
 }

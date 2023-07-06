@@ -1,1 +1,1 @@
-export * from "./PermissionsList";
+export * from './PermissionsList'

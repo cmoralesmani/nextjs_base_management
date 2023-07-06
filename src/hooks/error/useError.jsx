@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
-import { toastService } from "src/services";
+import { toastService } from 'src/services'
 
-export function useError() {
-  const [error, setError] = useState();
+export function useError () {
+  const [error, setError] = useState()
 
   useEffect(() => {
     if (error) {
-      toastService.error(error, { keepAfterRouteChange: true });
+      toastService.error(error, { keepAfterRouteChange: true })
     }
-  }, [error]);
+  }, [error])
 
-  return [error, setError];
+  return [error, setError]
 }

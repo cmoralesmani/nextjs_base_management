@@ -1,12 +1,12 @@
-import { SecretField } from "src/components/shared/fields";
+import { SecretField } from 'src/components/shared/fields'
 
-export function PasswordField({
+export function PasswordField ({
   id,
-  label = "Contraseña",
-  placeholder = "Contraseña",
-  text,
+  label = 'Contraseña',
+  placeholder = 'Contraseña',
+  text
 }) {
   return (
     <SecretField id={id} label={label} placeholder={placeholder} text={text} />
-  );
+  )
 }

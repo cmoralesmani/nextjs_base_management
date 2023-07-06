@@ -1,1 +1,1 @@
-export * from "./PermissionsField";
+export * from './PermissionsField'

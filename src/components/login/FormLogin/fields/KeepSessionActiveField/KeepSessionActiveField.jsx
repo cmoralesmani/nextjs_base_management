@@ -1,9 +1,9 @@
-import { BooleanField } from "src/components/shared/fields";
+import { BooleanField } from 'src/components/shared/fields'
 
-export function KeepSessionActiveField({
+export function KeepSessionActiveField ({
   id,
-  label = "Mantener la sesión activada",
-  text,
+  label = 'Mantener la sesión activada',
+  text
 }) {
-  return <BooleanField id={id} label={label} text={text} />;
+  return <BooleanField id={id} label={label} text={text} />
 }

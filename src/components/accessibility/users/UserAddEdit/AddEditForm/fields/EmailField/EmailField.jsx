@@ -1,10 +1,10 @@
-import { EmailField as EmailCommonField } from "src/components/shared/fields";
+import { EmailField as EmailCommonField } from 'src/components/shared/fields'
 
-export function EmailField({
+export function EmailField ({
   id,
-  label = "Correo electrónico",
-  placeholder = "correo@dominio.com",
-  text,
+  label = 'Correo electrónico',
+  placeholder = 'correo@dominio.com',
+  text
 }) {
   return (
     <EmailCommonField
@@ -13,5 +13,5 @@ export function EmailField({
       placeholder={placeholder}
       text={text}
     />
-  );
+  )
 }

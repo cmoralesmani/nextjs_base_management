@@ -1,25 +1,25 @@
-import { useDataList } from "src/hooks/resources";
-import { permissionService } from "src/services";
+import { useDataList } from 'src/hooks/resources'
+import { permissionService } from 'src/services'
 
-export function usePermissions({
+export function usePermissions ({
   loadInitialData = true,
-  controllerRequestAPI,
+  controllerRequestAPI
 }) {
   const {
     data: permissions,
     isLoading,
     error,
-    loadDataCallback: loadPermissionsCallback,
+    loadDataCallback: loadPermissionsCallback
   } = useDataList({
-    loadInitialData: loadInitialData,
+    loadInitialData,
     sourceDataCallback: permissionService.getPermissions,
-    controllerRequestAPI: controllerRequestAPI,
-  });
+    controllerRequestAPI
+  })
 
   return {
     permissions,
     isLoading,
     error,
-    loadPermissionsCallback,
-  };
+    loadPermissionsCallback
+  }
 }

@@ -1,14 +1,14 @@
-import { useField } from "formik";
-import { Accordion, Col, Form } from "react-bootstrap";
+import { useField } from 'formik'
+import { Accordion, Col, Form } from 'react-bootstrap'
 
-import { CheckboxProvider } from "./GroupCheckFieldContext";
-import GroupCheckFieldItem from "./GroupCheckFieldItem";
-import { GroupCheckFieldSelectAll } from "./GroupCheckFieldSelectAll";
+import { CheckboxProvider } from './GroupCheckFieldContext'
+import GroupCheckFieldItem from './GroupCheckFieldItem'
+import { GroupCheckFieldSelectAll } from './GroupCheckFieldSelectAll'
 
-function GroupCheckField({ name, label, text, allOptions, children }) {
+function GroupCheckField ({ name, label, text, allOptions, children }) {
   // https://codesandbox.io/s/formik-checkbox-group-40w0y?file=/src/CheckboxGroupItem.tsx
-  const [field, meta, helpers] = useField(name);
-  const { setValue } = helpers;
+  const [field, meta, helpers] = useField(name)
+  const { setValue } = helpers
 
   return (
     <Col className="mb-3">
@@ -33,7 +33,7 @@ function GroupCheckField({ name, label, text, allOptions, children }) {
         </Accordion.Item>
       </Accordion>
     </Col>
-  );
+  )
 }
 
-export default Object.assign(GroupCheckField, { Item: GroupCheckFieldItem });
+export default Object.assign(GroupCheckField, { Item: GroupCheckFieldItem })

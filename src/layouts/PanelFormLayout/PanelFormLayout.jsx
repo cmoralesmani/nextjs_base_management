@@ -1,6 +1,6 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from 'react-bootstrap'
 
-export function PanelFormLayout({ children }) {
+export function PanelFormLayout ({ children }) {
   return (
     <Container className="g-0">
       <Row className="justify-content-md-center my-3">
@@ -9,5 +9,5 @@ export function PanelFormLayout({ children }) {
         </Col>
       </Row>
     </Container>
-  );
+  )
 }

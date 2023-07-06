@@ -1,8 +1,8 @@
-import { Col, Row } from "react-bootstrap";
+import { Col, Row } from 'react-bootstrap'
 
-import * as sections from "./sections";
+import * as sections from './sections'
 
-export function Body({ parameter }) {
+export function Body ({ parameter }) {
   return (
     <>
       <Row>
@@ -29,5 +29,5 @@ export function Body({ parameter }) {
       </Row>
       <sections.Options options={parameter.obj_definicion_d} />
     </>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import { TextField } from "src/components/shared/fields";
+import { TextField } from 'src/components/shared/fields'
 
-export function IdField({
+export function IdField ({
   id,
-  label = "ID",
-  placeholder = "ID",
+  label = 'ID',
+  placeholder = 'ID',
   text,
   ...rest
 }) {
@@ -15,5 +15,5 @@ export function IdField({
       text={text}
       {...rest}
     />
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import { FaFolderOpen, FaRegEdit } from "react-icons/fa";
-import { ColumnLink } from "src/components/shared/columns";
+import { FaFolderOpen, FaRegEdit } from 'react-icons/fa'
+import { ColumnLink } from 'src/components/shared/columns'
 
-export function ColumnActions({ keyRow }) {
+export function ColumnActions ({ keyRow }) {
   return (
     <>
       <ColumnLink
@@ -19,5 +19,5 @@ export function ColumnActions({ keyRow }) {
         <FaRegEdit />
       </ColumnLink>
     </>
-  );
+  )
 }

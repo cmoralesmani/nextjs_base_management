@@ -1,7 +1,7 @@
-import { Col, Form } from "react-bootstrap";
-import { useField } from "formik";
+import { Col, Form } from 'react-bootstrap'
+import { useField } from 'formik'
 
-export function EmailField({
+export function EmailField ({
   id,
   label,
   placeholder,
@@ -9,8 +9,8 @@ export function EmailField({
   wrapperAs = Col,
   ...rest
 }) {
-  const [field, meta] = useField(id);
-  const isInvalid = !!meta.error;
+  const [field, meta] = useField(id)
+  const isInvalid = !!meta.error
 
   return (
     <Form.Group as={wrapperAs} className="mb-3" controlId={id}>
@@ -27,5 +27,5 @@ export function EmailField({
       </Form.Control.Feedback>
       {!!text && <Form.Text muted>{text}</Form.Text>}
     </Form.Group>
-  );
+  )
 }

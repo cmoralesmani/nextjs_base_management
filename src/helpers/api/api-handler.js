@@ -1,47 +1,47 @@
-const pinoHttp = require("pino-http");
+import { verifyToken } from 'src/api/helpers/auth'
+import { errorHandler, jwtMiddleware } from 'src/helpers/api'
 
-import { verifyToken } from "src/api/helpers/auth";
-import { errorHandler, jwtMiddleware } from "src/helpers/api";
+const pinoHttp = require('pino-http')
 
-const logger = require("src/services/logger.service");
-const db = require("db/models/index");
+const logger = require('src/services/logger.service')
+const db = require('db/models/index')
 
-export { apiHandler };
+export { apiHandler }
 
-function apiHandler(handler) {
+function apiHandler (handler) {
   return async (req, res) => {
     try {
       // global middleware
-      await jwtMiddleware(req, res);
+      await jwtMiddleware(req, res)
 
       // Se establece el objeto user con la informacion del usuario
       // autenticado que ha enviado su token
-      req.user = await getUserInTokenRequest(req, res);
+      req.user = await getUserInTokenRequest(req, res)
 
       // Middleware para los logs con PINO
       const loggerMidlleware = pinoHttp({
-        logger: logger,
+        logger,
         serializers: {
-          req(req) {
-            req.user = req.raw.user;
-            return req;
-          },
-        },
-      });
-      loggerMidlleware(req, res);
+          req (req) {
+            req.user = req.raw.user
+            return req
+          }
+        }
+      })
+      loggerMidlleware(req, res)
 
       if (!(await db.assertDatabaseConnectionOk(req))) {
-        throw "No se puede establecer conexión con la base de datos";
+        throw new Error('No se puede establecer conexión con la base de datos')
       }
 
       // route handler
-      await handler(req, res);
+      await handler(req, res)
     } catch (err) {
       // global error handler
-      errorHandler(err, res);
+      errorHandler(err, res)
     }
 
-    async function getUserInTokenRequest(req, res) {
+    async function getUserInTokenRequest (req, res) {
       /*
       Del objeto request que viene en la peticion del cliente
       se obtiene el header authorization y se verifica el token
@@ -52,18 +52,18 @@ function apiHandler(handler) {
       publica o el token que proveen no es valido entonces retorna
       undefined
       */
-      const authHeader = req.headers?.authorization;
+      const authHeader = req.headers?.authorization
       if (!authHeader) {
-        return;
+        return
       }
 
       // Ejemplo de authHeader: "Bearer j0194hf19804814"
       // [0]Bearer
       // [1]j0194hf19804814
-      const token = authHeader.split(" ")[1];
+      const token = authHeader.split(' ')[1]
 
-      const payload = await verifyToken(token, res);
-      return payload;
+      const payload = await verifyToken(token, res)
+      return payload
     }
-  };
+  }
 }

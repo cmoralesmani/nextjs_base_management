@@ -1,27 +1,27 @@
-import { Formik } from "formik";
-import { useRouter } from "next/router";
-import PropTypes from "prop-types";
-import { useRef, useEffect, useMemo } from "react";
+import { Formik } from 'formik'
+import { useRouter } from 'next/router'
+import PropTypes from 'prop-types'
+import { useRef, useEffect, useMemo } from 'react'
 
-import { PanelFormLayout } from "src/layouts/PanelFormLayout";
-import { toastService } from "src/services";
-import { utilitiesForms } from "src/utilities/forms";
+import { PanelFormLayout } from 'src/layouts/PanelFormLayout'
+import { toastService } from 'src/services'
+import { utilitiesForms } from 'src/utilities/forms'
 
-import { SearchForm } from "./SearchForm";
+import { SearchForm } from './SearchForm'
 
-import { FORM_SEARCH_EMPTY_VALUES } from "src/utilities/forms/types.d";
+import { FORM_SEARCH_EMPTY_VALUES } from 'src/utilities/forms/types.d'
 
-const { formSearchSchema } = utilitiesForms;
+const { formSearchSchema } = utilitiesForms
 
-export { Search };
+export { Search }
 
 Search.propTypes = {
   loadDataCallback: PropTypes.func.isRequired,
   urlBaseDownload: PropTypes.string.isRequired,
-  setUrlDownload: PropTypes.func,
-};
+  setUrlDownload: PropTypes.func
+}
 
-function Search({ loadDataCallback, urlBaseDownload, setUrlDownload }) {
+function Search ({ loadDataCallback, urlBaseDownload, setUrlDownload }) {
   /**
    * Ya que hay varias vista que comparten esta forma de consultar datos
    * se hizo este componente para reutilizarlo en los sitios donde
@@ -31,54 +31,54 @@ function Search({ loadDataCallback, urlBaseDownload, setUrlDownload }) {
    * setUrlDownload: Es un metodo de useState() para actualizar la
    *  url dependiendo de la busqueda.
    */
-  const formRef = useRef();
+  const formRef = useRef()
 
   // Establecer los valores por defecto del formulario
-  const { query } = useRouter();
+  const { query } = useRouter()
 
   const defaultValues = useMemo(() => {
-    const filters_q = query?.filters;
-    const filters = filters_q ? JSON.parse(filters_q) : {};
+    const filtersQ = query?.filters
+    const filters = filtersQ ? JSON.parse(filtersQ) : {}
 
     return {
-      search: filters?.search || "",
-    };
-  }, [query]);
+      search: filters?.search || ''
+    }
+  }, [query])
 
   useEffect(() => {
-    const { submitForm, setValues } = formRef.current;
+    const { submitForm, setValues } = formRef.current
     // https://github.com/jaredpalmer/formik/issues/529#issuecomment-402763988
-    setValues(defaultValues);
-    setTimeout(submitForm, 1);
-  }, [defaultValues]);
+    setValues(defaultValues)
+    setTimeout(submitForm, 1)
+  }, [defaultValues])
 
-  async function handleSubmitSearch(values) {
-    if (!!setUrlDownload) {
+  async function handleSubmitSearch (values) {
+    if (setUrlDownload) {
       // values son los datos del formulario tal y como los maneja el formulario
       const paramsUrlStr = `?filters=${encodeURIComponent(
         JSON.stringify(values)
-      )}`;
+      )}`
       // https://www.codegrepper.com/code-examples/javascript/react+change+url+without+reload
       if (window.history.replaceState) {
-        //prevents browser from storing history with each change:
+        // prevents browser from storing history with each change:
         window.history.replaceState(
           {
             ...window.history.state,
             as: `${window.location.pathname}${paramsUrlStr}`,
-            url: `${window.location.pathname}${paramsUrlStr}`,
+            url: `${window.location.pathname}${paramsUrlStr}`
           },
-          "",
+          '',
           `${window.location.pathname}${paramsUrlStr}`
-        );
+        )
       }
 
-      setUrlDownload(`${urlBaseDownload}${paramsUrlStr}`);
+      setUrlDownload(`${urlBaseDownload}${paramsUrlStr}`)
     }
 
     try {
-      await loadDataCallback(values);
+      await loadDataCallback(values)
     } catch (err) {
-      toastService.error(err.message);
+      toastService.error(err.message)
     }
   }
 
@@ -88,7 +88,7 @@ function Search({ loadDataCallback, urlBaseDownload, setUrlDownload }) {
         initialValues={FORM_SEARCH_EMPTY_VALUES}
         validationSchema={formSearchSchema}
         onSubmit={async (values, formikHelpers) => {
-          await handleSubmitSearch(values, formikHelpers);
+          await handleSubmitSearch(values, formikHelpers)
         }}
         // https://stackoverflow.com/a/72990794
         validateOnChange={false}
@@ -97,5 +97,5 @@ function Search({ loadDataCallback, urlBaseDownload, setUrlDownload }) {
         innerRef={(f) => (formRef.current = f)}
       ></Formik>
     </PanelFormLayout>
-  );
+  )
 }

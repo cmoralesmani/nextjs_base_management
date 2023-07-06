@@ -1,2 +1,2 @@
-export * from "./UsernameField";
-export * from "./PasswordField";
+export * from './UsernameField'
+export * from './PasswordField'

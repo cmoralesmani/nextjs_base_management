@@ -1,14 +1,14 @@
-import { Provider } from "react-redux";
+import { Provider } from 'react-redux'
 
-import { ToastCustom } from "src/components/miscellaneous";
-import { SiteLayout } from "src/layouts";
-import { wrapper } from "src/redux/store";
+import { ToastCustom } from 'src/components/miscellaneous'
+import { SiteLayout } from 'src/layouts'
+import { wrapper } from 'src/redux/store'
 
-import "styles/App.scss";
+import 'styles/App.scss'
 
-function MyApp({ Component, pageProps }) {
-  const { store, props } = wrapper.useWrappedStore(pageProps);
-  const { _pageProps } = props;
+function MyApp ({ Component, pageProps }) {
+  const { store, props } = wrapper.useWrappedStore(pageProps)
+  const { _pageProps } = props
 
   return (
     <>
@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
       </Provider>
       <ToastCustom />
     </>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

@@ -1,2 +1,2 @@
-export { default as GroupCheckField } from "./GroupCheckField";
-export { default as GroupCheckFieldItem } from "./GroupCheckFieldItem";
+export { default as GroupCheckField } from './GroupCheckField'
+export { default as GroupCheckFieldItem } from './GroupCheckFieldItem'

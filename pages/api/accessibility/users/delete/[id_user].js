@@ -1,64 +1,64 @@
-import { apiHandler, hasPermissionsTo, thereIsAnyAdmin } from "src/helpers/api";
-import { hasPermission } from "src/helpers/utils";
-const db = require("@db/models/index");
+import { apiHandler, hasPermissionsTo, thereIsAnyAdmin } from 'src/helpers/api'
+import { hasPermission } from 'src/helpers/utils'
+const db = require('@db/models/index')
 
-export default apiHandler(handler);
+export default apiHandler(handler)
 
-function handler(req, res) {
+function handler (req, res) {
   switch (req.method) {
-    case "DELETE":
-      return _delete();
+    case 'DELETE':
+      return _delete()
     default:
-      return res.status(405).end(`Method ${req.method} Not Allowed`);
+      return res.status(405).end(`Method ${req.method} Not Allowed`)
   }
 
-  async function _delete() {
-    const { id_user } = req.query;
+  async function _delete () {
+    const { id_user: idUser } = req.query
 
     // Tiene permiso para eliminar usuarios?
     const hasPermissionToDeleteUser = hasPermission(
-      await hasPermissionsTo(req.user.username, ["delete_user"]),
-      "delete_user"
-    );
+      await hasPermissionsTo(req.user.username, ['delete_user']),
+      'delete_user'
+    )
     if (!hasPermissionToDeleteUser) {
       return res
         .status(403)
-        .json({ message: "No tiene permisos para eliminar usuarios" });
+        .json({ message: 'No tiene permisos para eliminar usuarios' })
     }
 
     // Verificacion de que haya especificado el usuario que quiere eliminar
-    if (!id_user) {
-      throw "No especificó el usuario que desea eliminar";
+    if (!idUser) {
+      throw new Error('No especificó el usuario que desea eliminar')
     }
 
-    let transaction;
+    let transaction
     try {
-      transaction = await db.sequelize.transaction();
+      transaction = await db.sequelize.transaction()
       const user = await db.bmauth_user.findOne(
         {
-          where: { ID_USER: id_user },
+          where: { ID_USER: idUser }
         },
         { transaction }
-      );
+      )
 
       /* Verificacion de si existe el perfil que esta tratando de eliminar */
       if (!user) {
-        throw "El usuario no existe";
+        throw new Error('El usuario no existe')
       }
 
-      await user.destroy({ transaction });
+      await user.destroy({ transaction })
 
       // Antes de hacer commit por la operacion realizada se verifica si queda algun administrador
-      const there_is_any_admin = await thereIsAnyAdmin(transaction);
-      if (!there_is_any_admin) {
-        throw "La operación que desea realizar deja al perfil de Super Administrador sin ningún usuario asignado";
+      const thereIsAnyAdminNow = await thereIsAnyAdmin(transaction)
+      if (!thereIsAnyAdminNow) {
+        throw new Error('La operación que desea realizar deja al perfil de Super Administrador sin ningún usuario asignado')
       }
 
-      await transaction.commit();
-      return res.status(200).json({});
+      await transaction.commit()
+      return res.status(200).json({})
     } catch (error) {
-      await transaction.rollback();
-      throw "No se pudo eliminar el usuario (No debe estar asignado a algun perfil)";
+      await transaction.rollback()
+      throw new Error('No se pudo eliminar el usuario (No debe estar asignado a algun perfil)')
     }
   }
 }

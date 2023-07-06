@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { useState } from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
 
-import { Title } from "src/components/miscellaneous";
+import { Title } from 'src/components/miscellaneous'
 
-import { ActionButtons } from "./ActionButtons";
-import { ListForm } from "./ListForm";
-import { ListTable } from "./ListTable";
+import { ActionButtons } from './ActionButtons'
+import { ListForm } from './ListForm'
+import { ListTable } from './ListTable'
 
-export function ProfilesList({
+export function ProfilesList ({
   profiles,
   loadProfilesCallback,
-  deleteProfileCallback,
+  deleteProfileCallback
 }) {
-  const [urlDownload, setUrlDownload] = useState();
+  const [urlDownload, setUrlDownload] = useState()
 
   return (
     <>
@@ -36,5 +36,5 @@ export function ProfilesList({
         </Row>
       </Container>
     </>
-  );
+  )
 }

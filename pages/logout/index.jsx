@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
-import { Logout } from "src/components/logout";
+import { Logout } from 'src/components/logout'
 
-export default function LogoutPage() {
-  return <Logout />;
+export default function LogoutPage () {
+  return <Logout />
 }

@@ -1,20 +1,20 @@
-import Link from "next/link";
-import { Badge, Col, Row } from "react-bootstrap";
-import { FaUsers, FaListAlt, FaRegEdit } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import Link from 'next/link'
+import { Badge, Col, Row } from 'react-bootstrap'
+import { FaUsers, FaListAlt, FaRegEdit } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 
-import { useHasPermissionStatus } from "src/hooks/auth";
-import { selectUserState } from "src/redux/slices/user-slice";
+import { useHasPermissionStatus } from 'src/hooks/auth'
+import { selectUserState } from 'src/redux/slices/user-slice'
 
-export function Header({ user }) {
-  const userState = useSelector(selectUserState);
+export function Header ({ user }) {
+  const userState = useSelector(selectUserState)
 
   const hasPermissionSeeUsers = useHasPermissionStatus({
-    codenamePermission: "see_single_user",
-  });
+    codenamePermission: 'see_single_user'
+  })
   const hasPermissionAlterUser = useHasPermissionStatus({
-    codenamePermission: "alter_user",
-  });
+    codenamePermission: 'alter_user'
+  })
 
   return (
     <Row>
@@ -30,7 +30,7 @@ export function Header({ user }) {
         )}
         {hasPermissionSeeUsers && (
           <Link
-            href={`/accessibility/users/list`}
+            href={'/accessibility/users/list'}
             className="btn btn-link float-end"
             title="Lista de usuarios"
           >
@@ -48,5 +48,5 @@ export function Header({ user }) {
         <hr className="mb-3" />
       </Col>
     </Row>
-  );
+  )
 }

@@ -1,1 +1,1 @@
-export * from "./PermissionDetails";
+export * from './PermissionDetails'

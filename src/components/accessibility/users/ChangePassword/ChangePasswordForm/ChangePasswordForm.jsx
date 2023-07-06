@@ -1,13 +1,13 @@
-import { Col, Form, Row } from "react-bootstrap";
-import { FaSave, FaTimesCircle } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { Col, Form, Row } from 'react-bootstrap'
+import { FaSave, FaTimesCircle } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 
-import { Button } from "src/components/miscellaneous";
-import { selectUserState } from "src/redux/slices/user-slice";
+import { Button } from 'src/components/miscellaneous'
+import { selectUserState } from 'src/redux/slices/user-slice'
 
-import * as fields from "./fields";
+import * as fields from './fields'
 
-export function ChangePasswordForm({
+export function ChangePasswordForm ({
   user,
   setShow,
   values,
@@ -17,16 +17,16 @@ export function ChangePasswordForm({
   touched,
   isSubmitting,
   errors,
-  resetForm,
+  resetForm
 }) {
-  const userState = useSelector(selectUserState);
+  const userState = useSelector(selectUserState)
 
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
         <fields.UsernameField id="username" />
       </Row>
-      {user.id_user == userState?.id_user && (
+      {user.id_user === userState?.id_user && (
         <Row>
           <fields.PasswordField id="oldPassword" label="Contraseña anterior" />
         </Row>
@@ -60,5 +60,5 @@ export function ChangePasswordForm({
         </Col>
       </Row>
     </Form>
-  );
+  )
 }

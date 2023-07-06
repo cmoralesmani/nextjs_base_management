@@ -1,22 +1,24 @@
-import { Button } from "react-bootstrap";
+import { Button } from 'react-bootstrap'
 
-export { CustomButton };
+export { CustomButton }
 
-function CustomButton({
+function CustomButton ({
   children,
-  variant = "primary",
+  variant = 'primary',
   isSubmitting = false,
   icon,
   ...props
 }) {
   return (
     <Button variant={variant} {...props} disabled={isSubmitting}>
-      {isSubmitting ? (
+      {isSubmitting
+        ? (
         <span className="spinner-border spinner-border-sm me-1"></span>
-      ) : (
+          )
+        : (
         <>{icon} </>
-      )}
+          )}
       {children}
     </Button>
-  );
+  )
 }

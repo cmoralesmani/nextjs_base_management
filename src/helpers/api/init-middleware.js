@@ -1,14 +1,14 @@
 // https://dev.to/meddlesome/nextjs-apis-validator-with-middleware-3njl
-export { initMiddleware };
+export { initMiddleware }
 
-function initMiddleware(middleware) {
+function initMiddleware (middleware) {
   return (req, res) =>
     new Promise((resolve, reject) => {
       middleware(req, res, (result) => {
         if (result instanceof Error) {
-          return reject(result);
+          return reject(result)
         }
-        return resolve(result);
-      });
-    });
+        return resolve(result)
+      })
+    })
 }

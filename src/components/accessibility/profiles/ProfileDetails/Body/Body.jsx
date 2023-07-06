@@ -1,8 +1,8 @@
-import { Col, Row } from "react-bootstrap";
+import { Col, Row } from 'react-bootstrap'
 
-import * as sections from "./sections";
+import * as sections from './sections'
 
-export function Body({ profile }) {
+export function Body ({ profile }) {
   return (
     <>
       <Row>
@@ -30,5 +30,5 @@ export function Body({ profile }) {
       <sections.UsersSection users={profile.users} />
       <sections.PermissionsSection permissions={profile.permissions} />
     </>
-  );
+  )
 }

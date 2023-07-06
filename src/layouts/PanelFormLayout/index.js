@@ -1,1 +1,1 @@
-export * from "./PanelFormLayout";
+export * from './PanelFormLayout'

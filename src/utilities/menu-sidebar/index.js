@@ -1,2 +1,2 @@
-export * from "./types.d";
-export * from "./menu-sidebar";
+export * from './types.d'
+export * from './menu-sidebar'

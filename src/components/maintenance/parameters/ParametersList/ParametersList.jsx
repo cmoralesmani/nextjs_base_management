@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { useState } from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
 
-import { Title } from "src/components/miscellaneous";
+import { Title } from 'src/components/miscellaneous'
 
-import { ActionButtons } from "./ActionButtons";
-import { ListForm } from "./ListForm";
-import { ListTable } from "./ListTable";
+import { ActionButtons } from './ActionButtons'
+import { ListForm } from './ListForm'
+import { ListTable } from './ListTable'
 
-export function ParametersList({ parameters, loadParametersCallback }) {
-  const [urlDownload, setUrlDownload] = useState();
+export function ParametersList ({ parameters, loadParametersCallback }) {
+  const [urlDownload, setUrlDownload] = useState()
 
   return (
     <>
@@ -31,5 +31,5 @@ export function ParametersList({ parameters, loadParametersCallback }) {
         </Container>
       </>
     </>
-  );
+  )
 }
