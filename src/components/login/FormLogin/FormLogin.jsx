@@ -30,6 +30,7 @@ export function FormLogin ({
         <Button
           variant="primary"
           type="submit"
+          name="login"
           isSubmitting={isSubmitting}
           icon={<FaSignInAlt />}
         >

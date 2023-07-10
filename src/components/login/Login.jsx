@@ -36,7 +36,6 @@ export function Login () {
         router.push(returnUrl)
       })
       .catch((errors) => {
-        console.log(errors)
         /* Se establecen los errores en los campos devueltos por el api. */
         setErrorsReturnedByDjango(errors.errors, setFieldError)
       })
@@ -44,6 +43,7 @@ export function Login () {
         setSubmitting(false)
       })
   }
+  // return null
 
   return (
     <Container className="mt-5 mb-4">

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@hookform/resolvers": "2.8.8",
@@ -43,13 +44,20 @@
     "yup": "0.32.11"
   },
   "devDependencies": {
-    "eslint": "^8.44.0",
+    "@testing-library/dom": "9.3.1",
+    "@testing-library/jest-dom": "5.16.5",
+    "@testing-library/react": "14.0.0",
+    "@testing-library/user-event": "github:testing-library/user-event",
+    "eslint": "8.44.0",
     "eslint-config-next": "12.1.6",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-n": "^16.0.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.32.2"
+    "eslint-config-standard": "17.1.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-n": "16.0.1",
+    "eslint-plugin-promise": "6.1.1",
+    "eslint-plugin-react": "7.32.2",
+    "jest": "29.6.1",
+    "jest-environment-jsdom": "29.6.1",
+    "jest-fetch-mock": "3.0.3"
   },
   "engines": {
     "node": ">=18.0.0",
